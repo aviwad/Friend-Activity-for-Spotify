@@ -10,11 +10,8 @@ Watch what your friends are listening to & add it to your homescreen. Tap on eac
 <img src="https://user-images.githubusercontent.com/25706524/180601253-280c6a2d-4095-4a6e-a349-d4d8dd20b70e.png" height="400" />
 </p> 
 
-
-                                                                                                                         
-                                                                                                                         
-                                                                                                                         
-\                                                                                                                         
+Private profile pictures and names of friends removed in above screenshots.
+                                                                                                                                                                                                                                                 
 ## Features:
 - Dynamically update list of friends in homescreen (every 2 minutes, smooth animations)
 - UI is the same as the official Spotify desktop UI, but remodeled to work on mobile (context menu instead of links)
