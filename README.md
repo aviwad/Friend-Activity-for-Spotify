@@ -20,6 +20,7 @@ In beta right now, hence debug and errors can be seen everywhere
 
 Credits:
 - [@Apple](https://github.com/apple) for [Swift](https://github.com/apple/swift) and SwiftUI
+- [@JulietaUla](https://github.com/JulietaUla) for the [Montesrrat font](https://github.com/JulietaUla/Montserrat) (used extensively within the app)
 - [@kishikawakatsumi](https://github.com/kishikawakatsumi) for [KeychainAccess](https://github.com/kishikawakatsumi/keychainaccess) (for storing spDcCookie and accessToken of Spotify securely between app and widget)
 - [@markiv](https://github.com/markiv) for [SwiftUI-Shimmer](https://github.com/markiv/SwiftUI-Shimmer) for the shimmer animation of first load of homescreen
 - [@kean](https://github.com/kean) for [Nuke](https://github.com/kean/Nuke) (used to display images asynchronously in Widget and app)
