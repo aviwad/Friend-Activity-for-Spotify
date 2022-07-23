@@ -24,7 +24,6 @@ import KeychainAccess
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
     //@Published var youHaveNoFriends: Bool = false
-    var spDcCookie = "" 
     init() {
         monitor.start(queue: DispatchQueue.main)
         monitor.pathUpdateHandler = { path in
@@ -71,11 +70,14 @@ import KeychainAccess
     
     func GetAccessToken() async {
         do {
-            let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie)", httpField: "Cookie")
-            keychain["accessToken"] = accessToken.accessToken
+            let spDcCookie = keychain["spDcCookie"]
+            if (spDcCookie != nil) {
+                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+                keychain["accessToken"] = accessToken.accessToken
+            }
         }
         catch {
-            spDcCookie = ""
+            keychain["spDcCookie"] = nil
             self.loggedOut = false
             self.loggedOut = true
             debug = "logged out in access token"
@@ -115,13 +117,16 @@ import KeychainAccess
                         let errorMessage: WelcomeError
                         errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                         debug = "logged out through errorJSON (access token is fucked)"
+                        await GetAccessToken()
+                        await GetFriendActivity()
                         self.error = errorMessage.error.message
                         print("LOGGED \(errorMessage)")
                         self.keychain["accessToken"] = nil
+                        self.keychain["spDcCookie"] = nil
                         loggedOut = true
                     }
                     catch {
-                        debug = debug+"AND errorJSON"
+                        debug = debug+"AND errorJSON also had an error :D"
                         self.error = self.error+" AND "+error.localizedDescription
                     }
                 }
@@ -153,32 +158,35 @@ import KeychainAccess
                 }
             }
             catch {
-                debug = "logged out cuz of friendarrayinitial error no animation"
+                debug = "logged out cuz of friendarrayinitial error"
                 self.error = error.localizedDescription
                 print("LOGGED \(accessToken.unsafelyUnwrapped)")
                 print("LOGGED Error info: \(error)")
-                print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR no animation")
+                print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
                 if (networkUp) {
                     do {
                         let errorMessage: WelcomeError
                         errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-                        debug = "logged out through errorJSON (access token is fucked) (no animation)"
+                        debug = "logged out through errorJSON (access token is fucked)"
+                        await GetAccessToken()
+                        await GetFriendActivityNoAnimation()
                         self.error = errorMessage.error.message
                         print("LOGGED \(errorMessage)")
                         self.keychain["accessToken"] = nil
+                        self.keychain["spDcCookie"] = nil
                         loggedOut = true
                     }
                     catch {
-                        debug = debug+"AND errorJSON (no animation)"
+                        debug = debug+"AND errorJSON also had an error :D"
                         self.error = self.error+" AND "+error.localizedDescription
                     }
                 }
             }
         }
         else {
-            debug = "logged out cuz accesstoken is nil no animation"
+            debug = "logged out cuz accesstoken is nil"
             self.error = "none"
-            print("LOGGED OUT ACCESSTOKEN IS NIL no animation")
+            print("LOGGED OUT ACCESSTOKEN IS NIL")
             self.loggedOut = true
         }
         //print("testing123: \(friendArray.unsafelyUnwrapped)")

@@ -12,6 +12,7 @@ struct SettingsPage: View {
         VStack{
             Button(action: {
                 print("LOGGED OUT CUZ OF BUTTON")
+                FriendActivityBackend.shared.keychain["spDcCookie"] = nil
                 FriendActivityBackend.shared.keychain["accessToken"] = nil
                 FriendActivityBackend.shared.loggedOut = true
             }) {

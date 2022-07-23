@@ -55,7 +55,7 @@ struct WebviewLogin: View {
             WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
                 cookies.forEach { cookie in
                     if (cookie.name == "sp_dc") {
-                        FriendActivityBackend.shared.spDcCookie = cookie.value
+                        FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
                         Task {
                             await FriendActivityBackend.shared.GetAccessToken()
                             await FriendActivityBackend.shared.GetFriendActivity()

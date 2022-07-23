@@ -47,6 +47,38 @@ struct Provider: TimelineProvider {
                  //WidgetCenter.shared.reloadAllTimelines()
             }
             catch {
+                return await GetFriendActivityWidgetWithNewToken()
+                //print(error)
+                //return ([],[],error.localizedDescription)
+            }
+        }
+        return ([],[],nil)
+    }
+
+    func GetFriendActivityWidgetWithNewToken() async -> ([Friend],[UIImage],String?) {
+        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
+            .accessibility(.afterFirstUnlock)
+        //let accessToken = try? keychain.get("accessToken")
+        let spDcCookie = try? keychain.get("spDcCookie")
+        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
+        if (spDcCookie != nil) {
+            let friendArrayInitial: Welcome
+            do {
+                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+                keychain["accessToken"] = accessToken.accessToken
+                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization")
+                 print("testing123: friendarrayinitial")
+                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
+                var imageArray : [UIImage] = []
+                for friend in friendArray {
+                    imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                }
+                return (friendArray,imageArray,nil)
+                 //youHaveNoFriends = false
+                
+                 //WidgetCenter.shared.reloadAllTimelines()
+            }
+            catch {
                 print(error)
                 return ([],[],error.localizedDescription)
             }
