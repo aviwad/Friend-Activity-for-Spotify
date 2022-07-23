@@ -7,18 +7,95 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
+		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
+		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
 		8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */; };
 		8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B82857AA70003708F1 /* ContentView.swift */; };
 		8F3F90BB2857AA71003708F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3F90BA2857AA71003708F1 /* Assets.xcassets */; };
 		8F3F90BE2857AA71003708F1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3F90BD2857AA71003708F1 /* Preview Assets.xcassets */; };
+		8F3F90C72857AB22003708F1 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90C62857AB22003708F1 /* SettingsPage.swift */; };
+		8F3F90C92857AB2F003708F1 /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90C82857AB2F003708F1 /* FriendList.swift */; };
+		8F3F90CB2857AB47003708F1 /* FriendRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90CA2857AB47003708F1 /* FriendRow.swift */; };
+		8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90CC2857AB5F003708F1 /* FriendActivityBackend.swift */; };
+		8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90CE2857AB6D003708F1 /* GetTime.swift */; };
+		8F3F90D12857AB76003708F1 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
+		8F3F90D32857AB85003708F1 /* GlobalUrlOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D22857AB85003708F1 /* GlobalUrlOpener.swift */; };
+		8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */; };
+		8F3F90DB2857AD21003708F1 /* TextLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90DA2857AD21003708F1 /* TextLink.swift */; };
+		8F3F90E32857B3D5003708F1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3F90E22857B3D5003708F1 /* WidgetKit.framework */; };
+		8F3F90E52857B3D5003708F1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3F90E42857B3D5003708F1 /* SwiftUI.framework */; };
+		8F3F90E82857B3D5003708F1 /* ioswidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90E72857B3D5003708F1 /* ioswidget.swift */; };
+		8F3F90EA2857B3D7003708F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3F90E92857B3D7003708F1 /* Assets.xcassets */; };
+		8F3F90EE2857B3D7003708F1 /* ioswidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8F3F90F82857B41E003708F1 /* GetSpotifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */; };
+		8F3F90F92857B420003708F1 /* GetTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90CE2857AB6D003708F1 /* GetTime.swift */; };
+		8F3F90FA2857B423003708F1 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
+		8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F52857B403003708F1 /* LargeView.swift */; };
+		8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */; };
+		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
+		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
+		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
+		8F9C049A288AD3DA00076266 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 8F9C0499288AD3DA00076266 /* Nuke */; };
+		8F9C049C288AD3DA00076266 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8F9C049B288AD3DA00076266 /* NukeUI */; };
+		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
+		8FBFE09728892D8C00476ECA /* FriendRowPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8F3F90EC2857B3D7003708F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F3F90AB2857AA70003708F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F3F90DF2857B3D5003708F1;
+			remoteInfo = ioswidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8F3F90F22857B3D7003708F1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8F3F90EE2857B3D7003708F1 /* ioswidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		8F1DB6B32889685900CBC078 /* montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat.ttf; sourceTree = "<group>"; };
+		8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewLogin.swift; sourceTree = "<group>"; };
+		8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetExtension.entitlements; sourceTree = "<group>"; };
+		8F1DB6C2288A098F00CBC078 /* Friend Activity for Spotify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Friend Activity for Spotify.entitlements"; sourceTree = "<group>"; };
 		8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Friend Activity for Spotify.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend_Activity_for_SpotifyApp.swift; sourceTree = "<group>"; };
 		8F3F90B82857AA70003708F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F3F90BA2857AA71003708F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F3F90BD2857AA71003708F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8F3F90C62857AB22003708F1 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
+		8F3F90C82857AB2F003708F1 /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
+		8F3F90CA2857AB47003708F1 /* FriendRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRow.swift; sourceTree = "<group>"; };
+		8F3F90CC2857AB5F003708F1 /* FriendActivityBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendActivityBackend.swift; sourceTree = "<group>"; };
+		8F3F90CE2857AB6D003708F1 /* GetTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTime.swift; sourceTree = "<group>"; };
+		8F3F90D02857AB76003708F1 /* JSONStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructs.swift; sourceTree = "<group>"; };
+		8F3F90D22857AB85003708F1 /* GlobalUrlOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalUrlOpener.swift; sourceTree = "<group>"; };
+		8F3F90D42857ABB0003708F1 /* Friend-Activity-for-Spotify-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Friend-Activity-for-Spotify-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSpotifyUrl.swift; sourceTree = "<group>"; };
+		8F3F90DA2857AD21003708F1 /* TextLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLink.swift; sourceTree = "<group>"; };
+		8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ioswidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F3F90E22857B3D5003708F1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8F3F90E42857B3D5003708F1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		8F3F90E72857B3D5003708F1 /* ioswidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ioswidget.swift; sourceTree = "<group>"; };
+		8F3F90E92857B3D7003708F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F3F90EB2857B3D7003708F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewRow.swift; sourceTree = "<group>"; };
+		8F3F90F52857B403003708F1 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
+		8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginSheet.swift; sourceTree = "<group>"; };
+		8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRowPlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,16 +103,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F9C049A288AD3DA00076266 /* Nuke in Frameworks */,
+				8FBFE09528892CD500476ECA /* Shimmer in Frameworks */,
+				8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */,
+				8F9C049C288AD3DA00076266 /* NukeUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F3F90DD2857B3D5003708F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */,
+				8F3F90E52857B3D5003708F1 /* SwiftUI.framework in Frameworks */,
+				8F3F90E32857B3D5003708F1 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F1DB6B6288969C100CBC078 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8F1DB6B32889685900CBC078 /* montserrat.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		8F3F90AA2857AA70003708F1 = {
 			isa = PBXGroup;
 			children = (
+				8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */,
 				8F3F90B52857AA70003708F1 /* Friend Activity for Spotify */,
+				8F3F90E62857B3D5003708F1 /* ioswidget */,
+				8F3F90E12857B3D5003708F1 /* Frameworks */,
 				8F3F90B42857AA70003708F1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */,
+				8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,8 +154,11 @@
 		8F3F90B52857AA70003708F1 /* Friend Activity for Spotify */ = {
 			isa = PBXGroup;
 			children = (
-				8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */,
-				8F3F90B82857AA70003708F1 /* ContentView.swift */,
+				8F1DB6C2288A098F00CBC078 /* Friend Activity for Spotify.entitlements */,
+				8F1DB6B6288969C100CBC078 /* Fonts */,
+				8F3F90D42857ABB0003708F1 /* Friend-Activity-for-Spotify-Info.plist */,
+				8F3F90C52857AAA2003708F1 /* Resources */,
+				8F3F90C42857AA9A003708F1 /* Views */,
 				8F3F90BA2857AA71003708F1 /* Assets.xcassets */,
 				8F3F90BC2857AA71003708F1 /* Preview Content */,
 			);
@@ -67,6 +173,55 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8F3F90C42857AA9A003708F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */,
+				8F3F90B82857AA70003708F1 /* ContentView.swift */,
+				8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */,
+				8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */,
+				8F3F90C62857AB22003708F1 /* SettingsPage.swift */,
+				8F3F90C82857AB2F003708F1 /* FriendList.swift */,
+				8F3F90CA2857AB47003708F1 /* FriendRow.swift */,
+				8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */,
+				8F3F90DA2857AD21003708F1 /* TextLink.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8F3F90C52857AAA2003708F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8F3F90CC2857AB5F003708F1 /* FriendActivityBackend.swift */,
+				8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */,
+				8F3F90CE2857AB6D003708F1 /* GetTime.swift */,
+				8F3F90D02857AB76003708F1 /* JSONStructs.swift */,
+				8F3F90D22857AB85003708F1 /* GlobalUrlOpener.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8F3F90E12857B3D5003708F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F3F90E22857B3D5003708F1 /* WidgetKit.framework */,
+				8F3F90E42857B3D5003708F1 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8F3F90E62857B3D5003708F1 /* ioswidget */ = {
+			isa = PBXGroup;
+			children = (
+				8F3F90E72857B3D5003708F1 /* ioswidget.swift */,
+				8F3F90F52857B403003708F1 /* LargeView.swift */,
+				8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */,
+				8F3F90E92857B3D7003708F1 /* Assets.xcassets */,
+				8F3F90EB2857B3D7003708F1 /* Info.plist */,
+			);
+			path = ioswidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,15 +232,43 @@
 				8F3F90AF2857AA70003708F1 /* Sources */,
 				8F3F90B02857AA70003708F1 /* Frameworks */,
 				8F3F90B12857AA70003708F1 /* Resources */,
+				8F3F90F22857B3D7003708F1 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F3F90ED2857B3D7003708F1 /* PBXTargetDependency */,
+			);
+			name = "Friend Activity for Spotify";
+			packageProductDependencies = (
+				8FBFE09428892CD500476ECA /* Shimmer */,
+				8F628DE5288A785C00CBEBD8 /* KeychainAccess */,
+				8F9C0499288AD3DA00076266 /* Nuke */,
+				8F9C049B288AD3DA00076266 /* NukeUI */,
+			);
+			productName = "Friend Activity for Spotify";
+			productReference = 8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8F3F90DF2857B3D5003708F1 /* ioswidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F3F90EF2857B3D7003708F1 /* Build configuration list for PBXNativeTarget "ioswidgetExtension" */;
+			buildPhases = (
+				8F3F90DC2857B3D5003708F1 /* Sources */,
+				8F3F90DD2857B3D5003708F1 /* Frameworks */,
+				8F3F90DE2857B3D5003708F1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Friend Activity for Spotify";
-			productName = "Friend Activity for Spotify";
-			productReference = 8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */;
-			productType = "com.apple.product-type.application";
+			name = ioswidgetExtension;
+			packageProductDependencies = (
+				8F628DE7288A793C00CBEBD8 /* KeychainAccess */,
+			);
+			productName = ioswidgetExtension;
+			productReference = 8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,9 +278,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					8F3F90B22857AA70003708F1 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					8F3F90DF2857B3D5003708F1 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
 				};
@@ -111,11 +297,17 @@
 				Base,
 			);
 			mainGroup = 8F3F90AA2857AA70003708F1;
+			packageReferences = (
+				8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 8F3F90B42857AA70003708F1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8F3F90B22857AA70003708F1 /* Friend Activity for Spotify */,
+				8F3F90DF2857B3D5003708F1 /* ioswidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -126,7 +318,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3F90BE2857AA71003708F1 /* Preview Assets.xcassets in Resources */,
+				8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */,
 				8F3F90BB2857AA71003708F1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F3F90DE2857B3D5003708F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F3F90EA2857B3D7003708F1 /* Assets.xcassets in Resources */,
+				8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,12 +339,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3F90C72857AB22003708F1 /* SettingsPage.swift in Sources */,
 				8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */,
+				8F3F90CB2857AB47003708F1 /* FriendRow.swift in Sources */,
+				8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */,
 				8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */,
+				8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */,
+				8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */,
+				8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */,
+				8F3F90D32857AB85003708F1 /* GlobalUrlOpener.swift in Sources */,
+				8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */,
+				8F3F90DB2857AD21003708F1 /* TextLink.swift in Sources */,
+				8F3F90D12857AB76003708F1 /* JSONStructs.swift in Sources */,
+				8F3F90C92857AB2F003708F1 /* FriendList.swift in Sources */,
+				8FBFE09728892D8C00476ECA /* FriendRowPlaceholder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F3F90DC2857B3D5003708F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F3F90F82857B41E003708F1 /* GetSpotifyUrl.swift in Sources */,
+				8F3F90E82857B3D5003708F1 /* ioswidget.swift in Sources */,
+				8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */,
+				8F3F90F92857B420003708F1 /* GetTime.swift in Sources */,
+				8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */,
+				8F3F90FA2857B423003708F1 /* JSONStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F3F90ED2857B3D7003708F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F3F90DF2857B3D5003708F1 /* ioswidgetExtension */;
+			targetProxy = 8F3F90EC2857B3D7003708F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8F3F90BF2857AA71003708F1 /* Debug */ = {
@@ -151,6 +386,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -211,6 +447,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -262,15 +499,16 @@
 		8F3F90C22857AA71003708F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Friend Activity for Spotify/Friend Activity for Spotify.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Friend Activity for Spotify/Preview Content\"";
 				DEVELOPMENT_TEAM = 38TP6LZLJ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Friend-Activity-for-Spotify-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -291,15 +529,16 @@
 		8F3F90C32857AA71003708F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Friend Activity for Spotify/Friend Activity for Spotify.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Friend Activity for Spotify/Preview Content\"";
 				DEVELOPMENT_TEAM = 38TP6LZLJ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Friend-Activity-for-Spotify-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -311,6 +550,62 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "aviwad.Friend-Activity-for-Spotify";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8F3F90F02857B3D7003708F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ioswidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 38TP6LZLJ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ioswidget/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "aviwad.Friend-Activity-for-Spotify.ioswidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F3F90F12857B3D7003708F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ioswidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 38TP6LZLJ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ioswidget/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "aviwad.Friend-Activity-for-Spotify.ioswidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -338,7 +633,71 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8F3F90EF2857B3D7003708F1 /* Build configuration list for PBXNativeTarget "ioswidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F3F90F02857B3D7003708F1 /* Debug */,
+				8F3F90F12857B3D7003708F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F628DE5288A785C00CBEBD8 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		8F628DE7288A793C00CBEBD8 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		8F9C0499288AD3DA00076266 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		8F9C049B288AD3DA00076266 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+		8FBFE09428892CD500476ECA /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8F3F90AB2857AA70003708F1 /* Project object */;
 }
