@@ -14,6 +14,7 @@ Private profile pictures and names of friends removed in above screenshots.
                                                                                                                                                                                                                                                  
 ## Features:
 - Dynamically update list of friends in homescreen (every 2 minutes, smooth animations)
+- No ads.
 - UI is the same as the official Spotify desktop UI, but remodeled to work on mobile (context menu instead of links)
 - Pure SwiftUI, efficient and fast
 - Pull to refresh
