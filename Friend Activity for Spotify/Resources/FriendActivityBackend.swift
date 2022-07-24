@@ -121,9 +121,9 @@ import KeychainAccess
                         await GetFriendActivity()
                         self.error = errorMessage.error.message
                         print("LOGGED \(errorMessage)")
-                        self.keychain["accessToken"] = nil
-                        self.keychain["spDcCookie"] = nil
-                        loggedOut = true
+                        //self.keychain["accessToken"] = nil
+                        //self.keychain["spDcCookie"] = nil
+                        //loggedOut = true
                     }
                     catch {
                         debug = debug+"AND errorJSON also had an error :D"
@@ -168,13 +168,13 @@ import KeychainAccess
                         let errorMessage: WelcomeError
                         errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                         debug = "logged out through errorJSON (access token is fucked)"
-                        await GetAccessToken()
-                        await GetFriendActivityNoAnimation()
                         self.error = errorMessage.error.message
                         print("LOGGED \(errorMessage)")
-                        self.keychain["accessToken"] = nil
-                        self.keychain["spDcCookie"] = nil
-                        loggedOut = true
+                        await GetAccessToken()
+                        await GetFriendActivityNoAnimation()
+                        //self.keychain["accessToken"] = nil
+                        //self.keychain["spDcCookie"] = nil
+                        //loggedOut = true
                     }
                     catch {
                         debug = debug+"AND errorJSON also had an error :D"

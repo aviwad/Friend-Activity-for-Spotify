@@ -12,7 +12,8 @@ import Network
 import Shimmer
 
 struct FriendRowList: View {
-    @StateObject var viewModel : FriendActivityBackend
+    @StateObject var viewModel: FriendActivityBackend
+    @State var showDebugFriendSheet = false
     private var timer = Timer.publish(every: 120, on: .main, in: .common).autoconnect()
     //@State var friendArray: [Friend] = []
     
@@ -34,8 +35,18 @@ struct FriendRowList: View {
     }
     var body: some View {
         VStack {
-            Text("DEBUG: \(viewModel.debug)")
-            Text("ERROR: \(viewModel.error)")
+            Group {
+                Text("DEBUG: \(viewModel.debug)")
+                Text("ERROR: \(viewModel.error)")
+                Button("DEBUG: CLICK HERE FOR FRIEND LIST") {
+                    showDebugFriendSheet.toggle()
+                }
+                Button("hsuffle") {
+                    withAnimation() {
+                        viewModel.friendArray?.shuffle()
+                    }
+                }
+            }
             ZStack {
                 if viewModel.networkUp {
                     if (viewModel.friendArray != nil) {
@@ -60,11 +71,11 @@ struct FriendRowList: View {
                         else {
                             List(viewModel.friendArray!) { friend in
                                 FriendRow(friend: friend)
-                                    //.onTapGesture {
-                                      //  let impactMed = UIImpactFeedbackGenerator(style: .light)
-                                        //impactMed.impactOccurred()
-                                    //}
-
+                                //.onTapGesture {
+                                //  let impactMed = UIImpactFeedbackGenerator(style: .light)
+                                //impactMed.impactOccurred()
+                                //}
+                                
                                     .swipeActions(edge: .leading){
                                         Button {
                                             globalURLOpener(URL: friend.user.url)
@@ -82,12 +93,12 @@ struct FriendRowList: View {
                                         .tint(.accentColor)
                                     }
                             }
-                            .onReceive(timer) { _ in
-                                Task {
-                                    print("timer works")
-                                    await getFriends()
-                                }
-                            }
+                            //                            .onReceive(timer) { _ in
+                            //                                Task {
+                            //                                    print("timer works")
+                            //                                    await getFriends()
+                            //                                }
+                            //                            }
                             .listStyle(.plain)
                             .refreshable {
                                 print("refreshable works")
@@ -123,12 +134,6 @@ struct FriendRowList: View {
                                 .redacted(reason: .placeholder)
                                 .shimmering()
                         }
-                        .task {
-                            Task {
-                                print("timer works")
-                                await getFriends()
-                            }
-                        }
                         .listStyle(.plain)
                         .refreshable {
                             await viewModel.GetFriendActivityNoAnimation()
@@ -158,5 +163,24 @@ struct FriendRowList: View {
                 loginSheet()
             }
         }
+        .sheet(isPresented: $showDebugFriendSheet) {
+            ScrollView {
+                let lol = dump(viewModel.friendArray)
+                Text(viewModel.friendArray?.debugDescription ?? "no friends loser")
+            }
+        }
+        .onAppear {
+            Task {
+                print("on appear of vstack")
+                await getFriends()
+            }
+        }
+        .onReceive(timer) { _ in
+            Task {
+                print("timer works")
+                await getFriends()
+            }
+        }
     }
+    
 }
