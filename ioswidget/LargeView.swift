@@ -15,23 +15,30 @@ struct LargeView: View {
         ZStack {
             Color("WidgetBackground")
             VStack (spacing: 0){
-                HStack() {
-                    Image(systemName: "person.3")
-                        .foregroundColor(Color("WhiteColor"))
-                        .font(.system(size: 15))
-                    Text("Friend Activity for Spotify")
-                        //.minimumScaleFactor(0.8)
-                        .font(.bold(.system(size: 15))())
-                        .foregroundColor(Color("WhiteColor"))
-                        //.fontWeight(.bold)
-                    Spacer()
+                VStack (spacing: 0) {
+                    HStack() {
+                        Image(systemName: "person.3")
+                            .foregroundColor(Color("WhiteColor"))
+                            .font(.system(size: 15))
+                        Text("Friend Activity for Spotify")
+                            //.minimumScaleFactor(0.8)
+                            .font(.bold(.system(size: 15))())
+                            .foregroundColor(Color("WhiteColor"))
+                            //.fontWeight(.bold)
+                        Spacer()
+                    }
+                    //TODO.padding(.top, 5)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .background(Color("HeaderColor"))
+                    .clipped()
+                    //Divider()
                 }
-                .padding(.top, 5)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 20)
-                .background(Color("HeaderColor"))
-                .clipped()
-                Divider()
+                .frame(maxWidth: .infinity, // Full Screen Width
+                            //maxHeight: .infinity, // Full Screen Height
+                            alignment: .topLeading) // Align To top
+               // .border(.blue)
+                //.frame(alignment: .topLeading)
                 if (entry.friends.0.isEmpty) {
                     Spacer()
                     Spacer()
@@ -39,20 +46,19 @@ struct LargeView: View {
                         .font(.bold(.system(size: 20))())
                         .foregroundColor(Color("WhiteColor"))
                 }
-                Text("DEBUG: \(entry.friends.2 ?? "No error")")
-                    .font(.bold(.system(size: 15))())
-                    .foregroundColor(Color("WhiteColor"))
-                Spacer()
+                //Spacer()
                 ForEach(0..<entry.friends.0.count, id: \.self){ friend in
                     LargeViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
                         .foregroundColor(Color("WhiteColor"))
+                        .frame(maxHeight: .infinity)
+                       // .border(.red)
                     //Divider()
                       //  .padding(0)
                 }
-                .frame(alignment: .center)
-                .padding(.horizontal, 20)
+                //TODO.frame(alignment: .center)
+                .padding(.horizontal, 16)
                 //LargeViewRow(friend: entry.friends[entry.friends.count])
-                .padding(.vertical,7)
+                //.padding(.vertical,7)
                 //Spacer()
                 //Spacer()
             }
