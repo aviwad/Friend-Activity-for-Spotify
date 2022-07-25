@@ -18,8 +18,6 @@ import KeychainAccess
     let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
         .accessibility(.afterFirstUnlock)
     @Published var tabSelection = 1
-    @Published var debug = ""
-    @Published var error = ""
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
@@ -80,8 +78,6 @@ import KeychainAccess
             keychain["spDcCookie"] = nil
             self.loggedOut = false
             self.loggedOut = true
-            debug = "logged out in access token"
-            self.error = error.localizedDescription
             print("LOGGED OUT IN ACCESS TOKEN")
             keychain["accessToken"] = nil
         }
@@ -107,8 +103,6 @@ import KeychainAccess
                 }
             }
             catch {
-                debug = "logged out cuz of friendarrayinitial error"
-                self.error = error.localizedDescription
                 print("LOGGED \(accessToken.unsafelyUnwrapped)")
                 print("LOGGED Error info: \(error)")
                 print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
@@ -116,25 +110,19 @@ import KeychainAccess
                     do {
                         let errorMessage: WelcomeError
                         errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-                        debug = "logged out through errorJSON (access token is fucked)"
                         await GetAccessToken()
                         await GetFriendActivity()
-                        self.error = errorMessage.error.message
                         print("LOGGED \(errorMessage)")
                         //self.keychain["accessToken"] = nil
                         //self.keychain["spDcCookie"] = nil
                         //loggedOut = true
                     }
                     catch {
-                        debug = debug+"AND errorJSON also had an error :D"
-                        self.error = self.error+" AND "+error.localizedDescription
                     }
                 }
             }
         }
         else {
-            debug = "logged out cuz accesstoken is nil"
-            self.error = "none"
             print("LOGGED OUT ACCESSTOKEN IS NIL")
             self.loggedOut = true
         }
@@ -158,8 +146,6 @@ import KeychainAccess
                 }
             }
             catch {
-                debug = "logged out cuz of friendarrayinitial error"
-                self.error = error.localizedDescription
                 print("LOGGED \(accessToken.unsafelyUnwrapped)")
                 print("LOGGED Error info: \(error)")
                 print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
@@ -167,8 +153,6 @@ import KeychainAccess
                     do {
                         let errorMessage: WelcomeError
                         errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-                        debug = "logged out through errorJSON (access token is fucked)"
-                        self.error = errorMessage.error.message
                         print("LOGGED \(errorMessage)")
                         await GetAccessToken()
                         await GetFriendActivityNoAnimation()
@@ -177,15 +161,11 @@ import KeychainAccess
                         //loggedOut = true
                     }
                     catch {
-                        debug = debug+"AND errorJSON also had an error :D"
-                        self.error = self.error+" AND "+error.localizedDescription
                     }
                 }
             }
         }
         else {
-            debug = "logged out cuz accesstoken is nil"
-            self.error = "none"
             print("LOGGED OUT ACCESSTOKEN IS NIL")
             self.loggedOut = true
         }

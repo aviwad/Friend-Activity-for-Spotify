@@ -46,8 +46,6 @@ struct loginSheet: View {
                 }
                 Spacer()
                 Group {
-                    Text("Debug: \(FriendActivityBackend.shared.debug)")
-                    Text("Error: \(FriendActivityBackend.shared.error)")
                     Text("Made by Avi Wadhwa")
                     Text("https://www.github.com/aviwad")
                 }

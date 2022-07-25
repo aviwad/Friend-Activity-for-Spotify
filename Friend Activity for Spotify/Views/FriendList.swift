@@ -13,7 +13,6 @@ import Shimmer
 
 struct FriendRowList: View {
     @StateObject var viewModel: FriendActivityBackend
-    @State var showDebugFriendSheet = false
     private var timer = Timer.publish(every: 120, on: .main, in: .common).autoconnect()
     //@State var friendArray: [Friend] = []
     
@@ -35,18 +34,6 @@ struct FriendRowList: View {
     }
     var body: some View {
         VStack {
-            Group {
-                Text("DEBUG: \(viewModel.debug)")
-                Text("ERROR: \(viewModel.error)")
-                Button("DEBUG: CLICK HERE FOR FRIEND LIST") {
-                    showDebugFriendSheet.toggle()
-                }
-                Button("hsuffle") {
-                    withAnimation() {
-                        viewModel.friendArray?.shuffle()
-                    }
-                }
-            }
             ZStack {
                 if viewModel.networkUp {
                     if (viewModel.friendArray != nil) {
@@ -161,12 +148,6 @@ struct FriendRowList: View {
             }
             .fullScreenCover(isPresented: $viewModel.loggedOut) {
                 loginSheet()
-            }
-        }
-        .sheet(isPresented: $showDebugFriendSheet) {
-            ScrollView {
-                let lol = dump(viewModel.friendArray)
-                Text(viewModel.friendArray?.debugDescription ?? "no friends loser")
             }
         }
         .onAppear {
