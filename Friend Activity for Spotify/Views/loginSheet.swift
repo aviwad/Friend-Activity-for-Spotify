@@ -21,7 +21,7 @@ struct loginSheet: View {
                         .foregroundColor(.green)
                         .font(.system(size: 40))
                         .cornerRadius(10)
-                    Text("Icon designed by Aadi Khurana")
+                    Text("Icon design by Aadi Khurana")
                         .font(.custom("montserrat", size: 15))
                         .foregroundColor(.gray)
                 }

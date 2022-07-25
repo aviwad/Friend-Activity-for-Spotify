@@ -17,7 +17,7 @@ struct SettingsPage: View {
                         .resizable()
                         .frame(width: 150, height: 150)
                         .cornerRadius(10)
-                    Text("Icon designed by Aadi Khurana")
+                    Text("Icon design by Aadi Khurana")
                         .font(.custom("montserrat", size: 15))
                         .foregroundColor(.gray)
                 }
@@ -62,11 +62,11 @@ struct SettingsPage: View {
                     Text("Icon design by my close friend Aadi Khurana")
                     Text("Other Acknowledgements:")
                         .bold()
-                    Text("Montserrat font by @JulietaUla")
-                    Text("KeychainAccess by @kishikawakatsumi")
-                    Text("SwiftUI-Shimmer by @markiv")
-                    Text("Nuke by @kean")
-                    Text("spotify-buddylist by @valeriangalliat")
+                    Text("KeychainAccess by [@kishikawakatsumi](https://github.com/kishikawakatsumi)")
+                    Text("Montserrat font by [@JulietaUla](https://github.com/JulietaUla)")
+                    Text("Nuke by [@kean](https://github.com/kean)")
+                    Text("SwiftUI-Shimmer by [@markiv](https://github.com/markiv)")
+                    Text("spotify-buddylist by [@valeriangalliat](https://github.com/valeriangalliat)")
                 }
                 .font(.custom("montserrat", size: 16))
                     .toolbar {
