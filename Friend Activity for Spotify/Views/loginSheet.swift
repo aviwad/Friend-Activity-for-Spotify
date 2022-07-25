@@ -11,11 +11,23 @@ import SwiftUI
 struct loginSheet: View {
     var body: some View {
         NavigationView(){
-            VStack {
+            VStack (spacing: 30){
                 Spacer()
-                Image("Icon")
-                    .cornerRadius(10)
-                    .padding(.bottom,50)
+                VStack (spacing: 15) {
+                    //Image("Icon")
+                    Rectangle()
+                        .frame(width: 150, height: 150)
+                        .foregroundColor(.green)
+                        .font(.system(size: 40))
+                        .cornerRadius(10)
+                    Text("Icon designed by Aadi Khurana")
+                        .font(.custom("montserrat", size: 15))
+                        .foregroundColor(.gray)
+                }
+                .padding(.bottom,50)
+                //Image("Icon")
+                  //  .cornerRadius(10)
+                    //.padding(.bottom,50)
                 Text("Welcome to Friends (for Spotify™)")
                     .font(.custom("montserrat", size: 27))
                     //.font(.system(size: 30))
