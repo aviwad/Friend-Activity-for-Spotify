@@ -40,11 +40,15 @@ struct LargeView: View {
                // .border(.blue)
                 //.frame(alignment: .topLeading)
                 if (entry.friends.0.isEmpty) {
-                    Spacer()
-                    Spacer()
-                    Text("No friends available")
-                        .font(.bold(.system(size: 20))())
-                        .foregroundColor(Color("WhiteColor"))
+                    VStack (spacing: 10) {
+                        Image(systemName: "person.fill.xmark")
+                            .font(.system(size: 40))
+                            .foregroundColor(Color("WhiteColor"))
+                        Text("No friends available")
+                            .font(.bold(.system(size: 20))())
+                            .foregroundColor(Color("WhiteColor"))
+                    }
+                        .frame(maxHeight: .infinity)
                 }
                 //Spacer()
                 ForEach(0..<entry.friends.0.count, id: \.self){ friend in
