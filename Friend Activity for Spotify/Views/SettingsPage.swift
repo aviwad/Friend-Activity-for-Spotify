@@ -14,7 +14,8 @@ struct SettingsPage: View {
             VStack (spacing: 30){
                 VStack (spacing: 15) {
                     Image("Icon")
-                        .font(.system(size: 40))
+                        .resizable()
+                        .frame(width: 150, height: 150)
                         .cornerRadius(10)
                     Text("Icon designed by Aadi Khurana")
                         .font(.custom("montserrat", size: 15))

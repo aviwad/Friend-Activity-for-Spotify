@@ -11,11 +11,12 @@ import SwiftUI
 struct loginSheet: View {
     var body: some View {
         NavigationView(){
-            VStack (spacing: 30){
+            VStack (spacing: 20){
                 Spacer()
                 VStack (spacing: 15) {
                     //Image("Icon")
-                    Rectangle()
+                    Image("Icon")
+                        .resizable()
                         .frame(width: 150, height: 150)
                         .foregroundColor(.green)
                         .font(.system(size: 40))

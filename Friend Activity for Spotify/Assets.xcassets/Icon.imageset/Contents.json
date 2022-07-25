@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "newicon.png",
+      "filename" : "1024.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "newicon 1.png",
+      "filename" : "1024 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "newicon 2.png",
+      "filename" : "1024 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
