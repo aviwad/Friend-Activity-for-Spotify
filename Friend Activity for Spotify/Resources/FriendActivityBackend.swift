@@ -15,6 +15,7 @@ import KeychainAccess
 @MainActor final class FriendActivityBackend: ObservableObject{
     static let shared = FriendActivityBackend()
     let monitor = NWPathMonitor()
+    var currentlyLoggingIn = false
     let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
         .accessibility(.afterFirstUnlock)
     @Published var tabSelection = 1

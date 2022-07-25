@@ -48,26 +48,30 @@ struct WebviewLogin: View {
         }
     }
     func checkIfLoggedIn() {
-        FriendActivityBackend.shared.tabSelection = 1
-        FriendActivityBackend.shared.loggedOut = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            print("dispatch queue is working")
-            WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
-                cookies.forEach { cookie in
-                    if (cookie.name == "sp_dc") {
-                        FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
-                        Task {
-                            await FriendActivityBackend.shared.GetAccessToken()
-                            await FriendActivityBackend.shared.GetFriendActivity()
+        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
+            FriendActivityBackend.shared.currentlyLoggingIn = true
+            FriendActivityBackend.shared.tabSelection = 1
+            FriendActivityBackend.shared.loggedOut = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                print("dispatch queue is working")
+                WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
+                    cookies.forEach { cookie in
+                        if (cookie.name == "sp_dc") {
+                            FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
+                            Task {
+                                await FriendActivityBackend.shared.GetAccessToken()
+                                await FriendActivityBackend.shared.GetFriendActivity()
+                            }
                         }
                     }
                 }
+                //print(cookies)
+                //let newCookies = HTTPCookieStorage.shared.cookies
+                //newCookies!.forEach { cookie in
+                  //  print(cookie.name)
+                //}
+                FriendActivityBackend.shared.currentlyLoggingIn = false
             }
-            //print(cookies)
-            //let newCookies = HTTPCookieStorage.shared.cookies
-            //newCookies!.forEach { cookie in
-              //  print(cookie.name)
-            //}
         }
     }
     @StateObject var navigationState = NavigationState()
