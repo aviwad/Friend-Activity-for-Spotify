@@ -28,17 +28,17 @@ import KeychainAccess
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {
                 switch path.status {
-                case .satisfied:
-                    Task {
-                        self.GetFriendActivity
-                        
-                    }
-                    withAnimation {
-                        self.networkUp = true
-                        
-                    }
-                default:
-                    withAnimation {self.networkUp = false}
+                    case .satisfied:
+                        print("LOGGED SATISFIED")
+                        withAnimation {
+                            self.networkUp = true
+                            Task {
+                                //print("LOGGED TESTING")
+                                await self.GetFriendActivity()
+                            }
+                        }
+                    default:
+                        withAnimation {self.networkUp = false}
                 }
             }
             /*if (path.status == .satisfied) {
@@ -90,10 +90,12 @@ import KeychainAccess
         let accessToken = try? keychain.get("accessToken")
         //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
         if (accessToken != nil) {
+            print("LOGGED ACCESS TOKEN FOUND")
             self.loggedOut = false
             let friendArrayInitial: Welcome
             do {
                 if (networkUp) {
+                    print("LOGGED NETWORK UP, FRIENDARRAYINTIAL CALLED")
                     friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                     print("testing123: friendarrayinitial")
                     //youHaveNoFriends = false
