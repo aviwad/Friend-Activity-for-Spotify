@@ -16,7 +16,7 @@ struct loginSheet: View {
                 Image("Icon")
                     .cornerRadius(10)
                     .padding(.bottom,50)
-                Text("Welcome to Friend Activity (for Spotify™)")
+                Text("Welcome to Friends (for Spotify™)")
                     .font(.custom("montserrat", size: 27))
                     //.font(.system(size: 30))
                     .multilineTextAlignment(.center)
@@ -34,16 +34,6 @@ struct loginSheet: View {
                             .cornerRadius(10)
                     }
                 //}
-                Button {
-                    print("lol")
-                } label: {
-                    Text("Open Debug Log")
-                        .font(.custom("montserrat",size: 20))
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.accentColor)
-                        .cornerRadius(10)
-                }
                 Spacer()
                 Group {
                     Text("Made by Avi Wadhwa")
