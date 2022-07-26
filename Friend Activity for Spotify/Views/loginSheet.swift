@@ -21,9 +21,6 @@ struct loginSheet: View {
                         .foregroundColor(.green)
                         .font(.system(size: 40))
                         .cornerRadius(10)
-                    Text("Icon design by Aadi Khurana")
-                        .font(.custom("montserrat", size: 15))
-                        .foregroundColor(.gray)
                 }
                 .padding(.bottom,50)
                 //Image("Icon")
@@ -48,10 +45,15 @@ struct loginSheet: View {
                     }
                 //}
                 Spacer()
-                Group {
-                    Text("Made by Avi Wadhwa")
+                VStack {
+                    Text("App made by Avi Wadhwa")
+                        .font(.custom("montserrat", size: 16))
                     Text("https://www.github.com/aviwad")
+                        .font(.custom("montserrat", size: 16))
+                    Text("Logo design by Aadi Khurana")
+                        .font(.custom("montserrat", size: 15))
                 }
+                .padding(.vertical)
             }
             //.navigationTitle("Login to Friend Activity for Spotify")
             //.navigationBarTitleDisplayMode(.inline)

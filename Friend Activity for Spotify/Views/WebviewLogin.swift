@@ -53,7 +53,7 @@ struct WebviewLogin: View {
             FriendActivityBackend.shared.tabSelection = 1
             FriendActivityBackend.shared.loggedOut = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                print("dispatch queue is working")
+                print("LOGGED dispatch queue is working")
                 WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
                     cookies.forEach { cookie in
                         if (cookie.name == "sp_dc") {

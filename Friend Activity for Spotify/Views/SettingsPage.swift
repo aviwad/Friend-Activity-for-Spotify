@@ -17,12 +17,16 @@ struct SettingsPage: View {
                         .resizable()
                         .frame(width: 150, height: 150)
                         .cornerRadius(10)
-                    Text("Icon design by Aadi Khurana")
+                    Text("Version 1.0")
+                        .font(.custom("montserrat", size: 20))
+                    Text("App made by Avi Wadhwa")
                         .font(.custom("montserrat", size: 15))
                         .foregroundColor(.gray)
+                    Text("Icon design by Aadi Khurana")
+                        .font(.custom("montserrat", size: 14))
+                        .foregroundColor(.gray)
                 }
-                Text("Version 1.0")
-                    .font(.custom("montserrat", size: 20))
+                
                 Button(action: {
                     showAcknowledgements = true
                 }) {
@@ -36,10 +40,14 @@ struct SettingsPage: View {
                         //.background(in: RoundedRectangle)
                 }
                 Button(action: {
+                    FriendActivityBackend.shared.tabSelection = 1
                     print("LOGGED OUT CUZ OF BUTTON")
-                    FriendActivityBackend.shared.keychain["spDcCookie"] = nil
-                    FriendActivityBackend.shared.keychain["accessToken"] = nil
-                    FriendActivityBackend.shared.loggedOut = true
+                    if (!FriendActivityBackend.shared.currentlyLoggingIn) {
+                        print("NOT LOGGED OUT AFTER ALL")
+                        FriendActivityBackend.shared.keychain["spDcCookie"] = nil
+                        FriendActivityBackend.shared.keychain["accessToken"] = nil
+                        FriendActivityBackend.shared.loggedOut = true
+                    }
                 }) {
                     Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
                         .font(.custom("montserrat",size: 20))
