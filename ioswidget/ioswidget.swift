@@ -39,7 +39,11 @@ struct Provider: TimelineProvider {
                 let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
-                    imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                    if (friend.user.imageURL.isEmpty) {
+                        imageArray.append(UIImage(systemName: "person.fill")!)
+                    } else {
+                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                    }
                 }
                 return (friendArray,imageArray,nil)
                  //youHaveNoFriends = false
@@ -71,7 +75,11 @@ struct Provider: TimelineProvider {
                 let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
-                    imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                    if (friend.user.imageURL.isEmpty) {
+                        imageArray.append(UIImage(systemName: "person.fill")!)
+                    } else {
+                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                    }
                 }
                 return (friendArray,imageArray,nil)
                  //youHaveNoFriends = false

@@ -50,15 +50,21 @@ struct FriendRow: View {
     label: {
             HStack {
                 ZStack {
-                    LazyImage(url: URL(string: friend.user.imageURL)!) { state in
-                        if let image = state.image {
-                            image // Displays the loaded image
-                        } else {
-                            Image(systemName: "person.fill") // Indicates an error
+                    if (friend.user.imageURL.isEmpty) {
+                        Image(systemName: "person.fill")
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                    } else{
+                        LazyImage(url: URL(string: friend.user.imageURL)!) { state in
+                            if let image = state.image {
+                                image // Displays the loaded image
+                            } else {
+                                Image(systemName: "person.fill") // Indicates an error
+                            }
                         }
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
                     }
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
                     //KFImage(URL(string: friend.user.imageURL)!)
                     //    .placeholder{Image(systemName: "person.fill")}
                     //    .resizable()

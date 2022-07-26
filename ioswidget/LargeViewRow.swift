@@ -15,6 +15,7 @@ struct LargeViewRow: View {
         HStack {
             Image(uiImage: image)
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 // .aspectRatio(contentMode: .fill)
             //Image(systemName: "person.fill")
             .frame(width: 50, height: 50)

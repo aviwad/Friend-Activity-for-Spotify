@@ -131,7 +131,13 @@ struct Friend: Codable, Identifiable     {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
             self.name = try container.decode(String.self, forKey: .name)
-            self.imageURL = try container.decode(String.self, forKey: .imageURL)
+            if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
+                  self.imageURL = imageUrl
+              }
+            else {
+                self.imageURL = ""
+            }
+            //self.imageURL = try container.decode(String.self, forKey: .imageURL)
             self.url = getSpotifyUrl(initialUrl: self.uri)
         }
     }
