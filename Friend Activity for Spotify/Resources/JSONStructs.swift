@@ -138,7 +138,7 @@ struct Friend: Codable, Identifiable     {
                 self.imageURL = ""
             }
             //self.imageURL = try container.decode(String.self, forKey: .imageURL)
-            self.url = getSpotifyUrl(initialUrl: self.uri)
+            self.url = getSpotifyUserUrl(initialUrl: self.uri)
         }
     }
     
