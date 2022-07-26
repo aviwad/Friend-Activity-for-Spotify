@@ -17,7 +17,7 @@ struct loginSheet: View {
                     //Image("Icon")
                     Image("Icon")
                         .resizable()
-                        .frame(width: 150, height: 150)
+                        .frame(width: 200, height: 200)
                         .foregroundColor(.green)
                         .font(.system(size: 40))
                         .cornerRadius(10)
