@@ -16,6 +16,7 @@ class NavigationState : NSObject, ObservableObject {
 extension NavigationState : WKNavigationDelegate {
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         self.url = webView.url
+        print("LOGGED \(self.url?.description ?? "none")")
     }
 }
 
@@ -82,6 +83,11 @@ struct WebviewLogin: View {
                 let hi = checkIfLoggedIn()
                 Text("hi")
             }
+            else if (navigationState.url?.absoluteString == "https://open.spotify.com/#_=_" && FriendActivityBackend.shared.loggedOut == true) {
+                let hi = checkIfLoggedIn()
+                Text("hi")
+            }
+                
         }/*{ (onNavigationAction) in
             switch onNavigationAction {
             case .didRecieveAuthChallenge(let webView, let challenge, let disposition, let credential):
