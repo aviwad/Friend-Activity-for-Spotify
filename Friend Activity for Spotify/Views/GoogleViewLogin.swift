@@ -47,8 +47,13 @@ struct GoogleViewLogin: View {
             GoogleView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
                 .onReceive(timer) { _ in
                     navigationState.webView.evaluateJavaScript(removeEverythingBesidesGoogleScript) { (response, error) in
-                        if (response != nil || error != nil) {
+                        print("logged timer for javascript run")
+                        if (error != nil) {
+                            print("logged timer for javascript error: \(error)")
+                        }
+                        if (response != nil) {
                             print("logged timer over")
+                            print("logged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))")
                             self.timer.upstream.connect().cancel()
                         }
                     }

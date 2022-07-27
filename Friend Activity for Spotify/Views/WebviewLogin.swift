@@ -74,10 +74,13 @@ struct WebviewLogin: View {
             WebView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
                 .onReceive(timer) { _ in
                     navigationState.webView.evaluateJavaScript(removeGoogleIdScript) { (response, error) in
-                        if (response != nil || error != nil) {
+                        print("logged timer for javascript run")
+                        if (response != nil) {
                             print("logged timer over")
+                            print("logged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))")
                             self.timer.upstream.connect().cancel()
                         }
+                        //else if (error == WKError.javaScriptExceptionOccurred)
                     }
                  }
             /*if (navigationState.url?.absoluteString.starts(with: "https://accounts.google.com")) {

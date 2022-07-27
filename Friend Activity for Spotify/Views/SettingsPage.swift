@@ -11,52 +11,77 @@ struct SettingsPage: View {
     @State var showAcknowledgements : Bool  = false
     var body: some View {
         NavigationView() {
-            VStack (spacing: 30){
-                VStack (spacing: 15) {
-                    Image("Icon")
-                        .resizable()
-                        .frame(width: 150, height: 150)
-                        .cornerRadius(10)
-                    Text("Version 1.0")
-                        .font(.custom("montserrat", size: 20))
-                    Text("App made by Avi Wadhwa")
-                        .font(.custom("montserrat", size: 15))
-                        .foregroundColor(.gray)
-                    Text("Icon design by Aadi Khurana")
-                        .font(.custom("montserrat", size: 14))
-                        .foregroundColor(.gray)
-                }
-                
-                Button(action: {
-                    showAcknowledgements = true
-                }) {
-                    Label("Acknowledgements", systemImage: "person.3.fill")
-                        .font(.custom("montserrat",size: 20))
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300)
-                        .background(Color.accentColor)
-                        .cornerRadius(10)
-                        //.background(in: RoundedRectangle)
-                }
-                Button(action: {
-                    print("LOGGED OUT CUZ OF BUTTON")
-                    if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-                        print(" LOGGED OUT AFTER ALL")
-                        FriendActivityBackend.shared.keychain["spDcCookie"] = nil
-                        FriendActivityBackend.shared.keychain["accessToken"] = nil
-                        FriendActivityBackend.shared.loggedOut = true
-                        FriendActivityBackend.shared.tabSelection = 1
+            ScrollView {
+                VStack (spacing: 30){
+                    VStack (spacing: 15) {
+                        Image("Icon")
+                            .resizable()
+                            .frame(width: 150, height: 150)
+                            .cornerRadius(10)
+                        Text("Version 1.0")
+                            .font(.custom("montserrat", size: 20))
+                        Text("App made by Avi Wadhwa")
+                            .font(.custom("montserrat", size: 15))
+                            .foregroundColor(.gray)
+                        Text("Icon design by Aadi Khurana")
+                            .font(.custom("montserrat", size: 14))
+                            .foregroundColor(.gray)
                     }
-                }) {
-                    Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
-                        .font(.custom("montserrat",size: 20))
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300)
-                        .background(Color.accentColor)
-                        .cornerRadius(10)
-                        //.background(in: RoundedRectangle)
+                    
+                    Button(action: {
+                        showAcknowledgements = true
+                    }) {
+                        Label("Acknowledgements", systemImage: "person.3.fill")
+                            .font(.custom("montserrat",size: 20))
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300)
+                            .background(Color.accentColor)
+                            .cornerRadius(10)
+                            //.background(in: RoundedRectangle)
+                    }
+                    Button(action: {
+                        print("LOGGED OUT CUZ OF BUTTON")
+                        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
+                            print(" LOGGED OUT AFTER ALL")
+                            FriendActivityBackend.shared.keychain["spDcCookie"] = nil
+                            FriendActivityBackend.shared.keychain["accessToken"] = nil
+                            FriendActivityBackend.shared.loggedOut = true
+                            DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
+                                FriendActivityBackend.shared.tabSelection = 1
+                            }
+                        }
+                    }) {
+                        Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
+                            .font(.custom("montserrat",size: 20))
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300)
+                            .background(Color.accentColor)
+                            .cornerRadius(10)
+                            //.background(in: RoundedRectangle)
+                    }
+                    Button(action: {
+                        print("logged, opening debug log")
+                        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
+                            print(" LOGGED OUT AFTER ALL")
+                            FriendActivityBackend.shared.keychain["spDcCookie"] = nil
+                            FriendActivityBackend.shared.keychain["accessToken"] = nil
+                            FriendActivityBackend.shared.loggedOut = true
+                            DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
+                                FriendActivityBackend.shared.tabSelection = 1
+                            }
+                        }
+                    }) {
+                        Label("I found a bug", systemImage: "ladybug")
+                            .font(.custom("montserrat",size: 15))
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .frame(width: 150)
+                            .background(.red)
+                            .cornerRadius(10)
+                            //.background(in: RoundedRectangle)
+                    }
                 }
             }
             .navigationBarTitle("Settings")

@@ -21,9 +21,8 @@ struct FriendRowList: View {
     }
     
     func getFriends() async {
-        print("testing123: getfriends function called")
         if viewModel.networkUp {
-            print("testing123: getfriendactivity called")
+            print("logged, getfriendactivity called from getfriends function")
             await viewModel.GetFriendActivity()
         }
         // if data is empty: state text that says 0 friends
@@ -88,7 +87,7 @@ struct FriendRowList: View {
                             //                            }
                             .listStyle(.plain)
                             .refreshable {
-                                print("refreshable works")
+                                print("logged, getfriendactivitynoanimation called from refreshing friendlist")
                                 await viewModel.GetFriendActivityNoAnimation()
                             }
                         }
@@ -108,11 +107,9 @@ struct FriendRowList: View {
                             FriendRowPlaceholder()
                                 .redacted(reason: .placeholder)
                                 .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
                             Button{
                                 Task {
+                                    print("logged, getfriendactivity called from shimmering placeholder")
                                     await viewModel.GetFriendActivity()
                                 }
                             } label: {
@@ -125,9 +122,43 @@ struct FriendRowList: View {
                                     .cornerRadius(10)
                                     .frame(maxWidth: .infinity, alignment: .center)
                             }
+                            Button(action: {
+                                print("logged, opening debug log")
+                                if (!FriendActivityBackend.shared.currentlyLoggingIn) {
+                                    print(" LOGGED OUT AFTER ALL")
+                                    FriendActivityBackend.shared.keychain["spDcCookie"] = nil
+                                    FriendActivityBackend.shared.keychain["accessToken"] = nil
+                                    FriendActivityBackend.shared.loggedOut = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
+                                        FriendActivityBackend.shared.tabSelection = 1
+                                    }
+                                }
+                            }) {
+                                Label("I found a bug", systemImage: "ladybug")
+                                    .font(.custom("montserrat",size: 15))
+                                    .foregroundColor(.white)
+                                    .padding(10)
+                                    .background(.red)
+                                    .cornerRadius(10)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    //.background(in: RoundedRectangle)
+                            }
+                            FriendRowPlaceholder()
+                                .redacted(reason: .placeholder)
+                                .shimmering()
+                            FriendRowPlaceholder()
+                                .redacted(reason: .placeholder)
+                                .shimmering()
+                            FriendRowPlaceholder()
+                                .redacted(reason: .placeholder)
+                                .shimmering()
+                            FriendRowPlaceholder()
+                                .redacted(reason: .placeholder)
+                                .shimmering()
                         }
                         .listStyle(.plain)
                         .refreshable {
+                            print("logged, getfriendactivity called from refreshing the shimmering placeholder")
                             await viewModel.GetFriendActivityNoAnimation()
                         }
                     }

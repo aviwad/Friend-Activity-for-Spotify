@@ -43,6 +43,27 @@ struct loginSheet: View {
                             .background(Color.accentColor)
                             .cornerRadius(10)
                     }
+                Button(action: {
+                    print("logged, opening debug log")
+                    if (!FriendActivityBackend.shared.currentlyLoggingIn) {
+                        print(" LOGGED OUT AFTER ALL")
+                        FriendActivityBackend.shared.keychain["spDcCookie"] = nil
+                        FriendActivityBackend.shared.keychain["accessToken"] = nil
+                        FriendActivityBackend.shared.loggedOut = true
+                        DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
+                            FriendActivityBackend.shared.tabSelection = 1
+                        }
+                    }
+                }) {
+                    Label("I found a bug", systemImage: "ladybug")
+                        .font(.custom("montserrat",size: 15))
+                        .foregroundColor(.white)
+                        .padding(10)
+                        .frame(width: 150)
+                        .background(.red)
+                        .cornerRadius(10)
+                        //.background(in: RoundedRectangle)
+                }
                 //}
                 Spacer()
                 VStack {
