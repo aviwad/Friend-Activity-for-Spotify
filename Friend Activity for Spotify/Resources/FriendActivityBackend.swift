@@ -151,6 +151,7 @@ import WebKit
                         //loggedOut = true
                     }
                     catch {
+                        print("LOGGED \(error.localizedDescription)")
                     }
                 }
             }

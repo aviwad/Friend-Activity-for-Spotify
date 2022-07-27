@@ -111,15 +111,20 @@ struct FriendRowList: View {
                             FriendRowPlaceholder()
                                 .redacted(reason: .placeholder)
                                 .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
+                            Button{
+                                Task {
+                                    await viewModel.GetFriendActivity()
+                                }
+                            } label: {
+                                Text("Refresh")
+                                    .font(.custom("montserrat",size: 20))
+                                    .bold()
+                                    .padding(10)
+                                    .foregroundColor(.white)
+                                    .background(Color.accentColor)
+                                    .cornerRadius(10)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            }
                         }
                         .listStyle(.plain)
                         .refreshable {
