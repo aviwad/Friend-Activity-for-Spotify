@@ -29,7 +29,7 @@ struct MediumViewRow: View {
                 HStack {
                     Text("\(friend.user.name)")
                         //.minimumScaleFactor(0.8)
-                        .font(.bold(.custom("montserrat", size: 13))())
+                        .font(.bold(.custom("montserrat", size: 16))())
                         .lineLimit(1)
                     Spacer()
                 }
@@ -41,7 +41,7 @@ struct MediumViewRow: View {
                     //.minimumScaleFactor(0.8)
                 //Text("\(friend.track.artist.name)")//"\($0.user.description)")
                     //.minimumScaleFactor(0.8)
-                    .font(.custom("montserrat", size: 12))
+                    .font(.custom("montserrat", size: 14))
                     //.lineLimit(1)
                 }
                 //.minimumScaleFactor(0.8)
@@ -55,7 +55,7 @@ struct MediumViewRow: View {
                     var symbol = "music.note"
                     Text("\(Image(systemName: symbol)) \(friend.track.context.name)")//"\($0.user.description)")
                         //.minimumScaleFactor(0.8)
-                        .font(.custom("montserrat", size: 12))
+                        .font(.custom("montserrat", size: 14))
                         .lineLimit(1)
                 }
                    // .minimumScaleFactor(0.8)
