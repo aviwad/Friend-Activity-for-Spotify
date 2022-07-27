@@ -44,16 +44,10 @@ struct loginSheet: View {
                             .cornerRadius(10)
                     }
                 Button(action: {
+                    FriendActivityBackend.shared.debugLog.append("logged, opening debug log\n")
                     print("logged, opening debug log")
-                    if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-                        print(" LOGGED OUT AFTER ALL")
-                        FriendActivityBackend.shared.keychain["spDcCookie"] = nil
-                        FriendActivityBackend.shared.keychain["accessToken"] = nil
-                        FriendActivityBackend.shared.loggedOut = true
-                        DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
-                            FriendActivityBackend.shared.tabSelection = 1
-                        }
-                    }
+                    FriendActivityBackend.shared.showDebug = true
+                    FriendActivityBackend.shared.loggedOut = false
                 }) {
                     Label("I found a bug", systemImage: "ladybug")
                         .font(.custom("montserrat",size: 15))

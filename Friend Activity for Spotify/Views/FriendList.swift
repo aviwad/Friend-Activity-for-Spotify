@@ -87,6 +87,7 @@ struct FriendRowList: View {
                             //                            }
                             .listStyle(.plain)
                             .refreshable {
+                                viewModel.debugLog.append("logged, getfriendactivitynoanimation called from refreshing friendlist \n")
                                 print("logged, getfriendactivitynoanimation called from refreshing friendlist")
                                 await viewModel.GetFriendActivityNoAnimation()
                             }
@@ -109,6 +110,7 @@ struct FriendRowList: View {
                                 .shimmering()
                             Button{
                                 Task {
+                                    viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
                                     print("logged, getfriendactivity called from shimmering placeholder")
                                     await viewModel.GetFriendActivity()
                                 }
@@ -125,13 +127,7 @@ struct FriendRowList: View {
                             Button(action: {
                                 print("logged, opening debug log")
                                 if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-                                    print(" LOGGED OUT AFTER ALL")
-                                    FriendActivityBackend.shared.keychain["spDcCookie"] = nil
-                                    FriendActivityBackend.shared.keychain["accessToken"] = nil
-                                    FriendActivityBackend.shared.loggedOut = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
-                                        FriendActivityBackend.shared.tabSelection = 1
-                                    }
+                                    FriendActivityBackend.shared.showDebug = true
                                 }
                             }) {
                                 Label("I found a bug", systemImage: "ladybug")
@@ -188,14 +184,32 @@ struct FriendRowList: View {
         }
         .onAppear {
             Task {
+                viewModel.debugLog.append("logged, on vstack appear \n")
                 print("on appear of vstack")
                 await getFriends()
             }
         }
         .onReceive(timer) { _ in
             Task {
+                viewModel.debugLog.append("logged, timer works \n")
                 print("timer works")
                 await getFriends()
+            }
+        }
+        .sheet(isPresented: $viewModel.showDebug) {
+            NavigationView() {
+                ScrollView {
+                    Text("\(viewModel.debugLog)")
+                }
+                .font(.custom("montserrat", size: 16))
+                    .toolbar {
+                        Button {
+                            viewModel.showDebug = false
+                        } label: {
+                            Text("Close")
+                                .bold()
+                        }
+                    }
             }
         }
     }
