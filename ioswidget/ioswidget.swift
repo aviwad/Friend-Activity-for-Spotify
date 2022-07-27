@@ -95,11 +95,7 @@ struct Provider: TimelineProvider {
     }
     
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), friends: ([
-            /*Friend(timestamp: 0, user: Friend.User(uri: "", name: "Frasoehtnaoishtnoieashntiend 1", imageURL: ""), track: Friend.Track(uri: "", name: "Demaoieshntoiasnthoeo song", imageURL: "", album: Friend.Album(uri: "", name: "Demo album"), artist: Friend.Album(uri: "", name: "Demo aashtenasiohtnertist"), context: Friend.Context(uri: "", name: "Demanstoieahsntoisno album", index: 1))),
-            Friend(timestamp: 0, user: Friend.User(uri: "", name: "Friend 2", imageURL: ""), track: Friend.Track(uri: "", name: "Demo song", imageURL: "", album: Friend.Album(uri: "", name: "Demo album"), artist: Friend.Album(uri: "", name: "Demo artist"), context: Friend.Context(uri: "", name: "Demo album", index: 1))),
-            Friend(timestamp: 0, user: Friend.User(uri: "", name: "Friend 3", imageURL: ""), track: Friend.Track(uri: "", name: "Demo song", imageURL: "", album: Friend.Album(uri: "", name: "Demo album"), artist: Friend.Album(uri: "", name: "Demo artist"), context: Friend.Context(uri: "", name: "Demo album", index: 1))),
-            Friend(timestamp: 0, user: Friend.User(uri: "", name: "Friend 4", imageURL: ""), track: Friend.Track(uri: "", name: "Demo song", imageURL: "", album: Friend.Album(uri: "", name: "Demo album"), artist: Friend.Album(uri: "", name: "Demo artist"), context: Friend.Context(uri: "", name: "Demo album", index: 1)))*/],[UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!],nil))
+        return SimpleEntry(date: Date(), friends: ([],[UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!],nil))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
@@ -126,9 +122,14 @@ struct SimpleEntry: TimelineEntry {
 
 struct iosWidgetEntryView : View {
     var entry: Provider.Entry
-
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
-        LargeView(entry: entry)
+        if (widgetFamily == .systemLarge) {
+            var newEntry = entry
+            LargeView(entry: entry)
+        } else {
+            MediumView(entry: entry)
+        }
     }
 }
 
@@ -140,7 +141,7 @@ struct iosWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             iosWidgetEntryView(entry: entry)
         }
-        .supportedFamilies([.systemLarge])
+        .supportedFamilies([.systemMedium,.systemLarge])
         .configurationDisplayName("Friend Activity")
         .description("See what your friends are listening to at a glance.")
     }

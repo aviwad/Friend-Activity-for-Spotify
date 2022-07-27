@@ -7,9 +7,9 @@
 import WidgetKit
 import SwiftUI
 
-struct LargeView: View {
+struct MediumView: View {
     var entry: SimpleEntry
-    @Environment(\.widgetFamily) var widgetFamily
+    @Environment(\.displayScale) var displayScale
     
     var body: some View {
         ZStack {
@@ -19,16 +19,16 @@ struct LargeView: View {
                     HStack() {
                         Image(systemName: "person.3")
                             .foregroundColor(Color("WhiteColor"))
-                            .font(.system(size: 15))
+                            .font(.system(size: 12))
                         Text("Friend Activity for Spotify")
                             //.minimumScaleFactor(0.8)
-                            .font(.bold(.system(size: 15))())
+                            .font(.bold(.system(size: 12))())
                             .foregroundColor(Color("WhiteColor"))
                             //.fontWeight(.bold)
                         Spacer()
                     }
                     //TODO.padding(.top, 5)
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 7)
                     .padding(.horizontal, 20)
                     .background(Color("HeaderColor"))
                     .clipped()
@@ -51,16 +51,30 @@ struct LargeView: View {
                         .frame(maxHeight: .infinity)
                 }
                 //Spacer()
-                ForEach(0..<entry.friends.0.count, id: \.self){ friend in
-                    LargeViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
-                        .foregroundColor(Color("WhiteColor"))
-                        .frame(maxHeight: .infinity)
-                       // .border(.red)
-                    //Divider()
-                      //  .padding(0)
+                if (entry.friends.0.count > 1) {
+                    ForEach(0..<2, id: \.self){ friend in
+                        MediumViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
+                            .foregroundColor(Color("WhiteColor"))
+                            .frame(maxHeight: .infinity)
+                           // .border(.red)
+                        //Divider()
+                          //  .padding(0)
+                    }
+                    //TODO.frame(alignment: .center)
+                    .padding(.horizontal, 16)
                 }
-                //TODO.frame(alignment: .center)
-                .padding(.horizontal, 16)
+                else {
+                    ForEach(0..<entry.friends.0.count, id: \.self){ friend in
+                        MediumViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
+                            .foregroundColor(Color("WhiteColor"))
+                            .frame(maxHeight: .infinity)
+                           // .border(.red)
+                        //Divider()
+                          //  .padding(0)
+                    }
+                    //TODO.frame(alignment: .center)
+                    .padding(.horizontal, 16)
+                }
                 //LargeViewRow(friend: entry.friends[entry.friends.count])
                 //.padding(.vertical,7)
                 //Spacer()
