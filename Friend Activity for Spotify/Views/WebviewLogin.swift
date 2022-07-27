@@ -16,8 +16,24 @@ class NavigationState : NSObject, ObservableObject {
 extension NavigationState : WKNavigationDelegate {
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         self.url = webView.url
+        if (self.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false) {
+            Task {
+                if await FriendActivityBackend.shared.loggedOut == true {
+                    await FriendActivityBackend.shared.checkIfLoggedIn()
+                }
+            }
+        }
+        else if (self.url?.absoluteString.starts(with: "https://accounts.google.com/CheckCookie") ?? false) {
+            Task {
+                if await FriendActivityBackend.shared.loggedOut == true {
+                    await FriendActivityBackend.shared.checkIfLoggedIn()
+                }
+            }
+        }
         print("LOGGED \(self.url?.description ?? "none")")
     }
+    
+    
 }
 
 
@@ -49,34 +65,6 @@ struct WebviewLogin: View {
             }
         }
     }
-    func checkIfLoggedIn() {
-        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-            FriendActivityBackend.shared.currentlyLoggingIn = true
-            FriendActivityBackend.shared.tabSelection = 1
-            FriendActivityBackend.shared.loggedOut = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                print("LOGGED dispatch queue is working")
-                WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
-                    cookies.forEach { cookie in
-                        if (cookie.name == "sp_dc") {
-                            print("LOGGED sp_dc is \(cookie.value)")
-                            FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
-                            Task {
-                                await FriendActivityBackend.shared.GetAccessToken()
-                                await FriendActivityBackend.shared.GetFriendActivity()
-                            }
-                        }
-                    }
-                }
-                //print(cookies)
-                //let newCookies = HTTPCookieStorage.shared.cookies
-                //newCookies!.forEach { cookie in
-                  //  print(cookie.name)
-                //}
-                FriendActivityBackend.shared.currentlyLoggingIn = false
-            }
-        }
-    }
     @StateObject var navigationState = NavigationState()
     var body: some View {
         VStack {
@@ -85,14 +73,6 @@ struct WebviewLogin: View {
             /*if (navigationState.url?.absoluteString.starts(with: "https://accounts.google.com")) {
                 UIApplication.shared.open(navigationState.url, options: [:])
             }*/
-            if (navigationState.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false && FriendActivityBackend.shared.loggedOut == true) {
-                let hi = checkIfLoggedIn()
-                Text("hi")
-            }
-            else if (navigationState.url?.absoluteString.starts(with: "https://accounts.google.com/CheckCookie") ?? false && FriendActivityBackend.shared.loggedOut == true) {
-                let hi = checkIfLoggedIn()
-                Text("hi")
-            }
            /* else if (navigationState.url?.absoluteString == "https://open.spotify.com/#_=_" && FriendActivityBackend.shared.loggedOut == true) {
                 let hi = checkIfLoggedIn()
                 Text("hi")

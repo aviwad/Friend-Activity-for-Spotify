@@ -10,6 +10,7 @@ import Network
 import SwiftUI
 import WidgetKit
 import KeychainAccess
+import WebKit
 //import SwiftKeychainWrapper
 
 @MainActor final class FriendActivityBackend: ObservableObject{
@@ -64,6 +65,35 @@ import KeychainAccess
         print("LOGGED \(data)")
         let json = try JSONDecoder().decode(T.self, from: data)
         return json
+    }
+    
+    func checkIfLoggedIn() {
+        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
+            FriendActivityBackend.shared.currentlyLoggingIn = true
+            FriendActivityBackend.shared.tabSelection = 1
+            FriendActivityBackend.shared.loggedOut = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                print("LOGGED dispatch queue is working")
+                WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
+                    cookies.forEach { cookie in
+                        if (cookie.name == "sp_dc") {
+                            print("LOGGED sp_dc is \(cookie.value)")
+                            FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
+                            Task {
+                                await FriendActivityBackend.shared.GetAccessToken()
+                                await FriendActivityBackend.shared.GetFriendActivity()
+                            }
+                        }
+                    }
+                }
+                //print(cookies)
+                //let newCookies = HTTPCookieStorage.shared.cookies
+                //newCookies!.forEach { cookie in
+                  //  print(cookie.name)
+                //}
+                FriendActivityBackend.shared.currentlyLoggingIn = false
+            }
+        }
     }
 
     

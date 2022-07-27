@@ -41,7 +41,7 @@ struct FriendRowList: View {
                             VStack(spacing: 30) {
                                 Image(systemName: "person.fill.xmark")
                                     .font(.system(size: 100))
-                                Text("You have no friends!\nAdd someone and refresh")
+                                Text("You have no friends (on Spotify)!\nAdd someone and refresh")
                                     .font(.custom("montserrat", size: 30))
                                     .bold()
                                     .multilineTextAlignment(.center)
