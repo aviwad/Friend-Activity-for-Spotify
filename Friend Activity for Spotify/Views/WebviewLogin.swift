@@ -29,6 +29,7 @@ struct WebView : UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView  {
         let webView = navigationState.webView
         webView.navigationDelegate = navigationState
+        webView.customUserAgent = "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36"
         webView.load(request)
         return webView
     }
@@ -58,6 +59,7 @@ struct WebviewLogin: View {
                 WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
                     cookies.forEach { cookie in
                         if (cookie.name == "sp_dc") {
+                            print("LOGGED sp_dc is \(cookie.value)")
                             FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
                             Task {
                                 await FriendActivityBackend.shared.GetAccessToken()
@@ -78,15 +80,23 @@ struct WebviewLogin: View {
     @StateObject var navigationState = NavigationState()
     var body: some View {
         VStack {
+            //WebView(request: URLRequest(url: URL(string: "https://www.whatismybrowser.com/detect/what-is-my-user-agent/")!), navigationState: navigationState)
             WebView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
-            if (navigationState.url?.absoluteString == "https://open.spotify.com/" && FriendActivityBackend.shared.loggedOut == true) {
+            /*if (navigationState.url?.absoluteString.starts(with: "https://accounts.google.com")) {
+                UIApplication.shared.open(navigationState.url, options: [:])
+            }*/
+            if (navigationState.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false && FriendActivityBackend.shared.loggedOut == true) {
                 let hi = checkIfLoggedIn()
                 Text("hi")
             }
-            else if (navigationState.url?.absoluteString == "https://open.spotify.com/#_=_" && FriendActivityBackend.shared.loggedOut == true) {
+            else if (navigationState.url?.absoluteString.starts(with: "https://accounts.google.com/CheckCookie") ?? false && FriendActivityBackend.shared.loggedOut == true) {
                 let hi = checkIfLoggedIn()
                 Text("hi")
             }
+           /* else if (navigationState.url?.absoluteString == "https://open.spotify.com/#_=_" && FriendActivityBackend.shared.loggedOut == true) {
+                let hi = checkIfLoggedIn()
+                Text("hi")
+            }*/
                 
         }/*{ (onNavigationAction) in
             switch onNavigationAction {
