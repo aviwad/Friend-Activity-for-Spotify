@@ -9,36 +9,7 @@ import SwiftUI
 //import WKView
 import WebKit
 
-class NavigationState : NSObject, ObservableObject {
-    @Published var url : URL?
-    let webView = WKWebView()
-}
-extension NavigationState : WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        self.url = webView.url
-        
-        if (self.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false) {
-            Task {
-                if await FriendActivityBackend.shared.loggedOut == true {
-                    await FriendActivityBackend.shared.checkIfLoggedIn()
-                }
-            }
-        }
-        /*else if (self.url?.absoluteString.starts(with: "https://accounts.google.com/CheckCookie") ?? false) {
-            Task {
-                if await FriendActivityBackend.shared.loggedOut == true {
-                    await FriendActivityBackend.shared.checkIfLoggedIn()
-                }
-            }
-        }*/
-        print("LOGGED \(self.url?.description ?? "none")")
-    }
-    
-    
-}
-
-
-struct WebView : UIViewRepresentable {
+struct GoogleView : UIViewRepresentable {
     
     let request: URLRequest
     var navigationState : NavigationState
@@ -47,13 +18,15 @@ struct WebView : UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView  {
         let webView = navigationState.webView
         webView.navigationDelegate = navigationState
+        webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1"
         webView.load(request)
         return webView
     }
     func updateUIView(_ uiView: WKWebView, context: Context) { }
 }
 
-struct WebviewLogin: View {
+
+struct GoogleViewLogin: View {
     init() {
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
         print("All cookies deleted")
@@ -67,13 +40,13 @@ struct WebviewLogin: View {
     }
     @StateObject var navigationState = NavigationState()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let removeGoogleIdScript = "let elements = document.querySelectorAll('[data-testid=\"google-login\"]'); for (let element of elements) { element.style.display = \"none\"; }"
+    let removeEverythingBesidesGoogleScript = "var elements = document.querySelectorAll('[data-testid=\"login-form\"]'); for (let element of elements) { element.style.display = \"none\"; }; elements = document.querySelectorAll('[data-testid=\"phone-login\"]'); for (let element of elements) { element.style.display = \"none\"; }; elements = document.querySelectorAll('[data-testid=\"apple-login\"]'); for (let element of elements) { element.style.display = \"none\"; };elements = document.querySelectorAll('[data-testid=\"facebook-login\"]'); for (let element of elements) { element.style.display = \"none\"; };"
     var body: some View {
         VStack {
             //WebView(request: URLRequest(url: URL(string: "https://www.whatismybrowser.com/detect/what-is-my-user-agent/")!), navigationState: navigationState)
-            WebView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
+            GoogleView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
                 .onReceive(timer) { _ in
-                    navigationState.webView.evaluateJavaScript(removeGoogleIdScript) { (response, error) in
+                    navigationState.webView.evaluateJavaScript(removeEverythingBesidesGoogleScript) { (response, error) in
                         if (response != nil || error != nil) {
                             print("logged timer over")
                             self.timer.upstream.connect().cancel()
@@ -128,11 +101,5 @@ struct WebviewLogin: View {
             }
         }*/
                             
-    }
-}
-
-struct WebviewLogin_Previews: PreviewProvider {
-    static var previews: some View {
-        WebviewLogin()
     }
 }

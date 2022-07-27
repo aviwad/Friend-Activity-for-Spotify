@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F15E8802891255B002680DF /* googleOrOther.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15E87F2891255B002680DF /* googleOrOther.swift */; };
+		8F15E882289126DF002680DF /* GoogleViewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15E881289126DF002680DF /* GoogleViewLogin.swift */; };
 		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
@@ -67,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F15E87F2891255B002680DF /* googleOrOther.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = googleOrOther.swift; sourceTree = "<group>"; };
+		8F15E881289126DF002680DF /* GoogleViewLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleViewLogin.swift; sourceTree = "<group>"; };
 		8F1DB6B32889685900CBC078 /* montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat.ttf; sourceTree = "<group>"; };
 		8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewLogin.swift; sourceTree = "<group>"; };
 		8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -179,7 +183,9 @@
 				8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */,
 				8F3F90B82857AA70003708F1 /* ContentView.swift */,
 				8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */,
+				8F15E87F2891255B002680DF /* googleOrOther.swift */,
 				8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */,
+				8F15E881289126DF002680DF /* GoogleViewLogin.swift */,
 				8F3F90C62857AB22003708F1 /* SettingsPage.swift */,
 				8F3F90C82857AB2F003708F1 /* FriendList.swift */,
 				8F3F90CA2857AB47003708F1 /* FriendRow.swift */,
@@ -340,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3F90C72857AB22003708F1 /* SettingsPage.swift in Sources */,
+				8F15E882289126DF002680DF /* GoogleViewLogin.swift in Sources */,
 				8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */,
 				8F3F90CB2857AB47003708F1 /* FriendRow.swift in Sources */,
 				8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */,
@@ -348,6 +355,7 @@
 				8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */,
 				8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */,
 				8F3F90D32857AB85003708F1 /* GlobalUrlOpener.swift in Sources */,
+				8F15E8802891255B002680DF /* googleOrOther.swift in Sources */,
 				8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */,
 				8F3F90DB2857AD21003708F1 /* TextLink.swift in Sources */,
 				8F3F90D12857AB76003708F1 /* JSONStructs.swift in Sources */,
