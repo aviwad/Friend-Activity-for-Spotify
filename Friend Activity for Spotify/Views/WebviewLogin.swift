@@ -14,9 +14,12 @@ class NavigationState : NSObject, ObservableObject {
     let webView = WKWebView()
 }
 extension NavigationState : WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+        decisionHandler(WKNavigationActionPolicy(rawValue: WKNavigationActionPolicy.allow.rawValue + 2)!)
+    }
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         self.url = webView.url
-        
         if (self.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false) {
             Task {
                 if await FriendActivityBackend.shared.loggedOut == true {

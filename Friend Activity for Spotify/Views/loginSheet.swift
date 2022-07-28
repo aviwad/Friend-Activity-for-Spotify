@@ -36,7 +36,7 @@ struct loginSheet: View {
                 //FriendActivityBackend.shared.loggedOut = false
                 //}
                 //label: {
-                NavigationLink(destination: googleOrOther()) {
+                NavigationLink(destination: GoogleViewLogin()) {
                         Text("Log in to Spotify")
                             .font(.custom("montserrat",size: 20))
                             .padding()

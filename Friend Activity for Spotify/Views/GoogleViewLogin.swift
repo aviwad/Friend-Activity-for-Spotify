@@ -18,6 +18,7 @@ struct GoogleView : UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView  {
         let webView = navigationState.webView
         webView.navigationDelegate = navigationState
+        //webView.customUserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"
         webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1"
         webView.load(request)
         return webView
@@ -40,13 +41,13 @@ struct GoogleViewLogin: View {
         }
     }
     @StateObject var navigationState = NavigationState()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let removeEverythingBesidesGoogleScript = "var elements = document.querySelectorAll('[data-testid=\"login-form\"]'); for (let element of elements) { element.style.display = \"none\"; }; elements = document.querySelectorAll('[data-testid=\"phone-login\"]'); for (let element of elements) { element.style.display = \"none\"; }; elements = document.querySelectorAll('[data-testid=\"apple-login\"]'); for (let element of elements) { element.style.display = \"none\"; };elements = document.querySelectorAll('[data-testid=\"facebook-login\"]'); for (let element of elements) { element.style.display = \"none\"; };"
+    //let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+   // let removeEverythingBesidesGoogleScript = "var elements = document.querySelectorAll('[data-testid=\"login-form\"]'); for (let element of elements) { element.style.display = \"none\"; }; elements = document.querySelectorAll('[data-testid=\"phone-login\"]'); for (let element of elements) { element.style.display = \"none\"; }; elements = document.querySelectorAll('[data-testid=\"apple-login\"]'); for (let element of elements) { element.style.display = \"none\"; };elements = document.querySelectorAll('[data-testid=\"facebook-login\"]'); for (let element of elements) { element.style.display = \"none\"; };"
     var body: some View {
         VStack {
             //WebView(request: URLRequest(url: URL(string: "https://www.whatismybrowser.com/detect/what-is-my-user-agent/")!), navigationState: navigationState)
             GoogleView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
-                .onReceive(timer) { _ in
+                /*.onReceive(timer) { _ in
                     navigationState.webView.evaluateJavaScript(removeEverythingBesidesGoogleScript) { (response, error) in
                         FriendActivityBackend.shared.debugLog.append("logged timer for javascript run \n")
                         print("logged timer for javascript run")
@@ -61,7 +62,7 @@ struct GoogleViewLogin: View {
                             self.timer.upstream.connect().cancel()
                         }
                     }
-                 }
+                 }*/
             /*if (navigationState.url?.absoluteString.starts(with: "https://accounts.google.com")) {
                 UIApplication.shared.open(navigationState.url, options: [:])
             }*/
