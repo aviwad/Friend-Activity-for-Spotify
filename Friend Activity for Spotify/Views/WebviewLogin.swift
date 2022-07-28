@@ -14,10 +14,10 @@ class NavigationState : NSObject, ObservableObject {
     let webView = WKWebView()
 }
 extension NavigationState : WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    /*func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
         decisionHandler(WKNavigationActionPolicy(rawValue: WKNavigationActionPolicy.allow.rawValue + 2)!)
-    }
+    }*/
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         self.url = webView.url
         if (self.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false) {
@@ -45,8 +45,7 @@ struct WebView : UIViewRepresentable {
     
     let request: URLRequest
     var navigationState : NavigationState
-    
-    
+        
     func makeUIView(context: Context) -> WKWebView  {
         let webView = navigationState.webView
         webView.navigationDelegate = navigationState
@@ -70,8 +69,8 @@ struct WebviewLogin: View {
         }
     }
     @StateObject var navigationState = NavigationState()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let removeGoogleIdScript = "let elements = document.querySelectorAll('[data-testid=\"google-login\"]'); for (let element of elements) { element.style.display = \"none\"; }"
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    let removeGoogleIdScript = "var elements = document.querySelectorAll('[data-testid=\"google-login\"]'); for (let element of elements) { element.style.display = \"none\"; }"
     var body: some View {
         VStack {
             //WebView(request: URLRequest(url: URL(string: "https://www.whatismybrowser.com/detect/what-is-my-user-agent/")!), navigationState: navigationState)
