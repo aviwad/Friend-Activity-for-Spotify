@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct loginSheet: View {
+    
     var body: some View {
         NavigationView(){
             VStack (spacing: 20){
@@ -46,8 +47,9 @@ struct loginSheet: View {
                 Button(action: {
                     FriendActivityBackend.shared.debugLog.append("logged, opening debug log\n")
                     print("logged, opening debug log")
-                    FriendActivityBackend.shared.showDebug = true
-                    FriendActivityBackend.shared.loggedOut = false
+                    Task {
+                        await FriendActivityBackend.shared.mailto()
+                    }
                 }) {
                     Label("I found a bug", systemImage: "ladybug")
                         .font(.custom("montserrat",size: 15))

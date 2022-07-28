@@ -65,8 +65,8 @@ struct SettingsPage: View {
                     }
                     Button(action: {
                         print("logged, opening debug log")
-                        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-                            FriendActivityBackend.shared.showDebug = true
+                        Task {
+                            await FriendActivityBackend.shared.mailto()
                         }
                     }) {
                         Label("I found a bug", systemImage: "ladybug")
