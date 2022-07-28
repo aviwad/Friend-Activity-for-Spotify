@@ -23,7 +23,7 @@ struct FriendRowList: View {
     func getFriends() async {
         if viewModel.networkUp {
             print("logged, getfriendactivity called from getfriends function")
-            await viewModel.GetFriendActivity()
+            await viewModel.GetFriendActivity(animation: true)
         }
         // if data is empty: state text that says 0 friends
         // check monitor connected
@@ -89,7 +89,7 @@ struct FriendRowList: View {
                             .refreshable {
                                 viewModel.debugLog.append("logged, getfriendactivitynoanimation called from refreshing friendlist \n")
                                 print("logged, getfriendactivitynoanimation called from refreshing friendlist")
-                                await viewModel.GetFriendActivityNoAnimation()
+                                await viewModel.GetFriendActivity(animation: false)
                             }
                         }
                     }
@@ -112,7 +112,7 @@ struct FriendRowList: View {
                                 Task {
                                     viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
                                     print("logged, getfriendactivity called from shimmering placeholder")
-                                    await viewModel.GetFriendActivity()
+                                    await viewModel.GetFriendActivity(animation: true)
                                 }
                             } label: {
                                 Text("Refresh")
@@ -155,7 +155,7 @@ struct FriendRowList: View {
                         .listStyle(.plain)
                         .refreshable {
                             print("logged, getfriendactivity called from refreshing the shimmering placeholder")
-                            await viewModel.GetFriendActivityNoAnimation()
+                            await viewModel.GetFriendActivity(animation: true)
                         }
                     }
                 }
