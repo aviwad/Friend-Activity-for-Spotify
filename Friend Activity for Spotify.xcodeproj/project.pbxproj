@@ -35,6 +35,8 @@
 		8F3F90FA2857B423003708F1 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
 		8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F52857B403003708F1 /* LargeView.swift */; };
 		8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */; };
+		8F427CBA289301480046BFD9 /* AppleViewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F427CB9289301480046BFD9 /* AppleViewLogin.swift */; };
+		8F427CBC2893025B0046BFD9 /* WebViewLoginForMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F427CBB2893025B0046BFD9 /* WebViewLoginForMac.swift */; };
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
 		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
 		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
@@ -100,6 +102,8 @@
 		8F3F90EB2857B3D7003708F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewRow.swift; sourceTree = "<group>"; };
 		8F3F90F52857B403003708F1 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
+		8F427CB9289301480046BFD9 /* AppleViewLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleViewLogin.swift; sourceTree = "<group>"; };
+		8F427CBB2893025B0046BFD9 /* WebViewLoginForMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewLoginForMac.swift; sourceTree = "<group>"; };
 		8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginSheet.swift; sourceTree = "<group>"; };
 		8FB5BAD92891A1D200E5AB76 /* MediumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumView.swift; sourceTree = "<group>"; };
 		8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumViewRow.swift; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 				8F15E87F2891255B002680DF /* googleOrOther.swift */,
 				8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */,
 				8F15E881289126DF002680DF /* GoogleViewLogin.swift */,
+				8F427CBB2893025B0046BFD9 /* WebViewLoginForMac.swift */,
+				8F427CB9289301480046BFD9 /* AppleViewLogin.swift */,
 				8F3F90C62857AB22003708F1 /* SettingsPage.swift */,
 				8F3F90C82857AB2F003708F1 /* FriendList.swift */,
 				8F3F90CA2857AB47003708F1 /* FriendRow.swift */,
@@ -356,9 +362,11 @@
 				8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */,
 				8F3F90CB2857AB47003708F1 /* FriendRow.swift in Sources */,
 				8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */,
+				8F427CBA289301480046BFD9 /* AppleViewLogin.swift in Sources */,
 				8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */,
 				8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */,
 				8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */,
+				8F427CBC2893025B0046BFD9 /* WebViewLoginForMac.swift in Sources */,
 				8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */,
 				8F3F90D32857AB85003708F1 /* GlobalUrlOpener.swift in Sources */,
 				8F15E8802891255B002680DF /* googleOrOther.swift in Sources */,

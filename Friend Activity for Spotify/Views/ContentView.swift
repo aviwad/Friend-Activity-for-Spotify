@@ -18,15 +18,24 @@ struct ContentView: View {
     }
     var body: some View {
         TabView (selection: $viewModel.tabSelection){
-            NavigationView{
+            if(ProcessInfo().isiOSAppOnMac) {
                 FriendRowList()
-                    .navigationBarTitle("Friend Activity")
+                    .tabItem{
+                        Label("Friend Activity", systemImage: "person.3")
+                    }
+                    .tag(1)
             }
-                .navigationViewStyle(StackNavigationViewStyle())
-                .tabItem{
-                    Label("Friend Activity", systemImage: "person.3")
+            else {
+                NavigationView{
+                    FriendRowList()
+                        .navigationBarTitle("Friend Activity")
                 }
-                .tag(1)
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    .tabItem{
+                        Label("Friend Activity", systemImage: "person.3")
+                    }
+                    .tag(1)
+            }
             SettingsPage()
                 .tabItem{
                     Label("Settings", systemImage: "gearshape.2")
