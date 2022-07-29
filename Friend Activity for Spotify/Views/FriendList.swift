@@ -88,7 +88,6 @@ struct FriendRowList: View {
                                 //                            }
                                 .listStyle(.plain)
                                 .refreshable {
-                                    viewModel.debugLog.append("logged, getfriendactivitynoanimation called from refreshing friendlist \n")
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
                                     await viewModel.GetFriendActivity(animation: false)
                                 }
@@ -111,7 +110,6 @@ struct FriendRowList: View {
                                     .shimmering()
                                 Button{
                                     Task {
-                                        viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
                                         print("logged, getfriendactivity called from shimmering placeholder")
                                         await viewModel.GetFriendActivity(animation: true)
                                     }
@@ -192,7 +190,6 @@ struct FriendRowList: View {
             }*/
             .onReceive(timer) { _ in
                 Task {
-                    viewModel.debugLog.append("logged, timer works \n")
                     print("timer works")
                     await getFriends()
                 }

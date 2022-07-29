@@ -30,7 +30,6 @@ struct WebViewForMac : UIViewRepresentable {
 struct WebViewLoginForMac: View {
     init() {
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-        FriendActivityBackend.shared.debugLog.append("all cookies deleted \n")
         print("All cookies deleted")
 
         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
@@ -49,14 +48,11 @@ struct WebViewLoginForMac: View {
             GoogleView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
                 .onReceive(timer) { _ in
                     navigationState.webView.evaluateJavaScript(removeEverythingBesidesGoogleScript) { (response, error) in
-                        FriendActivityBackend.shared.debugLog.append("logged timer for javascript run \n")
                         print("logged timer for javascript run")
                         if (error != nil) {
-                            FriendActivityBackend.shared.debugLog.append("logged timer for javascript error: \(error)\n")
                             print("logged timer for javascript error: \(error)")
                         }
                         if (response != nil) {
-                            FriendActivityBackend.shared.debugLog.append("logged timer over\nlogged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))\n")
                             print("logged timer over")
                             print("logged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))")
                             self.timer.upstream.connect().cancel()

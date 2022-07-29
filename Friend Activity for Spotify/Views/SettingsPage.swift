@@ -42,10 +42,8 @@ struct SettingsPage: View {
                             //.background(in: RoundedRectangle)
                     }
                     Button(action: {
-                        FriendActivityBackend.shared.debugLog.append("logged cuz of button")
                         print("LOGGED OUT CUZ OF BUTTON")
                         if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-                            FriendActivityBackend.shared.debugLog.append("button log confirmed")
                             print(" LOGGED OUT AFTER ALL")
                             FriendActivityBackend.shared.keychain["spDcCookie"] = nil
                             FriendActivityBackend.shared.keychain["accessToken"] = nil

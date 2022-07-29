@@ -59,7 +59,6 @@ struct WebviewLogin: View {
     init() {
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
         print("All cookies deleted")
-        FriendActivityBackend.shared.debugLog.append("LOGGED all cookies deleted\n")
 
         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
             records.forEach { record in
@@ -77,12 +76,8 @@ struct WebviewLogin: View {
             WebView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
                 .onReceive(timer) { _ in
                     navigationState.webView.evaluateJavaScript(removeGoogleIdScript) { (response, error) in
-                        FriendActivityBackend.shared.debugLog.append("logged timer for javascript run\n")
                         print("logged timer for javascript run")
                         if (response != nil) {
-                            FriendActivityBackend.shared.debugLog.append("logged timer over\n")
-                            print("logged timer over")
-                            FriendActivityBackend.shared.debugLog.append("logged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))\n")
                             print("logged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))")
                             self.timer.upstream.connect().cancel()
                         }
