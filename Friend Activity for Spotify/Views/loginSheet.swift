@@ -36,15 +36,15 @@ struct loginSheet: View {
                 //FriendActivityBackend.shared.loggedOut = false
                 //}
                 //label: {
-               // if #available(iOS 16, *) {
-                VStack (spacing: 2) {
-                    Text("This app might not run well on the iOS beta.")
-                    Text("Download the TestFlight beta for full iOS 16 compatibility")
-                    Text("TestFlight link available on the GitHub README")
+                if #available(iOS 16, *) {
+                    VStack (spacing: 2) {
+                        Text("This app might not run well on the iOS beta.")
+                        Text("Download the TestFlight beta for full iOS 16 compatibility")
+                        Text("TestFlight link available on the GitHub README")
+                    }
+                    .font(.custom("montserrat", size: 17))
+                    .foregroundColor(.red)
                 }
-                .font(.custom("montserrat", size: 17))
-                .foregroundColor(.red)
-                //}
                 NavigationLink(destination: googleOrOther()) {
                         Text("Log in to Spotify")
                             .font(.custom("montserrat",size: 20))
