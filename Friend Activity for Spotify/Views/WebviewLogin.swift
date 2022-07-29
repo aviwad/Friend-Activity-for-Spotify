@@ -64,6 +64,7 @@ struct WebviewLogin: View {
         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
             records.forEach { record in
                 WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                FriendActivityBackend.shared.debugLog.append("cookie ::: \(record) deleted")
                 print("Cookie ::: \(record) deleted")
             }
         }
