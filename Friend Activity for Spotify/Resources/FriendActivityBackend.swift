@@ -120,6 +120,7 @@ import WebKit
             self.loggedOut = true
             self.debugLog.append("LOGGED OUT IN ACCESS TOKEN\n")
             print("LOGGED OUT IN ACCESS TOKEN")
+            self.debugLog.append("keychain[accessToken] = nil in catch\n")
             keychain["accessToken"] = nil
         }
         //KeychainWrapper.standard.set(accessToken.accessToken, forKey: "accessToken", withAccessibility: .always)
@@ -176,7 +177,8 @@ import WebKit
                             errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                             self.debugLog.append("logged, removing brokenaccesstoken from catching the errorjson \n")
                             print("logged, removing brokenaccesstoken from catching the errorjson")
-                            keychain["accessToken"] = nil
+                            self.debugLog.append("keychain[accessToken] = nil in catch\n")
+                            //keychain["accessToken"] = nil
                             self.debugLog.append("logged, getfriendactivity called from catching the errorjson \n")
                             print("logged, getfriendactivity called from catching the errorjson")
                             await GetFriendActivity(animation: animation)
@@ -206,6 +208,7 @@ import WebKit
                     let spDcCookie = keychain["spDcCookie"]
                     print("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
                     if (spDcCookie != nil) {
+                        self.debugLog.append("logged: spdc is \(spDcCookie.unsafelyUnwrapped)")
                         self.debugLog.append("logged: getting access token")
                         print("logged: getting access token")
                         let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
@@ -215,12 +218,13 @@ import WebKit
                         await GetFriendActivity(animation: animation)
                     }
                     else {
-                        keychain["spDcCookie"] = nil
+                        self.debugLog.append("keychain[access and spdc are] = nil in else\n")
+                        //keychain["spDcCookie"] = nil
                         self.loggedOut = false
                         self.loggedOut = true
                         self.debugLog.append("logged out in access token\n")
                         print("LOGGED OUT IN ACCESS TOKEN")
-                        keychain["accessToken"] = nil
+                        //keychain["accessToken"] = nil
                         
                     }
                 }
@@ -229,12 +233,13 @@ import WebKit
                     withAnimation() {
                        // self.currentError = error.localizedDescription
                     }
-                    keychain["spDcCookie"] = nil
+                    self.debugLog.append("keychain[access and spdc are] = nil in catch\n")
+                    //keychain["spDcCookie"] = nil
                     self.loggedOut = false
                     self.loggedOut = true
                     self.debugLog.append("logged out in access token\n")
                     print("LOGGED OUT IN ACCESS TOKEN")
-                    keychain["accessToken"] = nil
+                    //keychain["accessToken"] = nil
 
                 }
             }

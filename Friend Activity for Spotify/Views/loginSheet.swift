@@ -42,7 +42,7 @@ struct loginSheet: View {
                         Text("Download the TestFlight beta for full iOS 16 compatibility")
                         Text("TestFlight link available on the GitHub README")
                     }
-                    .font(.custom("montserrat", size: 17))
+                    .font(.custom("montserrat", size: 15))
                     .foregroundColor(.red)
                 }
                 NavigationLink(destination: googleOrOther()) {
