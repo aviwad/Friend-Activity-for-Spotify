@@ -184,9 +184,9 @@ import WebKit
                             await GetFriendActivity(animation: animation)
                             self.debugLog.append("LOGGED \(errorMessage)")
                             print("LOGGED \(errorMessage)")
-                            //self.keychain["accessToken"] = nil
-                            //self.keychain["spDcCookie"] = nil
-                            //loggedOut = true
+                            self.keychain["accessToken"] = nil
+                            self.keychain["spDcCookie"] = nil
+                            loggedOut = true
                         }
                         catch {
                             // serious error
@@ -219,12 +219,12 @@ import WebKit
                     }
                     else {
                         self.debugLog.append("keychain[access and spdc are] = nil in else\n")
-                        //keychain["spDcCookie"] = nil
+                        keychain["spDcCookie"] = nil
                         self.loggedOut = false
                         self.loggedOut = true
                         self.debugLog.append("logged out in access token\n")
                         print("LOGGED OUT IN ACCESS TOKEN")
-                        //keychain["accessToken"] = nil
+                        keychain["accessToken"] = nil
                         
                     }
                 }
@@ -234,12 +234,12 @@ import WebKit
                        // self.currentError = error.localizedDescription
                     }
                     self.debugLog.append("keychain[access and spdc are] = nil in catch\n")
-                    //keychain["spDcCookie"] = nil
+                    keychain["spDcCookie"] = nil
                     self.loggedOut = false
                     self.loggedOut = true
                     self.debugLog.append("logged out in access token\n")
                     print("LOGGED OUT IN ACCESS TOKEN")
-                    //keychain["accessToken"] = nil
+                    keychain["accessToken"] = nil
 
                 }
             }
