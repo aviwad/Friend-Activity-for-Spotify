@@ -14,13 +14,14 @@ import WebKit
 //import SwiftKeychainWrapper
 
 @MainActor final class FriendActivityBackend: ObservableObject{
-    var currentlyRunning = false
+    //var currentlyRunning = false
     static let shared = FriendActivityBackend()
     let monitor = NWPathMonitor()
     var currentlyLoggingIn = false
     let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
         .accessibility(.afterFirstUnlock)
     var debugLog = ""
+    //var currentError : String? = nil
     @Published var tabSelection = 1
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
@@ -136,8 +137,6 @@ import WebKit
     }
     
     func GetFriendActivity(animation: Bool) async {
-        if (!self.currentlyRunning) {
-            self.currentlyRunning = true
             let accessToken = try? keychain.get("accessToken")
             //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
             if (accessToken != nil) {
@@ -163,9 +162,8 @@ import WebKit
                             friendArray = friendArrayInitial.friends.reversed()
                             WidgetCenter.shared.reloadAllTimelines()
                         }
-                        self.currentlyRunning = false
+                        //self.currentError = nil
                     }
-                    self.currentlyRunning = false
                 }
                 catch {
                     self.debugLog.append("LOGGED \(accessToken.unsafelyUnwrapped) \n LOGGED Error info: \(error) \n LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
@@ -181,7 +179,6 @@ import WebKit
                             keychain["accessToken"] = nil
                             self.debugLog.append("logged, getfriendactivity called from catching the errorjson \n")
                             print("logged, getfriendactivity called from catching the errorjson")
-                            self.currentlyRunning = false
                             await GetFriendActivity(animation: animation)
                             self.debugLog.append("LOGGED \(errorMessage)")
                             print("LOGGED \(errorMessage)")
@@ -190,12 +187,15 @@ import WebKit
                             //loggedOut = true
                         }
                         catch {
+                            // serious error
+                            withAnimation() {
+                               // self.currentError = error.localizedDescription
+                            }
                             self.debugLog.append("LOGGED \(error.localizedDescription)\n")
                             print("LOGGED \(error.localizedDescription)")
-                            self.currentlyRunning = false
                         }
                     }
-                    self.currentlyRunning = false
+                    // network is down
                 }
             }
             else {
@@ -212,7 +212,6 @@ import WebKit
                         keychain["accessToken"] = accessToken.accessToken
                         self.debugLog.append("logged: access token is \(keychain["accessToken"])\n")
                         print("logged: access token is \(keychain["accessToken"])")
-                        self.currentlyRunning = false
                         await GetFriendActivity(animation: animation)
                     }
                     else {
@@ -222,25 +221,23 @@ import WebKit
                         self.debugLog.append("logged out in access token\n")
                         print("LOGGED OUT IN ACCESS TOKEN")
                         keychain["accessToken"] = nil
-                        self.currentlyRunning = false
                         
                     }
                 }
                 catch {
+                    // serious error maybe
+                    withAnimation() {
+                       // self.currentError = error.localizedDescription
+                    }
                     keychain["spDcCookie"] = nil
                     self.loggedOut = false
                     self.loggedOut = true
                     self.debugLog.append("logged out in access token\n")
                     print("LOGGED OUT IN ACCESS TOKEN")
                     keychain["accessToken"] = nil
-                    self.currentlyRunning = false
+
                 }
             }
-        }
-        else {
-            self.debugLog.append("logged, friendactivity declined due to current running process \n")
-            print("logged, friendactivity declined due to current running process")
-        }
         //print("testing123: \(friendArray.unsafelyUnwrapped)")
         //return friendArrayInitial.friends.reversed()
     }

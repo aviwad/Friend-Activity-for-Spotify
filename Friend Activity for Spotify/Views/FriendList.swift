@@ -32,169 +32,180 @@ struct FriendRowList: View {
         //}
     }
     var body: some View {
-        VStack {
-            ZStack {
-                if viewModel.networkUp {
-                    if (viewModel.friendArray != nil) {
-                        if viewModel.friendArray!.count == 0 {
-                            VStack(spacing: 30) {
-                                Image(systemName: "person.fill.xmark")
-                                    .font(.system(size: 100))
-                                Text("You have no friends (on Spotify)!\nAdd someone and refresh")
-                                    .font(.custom("montserrat", size: 30))
-                                    .bold()
-                                    .multilineTextAlignment(.center)
-                                Button {
+        ZStack {
+            VStack {
+                ZStack {
+                    if viewModel.networkUp {
+                        if (viewModel.friendArray != nil) {
+                            if viewModel.friendArray!.count == 0 {
+                                VStack(spacing: 30) {
+                                    Image(systemName: "person.fill.xmark")
+                                        .font(.system(size: 100))
+                                    Text("You have no friends (on Spotify)!\nAdd someone and refresh")
+                                        .font(.custom("montserrat", size: 30))
+                                        .bold()
+                                        .multilineTextAlignment(.center)
+                                    Button {
+                                        Task {
+                                            await getFriends()
+                                        }
+                                    } label: {
+                                        Text("Refresh")
+                                            .font(.custom("montserrat", size: 30))
+                                    }
+                                }
+                            }
+                            else {
+                                List(viewModel.friendArray!) { friend in
+                                    FriendRow(friend: friend)
+                                    //.onTapGesture {
+                                    //  let impactMed = UIImpactFeedbackGenerator(style: .light)
+                                    //impactMed.impactOccurred()
+                                    //}
+                                    
+                                        .swipeActions(edge: .leading){
+                                            Button {
+                                                globalURLOpener(URL: friend.user.url)
+                                            } label: {
+                                                Label("View Profile", systemImage: "person")
+                                            }
+                                            .tint(.accentColor)
+                                        }
+                                        .swipeActions(edge: .trailing){
+                                            Button {
+                                                globalURLOpener(URL: friend.track.album.url)
+                                            } label: {
+                                                Label("View Album", systemImage: "play.circle.fill")
+                                            }
+                                            .tint(.accentColor)
+                                        }
+                                }
+                                //                            .onReceive(timer) { _ in
+                                //                                Task {
+                                //                                    print("timer works")
+                                //                                    await getFriends()
+                                //                                }
+                                //                            }
+                                .listStyle(.plain)
+                                .refreshable {
+                                    viewModel.debugLog.append("logged, getfriendactivitynoanimation called from refreshing friendlist \n")
+                                    print("logged, getfriendactivitynoanimation called from refreshing friendlist")
+                                    await viewModel.GetFriendActivity(animation: false)
+                                }
+                            }
+                        }
+                        
+                        else {
+                            List {
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
+                                Button{
                                     Task {
-                                        await getFriends()
+                                        viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
+                                        print("logged, getfriendactivity called from shimmering placeholder")
+                                        await viewModel.GetFriendActivity(animation: true)
                                     }
                                 } label: {
                                     Text("Refresh")
-                                        .font(.custom("montserrat", size: 30))
+                                        .font(.custom("montserrat",size: 20))
+                                        .bold()
+                                        .padding(10)
+                                        .foregroundColor(.white)
+                                        .background(Color.accentColor)
+                                        .cornerRadius(10)
+                                        .frame(maxWidth: .infinity, alignment: .center)
                                 }
-                            }
-                        }
-                        else {
-                            List(viewModel.friendArray!) { friend in
-                                FriendRow(friend: friend)
-                                //.onTapGesture {
-                                //  let impactMed = UIImpactFeedbackGenerator(style: .light)
-                                //impactMed.impactOccurred()
-                                //}
-                                
-                                    .swipeActions(edge: .leading){
-                                        Button {
-                                            globalURLOpener(URL: friend.user.url)
-                                        } label: {
-                                            Label("View Profile", systemImage: "person")
-                                        }
-                                        .tint(.accentColor)
+                                Button(action: {
+                                    print("logged, opening debug log")
+                                    Task {
+                                        await FriendActivityBackend.shared.mailto()
                                     }
-                                    .swipeActions(edge: .trailing){
-                                        Button {
-                                            globalURLOpener(URL: friend.track.album.url)
-                                        } label: {
-                                            Label("View Album", systemImage: "play.circle.fill")
-                                        }
-                                        .tint(.accentColor)
-                                    }
+                                }) {
+                                    Label("I found a bug", systemImage: "ladybug")
+                                        .font(.custom("montserrat",size: 15))
+                                        .foregroundColor(.white)
+                                        .padding(10)
+                                        .background(.red)
+                                        .cornerRadius(10)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        //.background(in: RoundedRectangle)
+                                }
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
+                                FriendRowPlaceholder()
+                                    .redacted(reason: .placeholder)
+                                    .shimmering()
                             }
-                            //                            .onReceive(timer) { _ in
-                            //                                Task {
-                            //                                    print("timer works")
-                            //                                    await getFriends()
-                            //                                }
-                            //                            }
                             .listStyle(.plain)
                             .refreshable {
-                                viewModel.debugLog.append("logged, getfriendactivitynoanimation called from refreshing friendlist \n")
-                                print("logged, getfriendactivitynoanimation called from refreshing friendlist")
-                                await viewModel.GetFriendActivity(animation: false)
+                                print("logged, getfriendactivity called from refreshing the shimmering placeholder")
+                                await viewModel.GetFriendActivity(animation: true)
                             }
                         }
                     }
-                    
                     else {
-                        List {
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            Button{
+                        VStack(spacing: 30) {
+                            Image(systemName: "wifi.slash")
+                                .font(.system(size: 100))
+                            Text("Your device is disconnected from the network.\nTry again later.")
+                                .font(.custom("montserrat", size: 15))
+                                .bold()
+                                .multilineTextAlignment(.center)
+                            Button("Refresh") {
                                 Task {
-                                    viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
-                                    print("logged, getfriendactivity called from shimmering placeholder")
-                                    await viewModel.GetFriendActivity(animation: true)
+                                    await getFriends()
                                 }
-                            } label: {
-                                Text("Refresh")
-                                    .font(.custom("montserrat",size: 20))
-                                    .bold()
-                                    .padding(10)
-                                    .foregroundColor(.white)
-                                    .background(Color.accentColor)
-                                    .cornerRadius(10)
-                                    .frame(maxWidth: .infinity, alignment: .center)
                             }
-                            Button(action: {
-                                print("logged, opening debug log")
-                                Task {
-                                    await FriendActivityBackend.shared.mailto()
-                                }
-                            }) {
-                                Label("I found a bug", systemImage: "ladybug")
-                                    .font(.custom("montserrat",size: 15))
-                                    .foregroundColor(.white)
-                                    .padding(10)
-                                    .background(.red)
-                                    .cornerRadius(10)
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    //.background(in: RoundedRectangle)
-                            }
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
-                            FriendRowPlaceholder()
-                                .redacted(reason: .placeholder)
-                                .shimmering()
                         }
-                        .listStyle(.plain)
-                        .refreshable {
-                            print("logged, getfriendactivity called from refreshing the shimmering placeholder")
-                            await viewModel.GetFriendActivity(animation: true)
+                        .onChange(of: viewModel.friendArray?.count) { change in
+                            WidgetCenter.shared.reloadAllTimelines()
                         }
                     }
                 }
-                else {
-                    VStack(spacing: 30) {
-                        Image(systemName: "wifi.slash")
-                            .font(.system(size: 100))
-                        Text("Your device is disconnected from the network.\nTry again later.")
-                            .font(.custom("montserrat", size: 15))
-                            .bold()
-                            .multilineTextAlignment(.center)
-                        Button("Refresh") {
-                            Task {
-                                await getFriends()
-                            }
-                        }
-                    }
-                    .onChange(of: viewModel.friendArray?.count) { change in
-                        WidgetCenter.shared.reloadAllTimelines()
-                    }
+                .fullScreenCover(isPresented: $viewModel.loggedOut) {
+                    loginSheet()
                 }
             }
-            .fullScreenCover(isPresented: $viewModel.loggedOut) {
-                loginSheet()
+            /*.onAppear {
+                Task {
+                    viewModel.debugLog.append("logged, on vstack appear \n")
+                    print("on appear of vstack")
+                    await getFriends()
+                }
+            }*/
+            .onReceive(timer) { _ in
+                Task {
+                    viewModel.debugLog.append("logged, timer works \n")
+                    print("timer works")
+                    await getFriends()
+                }
             }
-        }
-        .onAppear {
-            Task {
-                viewModel.debugLog.append("logged, on vstack appear \n")
-                print("on appear of vstack")
-                await getFriends()
-            }
-        }
-        .onReceive(timer) { _ in
-            Task {
-                viewModel.debugLog.append("logged, timer works \n")
-                print("timer works")
-                await getFriends()
-            }
+           /* if (FriendActivityBackend.shared.currentError != nil) {
+                Text("An error occurred \(FriendActivityBackend.shared.currentError!)")
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                    .foregroundColor(.red)
+                    .background(.white)
+                    .cornerRadius(5)
+                    .frame(maxHeight: .infinity, alignment: .top)
+            }*/
         }
     }
     
