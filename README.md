@@ -1,4 +1,7 @@
 # Friend Activity for Spotify
+
+TESTFLIGHT LINK: [**https://testflight.apple.com/join/W3a22gg0**](https://testflight.apple.com/join/W3a22gg0)
+
 iOS app &amp; widget for viewing what your Spotify friends are listening to. Made purely in SwiftUI. 
 
 Watch what your friends are listening to & add it to your homescreen. Tap on each friend to open the playlist/album/artist/song in the Spotify app/website.
