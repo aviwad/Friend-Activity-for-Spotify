@@ -13,6 +13,7 @@ struct SettingsPage: View {
         NavigationView() {
             ScrollView {
                 VStack (spacing: 30){
+                    Spacer()
                     VStack (spacing: 15) {
                         Image("Icon")
                             .resizable()
