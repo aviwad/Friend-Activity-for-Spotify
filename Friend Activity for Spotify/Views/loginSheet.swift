@@ -36,6 +36,15 @@ struct loginSheet: View {
                 //FriendActivityBackend.shared.loggedOut = false
                 //}
                 //label: {
+               // if #available(iOS 16, *) {
+                VStack (spacing: 2) {
+                    Text("This app might not run well on the iOS beta.")
+                    Text("Download the TestFlight beta for full iOS 16 compatibility")
+                    Text("TestFlight link available on the GitHub README")
+                }
+                .font(.custom("montserrat", size: 17))
+                .foregroundColor(.red)
+                //}
                 NavigationLink(destination: googleOrOther()) {
                         Text("Log in to Spotify")
                             .font(.custom("montserrat",size: 20))
@@ -44,22 +53,22 @@ struct loginSheet: View {
                             .background(Color.accentColor)
                             .cornerRadius(10)
                     }
-                Button(action: {
-                    FriendActivityBackend.shared.debugLog.append("logged, opening debug log\n")
-                    print("logged, opening debug log")
-                    Task {
-                        await FriendActivityBackend.shared.mailto()
-                    }
-                }) {
-                    Label("I found a bug", systemImage: "ladybug")
-                        .font(.custom("montserrat",size: 15))
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .frame(width: 150)
-                        .background(.red)
-                        .cornerRadius(10)
-                        //.background(in: RoundedRectangle)
-                }
+//                Button(action: {
+//                    FriendActivityBackend.shared.debugLog.append("logged, opening debug log\n")
+//                    print("logged, opening debug log")
+//                    Task {
+//                        await FriendActivityBackend.shared.mailto()
+//                    }
+//                }) {
+//                    Label("I found a bug", systemImage: "ladybug")
+//                        .font(.custom("montserrat",size: 15))
+//                        .foregroundColor(.white)
+//                        .padding(10)
+//                        .frame(width: 150)
+//                        .background(.red)
+//                        .cornerRadius(10)
+//                        //.background(in: RoundedRectangle)
+//                }
                 //}
                 Spacer()
                 VStack {

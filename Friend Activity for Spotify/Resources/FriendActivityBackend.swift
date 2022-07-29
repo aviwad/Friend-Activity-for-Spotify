@@ -126,15 +126,15 @@ import WebKit
         //return accessToken.accessToken
     }
     
-    func mailto() async{
-        let mailto = "mailto:aviwad@gmail.com?subject=I found a bug! for Friends (for Spotify) Version 1.0&body=My bug (INSERT BUG) \n\n\nDEBUG LOG (Dont delete this)\n\(FriendActivityBackend.shared.debugLog)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        print("logged, mailto called \(mailto)")
-         if let url = URL(string: mailto!) {
-             print("logged, url \(url) called")
-             await UIApplication.shared.open(url)
-            // globalURLOpener(URL: url)
-         }
-    }
+//    func mailto() async{
+//        let mailto = "mailto:aviwad@gmail.com?subject=I found a bug! for Friends (for Spotify) Version 1.0&body=My bug (INSERT BUG) \n\n\nDEBUG LOG (Dont delete this)\n\(FriendActivityBackend.shared.debugLog)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+//        print("logged, mailto called \(mailto)")
+//         if let url = URL(string: mailto!) {
+//             print("logged, url \(url) called")
+//             await UIApplication.shared.open(url)
+//            // globalURLOpener(URL: url)
+//         }
+//    }
     
     func GetFriendActivity(animation: Bool) async {
             let accessToken = try? keychain.get("accessToken")

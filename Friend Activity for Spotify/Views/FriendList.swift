@@ -125,21 +125,21 @@ struct FriendRowList: View {
                                         .cornerRadius(10)
                                         .frame(maxWidth: .infinity, alignment: .center)
                                 }
-                                Button(action: {
-                                    print("logged, opening debug log")
-                                    Task {
-                                        await FriendActivityBackend.shared.mailto()
-                                    }
-                                }) {
-                                    Label("I found a bug", systemImage: "ladybug")
-                                        .font(.custom("montserrat",size: 15))
-                                        .foregroundColor(.white)
-                                        .padding(10)
-                                        .background(.red)
-                                        .cornerRadius(10)
-                                        .frame(maxWidth: .infinity, alignment: .center)
-                                        //.background(in: RoundedRectangle)
-                                }
+//                                Button(action: {
+//                                    print("logged, opening debug log")
+//                                    Task {
+//                                        await FriendActivityBackend.shared.mailto()
+//                                    }
+//                                }) {
+//                                    Label("I found a bug", systemImage: "ladybug")
+//                                        .font(.custom("montserrat",size: 15))
+//                                        .foregroundColor(.white)
+//                                        .padding(10)
+//                                        .background(.red)
+//                                        .cornerRadius(10)
+//                                        .frame(maxWidth: .infinity, alignment: .center)
+//                                        //.background(in: RoundedRectangle)
+//                                }
                                 FriendRowPlaceholder()
                                     .redacted(reason: .placeholder)
                                     .shimmering()

@@ -63,21 +63,21 @@ struct SettingsPage: View {
                             .cornerRadius(10)
                             //.background(in: RoundedRectangle)
                     }
-                    Button(action: {
-                        print("logged, opening debug log")
-                        Task {
-                            await FriendActivityBackend.shared.mailto()
-                        }
-                    }) {
-                        Label("I found a bug", systemImage: "ladybug")
-                            .font(.custom("montserrat",size: 15))
-                            .foregroundColor(.white)
-                            .padding(10)
-                            .frame(width: 150)
-                            .background(.red)
-                            .cornerRadius(10)
-                            //.background(in: RoundedRectangle)
-                    }
+//                    Button(action: {
+//                        print("logged, opening debug log")
+//                        Task {
+//                            await FriendActivityBackend.shared.mailto()
+//                        }
+//                    }) {
+//                        Label("I found a bug", systemImage: "ladybug")
+//                            .font(.custom("montserrat",size: 15))
+//                            .foregroundColor(.white)
+//                            .padding(10)
+//                            .frame(width: 150)
+//                            .background(.red)
+//                            .cornerRadius(10)
+//                            //.background(in: RoundedRectangle)
+//                    }
                 }
             }
             .navigationBarTitle("Settings")
