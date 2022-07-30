@@ -156,7 +156,7 @@ struct Friend: Codable, Identifiable     {
         self.user = try container.decode(Friend.User.self, forKey: .user)
         self.track = try container.decode(Friend.Track.self, forKey: .track)
         self.humanTimestamp = timePlayer(initialTimeStamp: self.timestamp)
-        self.id = self.user.name
+        self.id = self.user.uri
     }
     
     
