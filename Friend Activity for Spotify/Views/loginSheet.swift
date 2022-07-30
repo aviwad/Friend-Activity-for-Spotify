@@ -38,10 +38,11 @@ struct loginSheet: View {
                 //label: {
                 if #available(iOS 16, *) {
                     VStack (spacing: 2) {
-                        Text("This app might not run well on the iOS beta.")
+                        Text("No support provided for iOS beta.")
                         Text("Download the TestFlight beta for full iOS 16 compatibility")
                         Text("TestFlight link available on the GitHub README")
                     }
+                    .multilineTextAlignment(.center)
                     .font(.custom("montserrat", size: 15))
                     .foregroundColor(.red)
                 }
