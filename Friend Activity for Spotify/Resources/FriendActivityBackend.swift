@@ -167,36 +167,43 @@ import WebKit
                     }
                 }
                 catch {
-                    self.debugLog.append("LOGGED \(accessToken.unsafelyUnwrapped) \n LOGGED Error info: \(error) \n LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
-                    print("LOGGED \(accessToken.unsafelyUnwrapped)")
-                    print("LOGGED Error info: \(error)")
-                    print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
-                    if (networkUp) {
-                        do {
-                            let errorMessage: WelcomeError
-                            errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-                            self.debugLog.append("logged, removing brokenaccesstoken from catching the errorjson \n")
-                            print("logged, removing brokenaccesstoken from catching the errorjson")
-                            keychain["accessToken"] = nil
-                            self.debugLog.append("logged, getfriendactivity called from catching the errorjson \n")
-                            print("logged, getfriendactivity called from catching the errorjson")
-                            await GetFriendActivity(animation: animation)
-                            self.debugLog.append("LOGGED \(errorMessage)")
-                            print("LOGGED \(errorMessage)")
-                            //self.keychain["accessToken"] = nil
-                            //self.keychain["spDcCookie"] = nil
-                            //loggedOut = true
-                        }
-                        catch {
-                            // serious error
-                            withAnimation() {
-                               // self.currentError = error.localizedDescription
-                            }
-                            self.debugLog.append("LOGGED \(error.localizedDescription)\n")
-                            print("LOGGED \(error.localizedDescription)")
-                        }
+                    if (error as? URLError)?.code == .timedOut {
+                        //FriendActivityBackend.shared.friendArray =
+                        //FriendActivityBackend.shared.networkUp = false
+                        // Handle session timeout
                     }
-                    // network is down
+                    else {
+                        self.debugLog.append("LOGGED \(accessToken.unsafelyUnwrapped) \n LOGGED Error info: \(error) \n LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
+                        print("LOGGED \(accessToken.unsafelyUnwrapped)")
+                        print("LOGGED Error info: \(error)")
+                        print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
+                        if (networkUp) {
+                            do {
+                                let errorMessage: WelcomeError
+                                errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
+                                self.debugLog.append("logged, removing brokenaccesstoken from catching the errorjson \n")
+                                print("logged, removing brokenaccesstoken from catching the errorjson")
+                                keychain["accessToken"] = nil
+                                self.debugLog.append("logged, getfriendactivity called from catching the errorjson \n")
+                                print("logged, getfriendactivity called from catching the errorjson")
+                                await GetFriendActivity(animation: animation)
+                                self.debugLog.append("LOGGED \(errorMessage)")
+                                print("LOGGED \(errorMessage)")
+                                //self.keychain["accessToken"] = nil
+                                //self.keychain["spDcCookie"] = nil
+                                //loggedOut = true
+                            }
+                            catch {
+                                // serious error
+                                withAnimation() {
+                                   // self.currentError = error.localizedDescription
+                                }
+                                self.debugLog.append("LOGGED \(error.localizedDescription)\n")
+                                print("LOGGED \(error.localizedDescription)")
+                            }
+                        }
+                        // network is down
+                    }
                 }
             }
             else {
