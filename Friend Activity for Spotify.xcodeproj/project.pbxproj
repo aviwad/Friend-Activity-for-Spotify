@@ -35,6 +35,8 @@
 		8F3F90FA2857B423003708F1 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
 		8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F52857B403003708F1 /* LargeView.swift */; };
 		8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */; };
+		8F3FDBDE28968F8100C3B542 /* sampleFriendList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3FDBDD28968F8100C3B542 /* sampleFriendList.json */; };
+		8F3FDBDF28968F8300C3B542 /* sampleFriendList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3FDBDD28968F8100C3B542 /* sampleFriendList.json */; };
 		8F427CBA289301480046BFD9 /* AppleViewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F427CB9289301480046BFD9 /* AppleViewLogin.swift */; };
 		8F427CBC2893025B0046BFD9 /* WebViewLoginForMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F427CBB2893025B0046BFD9 /* WebViewLoginForMac.swift */; };
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
@@ -102,6 +104,7 @@
 		8F3F90EB2857B3D7003708F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewRow.swift; sourceTree = "<group>"; };
 		8F3F90F52857B403003708F1 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
+		8F3FDBDD28968F8100C3B542 /* sampleFriendList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleFriendList.json; sourceTree = "<group>"; };
 		8F427CB9289301480046BFD9 /* AppleViewLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleViewLogin.swift; sourceTree = "<group>"; };
 		8F427CBB2893025B0046BFD9 /* WebViewLoginForMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewLoginForMac.swift; sourceTree = "<group>"; };
 		8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginSheet.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		8F3F90C52857AAA2003708F1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8F3FDBDD28968F8100C3B542 /* sampleFriendList.json */,
 				8F3F90CC2857AB5F003708F1 /* FriendActivityBackend.swift */,
 				8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */,
 				8F3F90CE2857AB6D003708F1 /* GetTime.swift */,
@@ -336,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3F90BE2857AA71003708F1 /* Preview Assets.xcassets in Resources */,
+				8F3FDBDE28968F8100C3B542 /* sampleFriendList.json in Resources */,
 				8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */,
 				8F3F90BB2857AA71003708F1 /* Assets.xcassets in Resources */,
 			);
@@ -345,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3FDBDF28968F8300C3B542 /* sampleFriendList.json in Resources */,
 				8F3F90EA2857B3D7003708F1 /* Assets.xcassets in Resources */,
 				8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */,
 			);

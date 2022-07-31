@@ -72,6 +72,14 @@ import WebKit
         return json
     }
     
+    func fetchJson() async throws -> Welcome {
+        let decoder = JSONDecoder()
+        let path = Bundle.main.path(forResource: "sampleFriendList", ofType: "json")
+        let data = try Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
+        let friendList = try? decoder.decode(Welcome.self, from: data)
+        return friendList!
+    }
+    
     func checkIfLoggedIn() {
         if (!FriendActivityBackend.shared.currentlyLoggingIn) {
             FriendActivityBackend.shared.currentlyLoggingIn = true
@@ -147,7 +155,8 @@ import WebKit
                     if (networkUp) {
                         //self.debugLog.append("LOGGED NETWORK UP, FRIENDARRAYINITIAL CALLED \n")
                         print("LOGGED NETWORK UP, FRIENDARRAYINTIAL CALLED")
-                        friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
+                        friendArrayInitial = try await fetchJson()
+                        //friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                         //self.debugLog.append("testing123: friendarrayinitial \n")
                         print("testing123: friendarrayinitial")
                         //youHaveNoFriends = false
