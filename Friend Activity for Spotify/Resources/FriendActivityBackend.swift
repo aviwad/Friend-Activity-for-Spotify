@@ -210,40 +210,42 @@ import WebKit
                 self.debugLog.append("LOGGED OUT ACCESSTOKEN IS NIL, running logged getaccesstoken due to else clause in getfriendactivity")
                 print("LOGGED OUT ACCESSTOKEN IS NIL")
                 print("logged running getaccesstoken due to else clause in getfriendactivity")
-                do {
-                    let spDcCookie = keychain["spDcCookie"]
-                    print("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
-                    if (spDcCookie != nil) {
-                        self.debugLog.append("logged: getting access token")
-                        print("logged: getting access token")
-                        let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-                        keychain["accessToken"] = accessToken.accessToken
-                        self.debugLog.append("logged: access token is \(keychain["accessToken"])\n")
-                        print("logged: access token is \(keychain["accessToken"])")
-                        await GetFriendActivity(animation: animation)
+                if networkUp  {
+                    do {
+                        let spDcCookie = keychain["spDcCookie"]
+                        print("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
+                        if (spDcCookie != nil) {
+                            self.debugLog.append("logged: getting access token")
+                            print("logged: getting access token")
+                            let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+                            keychain["accessToken"] = accessToken.accessToken
+                            self.debugLog.append("logged: access token is \(keychain["accessToken"])\n")
+                            print("logged: access token is \(keychain["accessToken"])")
+                            await GetFriendActivity(animation: animation)
+                        }
+                        else {
+                            keychain["spDcCookie"] = nil
+                            self.loggedOut = false
+                            self.loggedOut = true
+                            self.debugLog.append("logged out in access token\n")
+                            print("LOGGED OUT IN ACCESS TOKEN")
+                            keychain["accessToken"] = nil
+                            
+                        }
                     }
-                    else {
+                    catch {
+                        // serious error maybe
+                        withAnimation() {
+                           // self.currentError = error.localizedDescription
+                        }
                         keychain["spDcCookie"] = nil
                         self.loggedOut = false
                         self.loggedOut = true
                         self.debugLog.append("logged out in access token\n")
                         print("LOGGED OUT IN ACCESS TOKEN")
                         keychain["accessToken"] = nil
-                        
-                    }
-                }
-                catch {
-                    // serious error maybe
-                    withAnimation() {
-                       // self.currentError = error.localizedDescription
-                    }
-                    keychain["spDcCookie"] = nil
-                    self.loggedOut = false
-                    self.loggedOut = true
-                    self.debugLog.append("logged out in access token\n")
-                    print("LOGGED OUT IN ACCESS TOKEN")
-                    keychain["accessToken"] = nil
 
+                    }
                 }
             }
         //print("testing123: \(friendArray.unsafelyUnwrapped)")
