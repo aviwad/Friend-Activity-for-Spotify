@@ -82,7 +82,7 @@ import WebKit
                 print("LOGGED dispatch queue is working")
                 WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
                     cookies.forEach { cookie in
-                        self.debugLog.append("logged checkingiflogged in cookie \(cookie.name) is \(cookie.value)")
+                        //self.debugLog.append("logged checkingiflogged in cookie \(cookie.name) is \(cookie.value)")
                         if (cookie.name == "sp_dc") {
                             //self.debugLog.append("LOGGED sp_dc is \(cookie.value)\n")
                             print("LOGGED sp_dc is \(cookie.value)")
