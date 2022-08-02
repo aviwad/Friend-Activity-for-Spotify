@@ -25,6 +25,7 @@ struct FriendRowMenuStyle: ButtonStyle {
 
 
 struct FriendRow: View {
+    @StateObject var viewModel: FriendActivityBackend
     var friend: Friend
     //@State private var profilePictureHover = false
     var body: some View {
@@ -49,37 +50,45 @@ struct FriendRow: View {
         }
     label: {
             HStack {
+                let transition = AnyTransition.asymmetric(insertion: .slide, removal: .scale).combined(with: .opacity)
                 ZStack {
-                    if (friend.user.imageURL.isEmpty) {
-                        Image(systemName: "person.fill")
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                    } else{
-                        LazyImage(url: URL(string: friend.user.imageURL)!) { state in
-                            if let image = state.image {
-                                image // Displays the loaded image
-                            } else {
-                                Image(systemName: "person.fill") // Indicates an error
+                    if (FriendActivityBackend.shared.showProfilePic) {
+                        Group {
+                            if (friend.user.imageURL.isEmpty) {
+                                Image(systemName: "person.fill")
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(Circle())
+                            } else{
+                                LazyImage(url: URL(string: friend.user.imageURL)!) { state in
+                                    if let image = state.image {
+                                        image // Displays the loaded image
+                                    } else {
+                                        Image(systemName: "person.fill") // Indicates an error
+                                    }
+                                }
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                            }
+                            if (friend.humanTimestamp.nowOrNot){
+                                Circle()
+                                    .frame(width: 11, height: 11)
+                                    .foregroundColor(Color.blue)
+                                    .offset(x: 16, y: -16)
                             }
                         }
+                        .transition(transition)
+                        //.scaleEffect(viewModel.showProfilePic ? 1.0 : 0.1)
+                    }
+                    else {
+                        LazyImage(url: URL(string: friend.track.imageURL)!) { state in
+                            if let image = state.image {
+                                image // Displays the loaded image
+                            }
+                        }
+                        .transition(transition)
                         .frame(width: 50, height: 50)
                         .clipShape(Circle())
-                    }
-                    //KFImage(URL(string: friend.user.imageURL)!)
-                    //    .placeholder{Image(systemName: "person.fill")}
-                    //    .resizable()
-                    //#if os(iOS)
-                      //  .frame(width: 50, height: 50)
-                    //#endif
-                    //#if os(macOS)
-                      //  .frame(width: 45, height: 45)
-                    //#endif
-                      //  .clipShape(Circle())
-                    if (friend.humanTimestamp.nowOrNot){
-                        Circle()
-                            .frame(width: 11, height: 11)
-                            .foregroundColor(Color.blue)
-                            .offset(x: 16, y: -16)
+                        //.scaleEffect(viewModel.showProfilePic ? 0.1 : 1)
                     }
                 }
                 VStack(alignment: .leading, spacing: 3) {

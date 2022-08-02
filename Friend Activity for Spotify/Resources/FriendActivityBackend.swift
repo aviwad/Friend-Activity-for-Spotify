@@ -25,6 +25,7 @@ import WebKit
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
+    @Published var showProfilePic = true
     var currentlyRunning = false
     //@Published var youHaveNoFriends: Bool = false
     init() {
@@ -230,6 +231,7 @@ import WebKit
                             keychain["accessToken"] = accessToken.accessToken
                             //self.debugLog.append("logged: access token is \(keychain["accessToken"])\n")
                             print("logged: access token is \(keychain["accessToken"])")
+                            self.currentlyRunning = false
                             await GetFriendActivity(animation: animation)
                         }
                         else {

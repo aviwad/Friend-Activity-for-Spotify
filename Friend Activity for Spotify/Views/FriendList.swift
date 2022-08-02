@@ -14,8 +14,8 @@ import Shimmer
 struct FriendRowList: View {
     @StateObject var viewModel: FriendActivityBackend
     private var timer = Timer.publish(every: 120, on: .main, in: .common).autoconnect()
+    private var imageSwitchTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     //@State var friendArray: [Friend] = []
-    
     init() {
         self._viewModel = StateObject(wrappedValue: FriendActivityBackend.shared)
     }
@@ -57,7 +57,7 @@ struct FriendRowList: View {
                             }
                             else {
                                 List(viewModel.friendArray!) { friend in
-                                    FriendRow(friend: friend)
+                                    FriendRow(viewModel: viewModel, friend: friend)
                                     //.onTapGesture {
                                     //  let impactMed = UIImpactFeedbackGenerator(style: .light)
                                     //impactMed.impactOccurred()
@@ -188,6 +188,13 @@ struct FriendRowList: View {
                 Task {
                     print("timer works")
                     await getFriends()
+                }
+            }
+            .onReceive(imageSwitchTimer) { _ in
+                print("logged image switch timer called")
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    viewModel.showProfilePic.toggle()
+                    print(viewModel.showProfilePic)
                 }
             }
            /* if (FriendActivityBackend.shared.currentError != nil) {

@@ -62,7 +62,9 @@ struct Friend: Codable, Identifiable     {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
             self.name = try container.decode(String.self, forKey: .name)
-            self.imageURL = try container.decode(String.self, forKey: .imageURL)
+            var tempImageUrl = try container.decode(String.self, forKey: .imageURL)
+            tempImageUrl.insert("s", at: tempImageUrl.index(tempImageUrl.startIndex, offsetBy: 4))
+            self.imageURL = tempImageUrl
             self.album = try container.decode(Friend.Album.self, forKey: .album)
             self.artist = try container.decode(Friend.Album.self, forKey: .artist)
             self.context = try container.decode(Friend.Context.self, forKey: .context)
