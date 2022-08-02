@@ -81,6 +81,19 @@ import WebKit
         return json
     }
     
+    func fetchData(urlString: String, httpValue: String, httpField: String) async throws -> Data {
+        guard let url = URL(string: urlString) else {
+            throw URLError(.badURL)
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(httpValue, forHTTPHeaderField: httpField)
+        // URLSession.shared.configuration =
+         let (data, _) = try await URLSession.shared.data(for: request)
+        return data
+    }
+    
+    
     func checkIfLoggedIn() {
         if (!FriendActivityBackend.shared.currentlyLoggingIn) {
             FriendActivityBackend.shared.currentlyLoggingIn = true
@@ -194,7 +207,7 @@ import WebKit
                         print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
                         if (networkUp) {
                             do {
-                                let errorMessage: WelcomeError
+                                let errorMessage: AccessTokenError
                                 errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                                 self.debugLog.append("logged, removing brokenaccesstoken from catching the errorjson \n")
                                 print("logged, removing brokenaccesstoken from catching the errorjson")
@@ -227,9 +240,9 @@ import WebKit
                 self.debugLog.append("LOGGED OUT ACCESSTOKEN IS NIL, running logged getaccesstoken due to else clause in getfriendactivity")
                 print("LOGGED OUT ACCESSTOKEN IS NIL")
                 print("logged running getaccesstoken due to else clause in getfriendactivity")
+                let spDcCookie = keychain["spDcCookie"]
                 if networkUp  {
                     do {
-                        let spDcCookie = keychain["spDcCookie"]
                         print("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
                         if (spDcCookie != nil) {
                             self.debugLog.append("logged: getting access token")
@@ -257,19 +270,39 @@ import WebKit
                         }
                     }
                     catch {
-                        // serious error maybe
-                        withAnimation() {
-                           // self.currentError = error.localizedDescription
+                        print("error caused \(error)")
+                        if (error is URLError) {
+                            print("ok just a network error, ignore maro")
+                            self.currentError = "just a network error for fetching the cookie"
+                            keychain["currentError"] = self.currentError
                         }
-                        keychain["spDcCookie"] = nil
-                        keychain["currentError"] = error.localizedDescription
-                        self.currentError = keychain["currentError"]
-                        self.loggedOut = false
-                        self.loggedOut = true
-                        self.debugLog.append("logged out in access token\n")
-                        print("logged out from catch with else clause of accesstoken missing; spdc is fucked")
-                        keychain["accessToken"] = nil
+                        else {
+                            print("not url error")
+                            if (networkUp) {
+                                do {
+                                    let errorMessage: SpDcError
+                                    errorMessage =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+                                    //print(String(decoding: errorMessageData, as: UTF8.self))
+                                    self.debugLog.append("confirmed, spdccookie is broken")
+                                    print("logged, removing broken spdc from catching the errorjson")
+                                    keychain["spDcCookie"] = nil
+                                    keychain["currentError"] = error.localizedDescription
+                                    self.currentError = keychain["currentError"]
+                                    self.loggedOut = false
+                                    self.loggedOut = true
+                                    self.debugLog.append("logged out with broken spdc\n")
 
+                                    //self.keychain["accessToken"] = nil
+                                    //self.keychain["spDcCookie"] = nil
+                                    //loggedOut = true
+                                }
+                                catch {
+                                    print("another error :( \(error)")
+                                    self.currentError = error.localizedDescription
+                                    keychain["currentError"] = error.localizedDescription
+                                }
+                            }
+                        }
                     }
                 }
             }
