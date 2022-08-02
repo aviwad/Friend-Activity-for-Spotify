@@ -163,12 +163,21 @@ struct Friend: Codable, Identifiable     {
 }
 
 // MARK: - WelcomeError
-struct WelcomeError: Codable {
+struct AccessTokenError: Codable {
     let error: Error
 }
 
 // MARK: - Error
 struct Error: Codable {
     let status: Int
+    let message: String
+}
+
+struct SpDcError: Codable {
+    let error: SpDcErrorInside
+}
+
+struct SpDcErrorInside: Codable {
+    let code: Int
     let message: String
 }
