@@ -49,14 +49,14 @@ struct FriendRow: View {
             }
         }
     label: {
-            HStack {
-                let transition = AnyTransition.asymmetric(insertion: .slide, removal: .scale).combined(with: .opacity)
+            HStack(spacing: 15) {
+                let transition = AnyTransition.asymmetric(insertion: .scale, removal: .move(edge: .leading)).combined(with: .opacity)
                 ZStack {
                     if (FriendActivityBackend.shared.showProfilePic) {
                         Group {
                             if (friend.user.imageURL.isEmpty) {
                                 Image(systemName: "person.fill")
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 60, height: 60)
                                     .clipShape(Circle())
                             } else{
                                 LazyImage(url: URL(string: friend.user.imageURL)!) { state in
@@ -66,7 +66,7 @@ struct FriendRow: View {
                                         Image(systemName: "person.fill") // Indicates an error
                                     }
                                 }
-                                .frame(width: 50, height: 50)
+                                .frame(width: 60, height: 60)
                                 .clipShape(Circle())
                             }
                             if (friend.humanTimestamp.nowOrNot){
@@ -77,6 +77,7 @@ struct FriendRow: View {
                             }
                         }
                         .transition(transition)
+                        .zIndex(viewModel.showProfilePic ? 1 : 0)
                         //.scaleEffect(viewModel.showProfilePic ? 1.0 : 0.1)
                     }
                     else {
@@ -85,9 +86,10 @@ struct FriendRow: View {
                                 image // Displays the loaded image
                             }
                         }
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(5)
                         .transition(transition)
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
+                        .zIndex(viewModel.showProfilePic ? 0 : 1)
                         //.scaleEffect(viewModel.showProfilePic ? 0.1 : 1)
                     }
                 }
