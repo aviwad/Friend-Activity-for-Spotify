@@ -136,7 +136,7 @@ struct FriendRowList: View {
                                 VStack {
                                     Button{
                                         Task {
-                                            viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
+                                            //viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
                                             print("logged, getfriendactivity called from shimmering placeholder")
                                             await viewModel.GetFriendActivity(animation: true)
                                         }
@@ -149,21 +149,6 @@ struct FriendRowList: View {
                                             .background(Color.accentColor)
                                             .cornerRadius(10)
                                             .frame(maxWidth: .infinity, alignment: .center)
-                                    }
-                                    Button(action: {
-                                        print("logged, opening debug log")
-                                        Task {
-                                            await FriendActivityBackend.shared.mailto()
-                                        }
-                                    }) {
-                                        Label("I found a bug", systemImage: "ladybug")
-                                            .font(.custom("montserrat",size: 15))
-                                            .foregroundColor(.white)
-                                            .padding(10)
-                                            .background(.red)
-                                            .cornerRadius(10)
-                                            .frame(maxWidth: .infinity, alignment: .center)
-                                            //.background(in: RoundedRectangle)
                                     }
                                 }
                             }
