@@ -77,7 +77,7 @@ struct loginSheet: View {
                         .font(.custom("montserrat", size: 16))
                     Text("https://www.github.com/aviwad")
                         .font(.custom("montserrat", size: 16))
-                    Text("Logo design by Aadi Khurana")
+                    Text("Icon design by Aadi Khurana")
                         .font(.custom("montserrat", size: 15))
                 }
                 .padding(.vertical)

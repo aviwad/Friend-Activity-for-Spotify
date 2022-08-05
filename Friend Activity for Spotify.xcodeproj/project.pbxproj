@@ -13,6 +13,7 @@
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
 		8F314D60289D18BB00D15139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
+		8F314D64289D1E8E00D15139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */; };
 		8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B82857AA70003708F1 /* ContentView.swift */; };
 		8F3F90BB2857AA71003708F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3F90BA2857AA71003708F1 /* Assets.xcassets */; };
@@ -359,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3F90EA2857B3D7003708F1 /* Assets.xcassets in Resources */,
+				8F314D64289D1E8E00D15139 /* Localizable.strings in Resources */,
 				8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

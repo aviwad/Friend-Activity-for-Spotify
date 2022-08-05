@@ -158,10 +158,16 @@ struct FriendRowList: View {
                         VStack(spacing: 30) {
                             Image(systemName: "wifi.slash")
                                 .font(.system(size: 100))
-                            Text("Your device is disconnected from the network.\nTry again later.")
-                                .font(.custom("montserrat", size: 15))
-                                .bold()
-                                .multilineTextAlignment(.center)
+                            VStack {
+                                Text("Your device is disconnected from the network.")
+                                    .font(.custom("montserrat", size: 15))
+                                    .bold()
+                                    .multilineTextAlignment(.center)
+                                Text("Try again later.")
+                                    .font(.custom("montserrat", size: 15))
+                                    .bold()
+                                    .multilineTextAlignment(.center)
+                            }
                             Button("Refresh") {
                                 Task {
                                     await getFriends()
