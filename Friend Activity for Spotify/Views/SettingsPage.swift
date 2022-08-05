@@ -87,7 +87,8 @@ struct SettingsPage: View {
                 VStack (spacing: 15){
                     Text("Special Thanks:")
                         .bold()
-                    Text("Icon design by my close friend Aadi Khurana")
+                    Text("Icon design by Aadi Khurana")
+                    Text("Spanish translation by Anel")
                     Text("Other Acknowledgements:")
                         .bold()
                     Text("KeychainAccess by [@kishikawakatsumi](https://github.com/kishikawakatsumi)")
