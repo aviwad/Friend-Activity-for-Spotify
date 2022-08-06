@@ -29,3 +29,9 @@
 "Spanish translation by Anel" = "Anel이 수행한 스페인어 번역";
 "You have no friends (on Spotify)!\nAdd someone and refresh" = "Spotify에 친구가 없습니다.\n사람을 추가하고 다시 시도";
 "Close" = "닫다";
+
+"Play Song" = "노래 재생";
+"View Profile" = "프로필보기";
+"View Album" = "앨범 보기";
+"View Artist" = "아티스트 보기";
+"View Playlist" = "재생목록 보기";
