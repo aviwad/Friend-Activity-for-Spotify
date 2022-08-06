@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "ברוכים הבאים ל-Friends (עבור Spotify)";
+"Log in to Spotify" = "היכנס ל-Spotify";
+"Continue with Apple" = "היכנס עם אפל";
+"Continue with Google" = "היכנס באמצעות גוגל";
+"Use Facebook / Email / Phone" = "Usar Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Usar Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "חברים בספוטיפיי";
+"Friend Activity" = "פעילות חברים";
+"Friend Activity for Spotify" = "פעילות חברים עבור Spotify";
+"Your device is disconnected from the network." = "המכשיר שלך מנותק מהרשת";
+"Try again later." = "נסה שוב מאוחר יותר";
+"Settings" = "אפשרויות";
+"Logout" = "להתנתק";
+"Acknowledgements" = "תודות";
+"Special Thanks:" = "תודות מיוחדות";
+"Refresh" = "נסה שוב";
+"App made by Avi Wadhwa" = "אפליקציה תוצרת אבי וואדהווה";
+"now" = "עַכשָׁיו";
+"Icon design by Aadi Khurana" = "עיצוב אייקונים מאת Aadi Khurana";
+"Version 1.2" = "גרסה 1.2";
+"Other Acknowledgements:" = "תודות אחרות";
+"Spanish translation by Anel" = "תרגום לספרדית נעשה על ידי אנל";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "אין לך חברים בספוטיפיי\nהוסף מישהו ונסה שוב";
+"Close" = "סגור";

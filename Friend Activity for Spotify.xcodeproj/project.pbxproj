@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F053162289E74A000ACDD49 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F15E8802891255B002680DF /* googleOrOther.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15E87F2891255B002680DF /* googleOrOther.swift */; };
 		8F15E882289126DF002680DF /* GoogleViewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15E881289126DF002680DF /* GoogleViewLogin.swift */; };
 		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
 		8F314D60289D18BB00D15139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
-		8F314D64289D1E8E00D15139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */; };
 		8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B82857AA70003708F1 /* ContentView.swift */; };
 		8F3F90BB2857AA71003708F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3F90BA2857AA71003708F1 /* Assets.xcassets */; };
@@ -77,6 +77,8 @@
 /* Begin PBXFileReference section */
 		8F05315E289E6C5300ACDD49 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8F05315F289E6E1D00ACDD49 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F053160289E70B400ACDD49 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F053161289E72E800ACDD49 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F15E87F2891255B002680DF /* googleOrOther.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = googleOrOther.swift; sourceTree = "<group>"; };
 		8F15E881289126DF002680DF /* GoogleViewLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleViewLogin.swift; sourceTree = "<group>"; };
 		8F1DB6B32889685900CBC078 /* montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat.ttf; sourceTree = "<group>"; };
@@ -332,6 +334,8 @@
 				hi,
 				"zh-Hans",
 				ar,
+				fr,
+				he,
 			);
 			mainGroup = 8F3F90AA2857AA70003708F1;
 			packageReferences = (
@@ -366,7 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3F90EA2857B3D7003708F1 /* Assets.xcassets in Resources */,
-				8F314D64289D1E8E00D15139 /* Localizable.strings in Resources */,
+				8F053162289E74A000ACDD49 /* Localizable.strings in Resources */,
 				8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +436,8 @@
 				8F314D65289D277B00D15139 /* hi */,
 				8F05315E289E6C5300ACDD49 /* zh-Hans */,
 				8F05315F289E6E1D00ACDD49 /* ar */,
+				8F053160289E70B400ACDD49 /* fr */,
+				8F053161289E72E800ACDD49 /* he */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
