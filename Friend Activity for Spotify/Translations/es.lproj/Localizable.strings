@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "Welcome to Friends (para Spotify™)";
+"Log in to Spotify" = "Iniciar sesión en Spotify";
+"Continue with Apple" = "Continuar con Apple";
+"Continue with Google" = "Continuar con Google";
+"Use Facebook / Email / Phone" = "Usar Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Usar Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "Friends para Spotify";
+"Friend Activity" = "Actividad de Amigos";
+"Friend Activity for Spotify" = "Friends para Spotify";
+"Your device is disconnected from the network." = "Su dispositivo está desconectado de la red.";
+"Try again later." = "Inténtalo de nuevo más tarde.";
+"Settings" = "Ajustes";
+"Logout" = "Cerrar Sesión";
+"Acknowledgements" = "Agradecimientos";
+"Special Thanks:" = "Agradecimientos Especiales:";
+"Refresh" = "Reintentar";
+"App made by Avi Wadhwa" = "Aplicación creada por Avi Wadhwa";
+"now" = "ahora";
+"Icon design by Aadi Khurana" = "Diseño de iconos por Aadi Khurana";
+"Version 1.2" = "Versión 1.2";
+"Other Acknowledgements:" = "Otros Agradecimientos:";
+"Spanish translation by Anel" = "Traducción al Español hecha por Anel";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "No tienes amigos en Spotify\nañade a alguien y reintentar";
+"Close" = "Cerca";
+
+"Play Song" = "Reproducir Canción";
+"View Profile" = "Ver Perfil";
+"View Album" = "Ver Álbum";
+"View Artist" = "Ver Artista";
+"View Playlist" = "Ver Lista de Reproducción";

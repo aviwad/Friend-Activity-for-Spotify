@@ -19,7 +19,7 @@ struct SettingsPage: View {
                             .resizable()
                             .frame(width: 150, height: 150)
                             .cornerRadius(10)
-                        Text("Version 1.2 DEBUG/TestFlight")
+                        Text("Version 1.2")
                             .font(.custom("montserrat", size: 20))
                         Text("App made by Avi Wadhwa")
                             .font(.custom("montserrat", size: 15))
@@ -42,10 +42,8 @@ struct SettingsPage: View {
                             //.background(in: RoundedRectangle)
                     }
                     Button(action: {
-                        FriendActivityBackend.shared.debugLog.append("logged cuz of button")
                         print("LOGGED OUT CUZ OF BUTTON")
                         if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-                            FriendActivityBackend.shared.debugLog.append("button log confirmed")
                             print(" LOGGED OUT AFTER ALL")
                             FriendActivityBackend.shared.keychain["spDcCookie"] = nil
                             FriendActivityBackend.shared.keychain["accessToken"] = nil
@@ -64,21 +62,21 @@ struct SettingsPage: View {
                             .cornerRadius(10)
                             //.background(in: RoundedRectangle)
                     }
-                    Button(action: {
-                        print("logged, opening debug log")
-                        Task {
-                            await FriendActivityBackend.shared.mailto()
-                        }
-                    }) {
-                        Label("I found a bug", systemImage: "ladybug")
-                            .font(.custom("montserrat",size: 15))
-                            .foregroundColor(.white)
-                            .padding(10)
-                            .frame(width: 150)
-                            .background(.red)
-                            .cornerRadius(10)
-                            //.background(in: RoundedRectangle)
-                    }
+//                    Button(action: {
+//                        print("logged, opening debug log")
+//                        Task {
+//                            await FriendActivityBackend.shared.mailto()
+//                        }
+//                    }) {
+//                        Label("I found a bug", systemImage: "ladybug")
+//                            .font(.custom("montserrat",size: 15))
+//                            .foregroundColor(.white)
+//                            .padding(10)
+//                            .frame(width: 150)
+//                            .background(.red)
+//                            .cornerRadius(10)
+//                            //.background(in: RoundedRectangle)
+//                    }
                 }
             }
             .navigationBarTitle("Settings")
@@ -89,7 +87,8 @@ struct SettingsPage: View {
                 VStack (spacing: 15){
                     Text("Special Thanks:")
                         .bold()
-                    Text("Icon design by my close friend Aadi Khurana")
+                    Text("Icon design by Aadi Khurana")
+                    Text("Spanish translation by Anel")
                     Text("Other Acknowledgements:")
                         .bold()
                     Text("KeychainAccess by [@kishikawakatsumi](https://github.com/kishikawakatsumi)")

@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "مرحبًا بك في Friends (لـ Spotify)";
+"Log in to Spotify" = "سجّل الدخول إلى Spotify";
+"Continue with Apple" = "قم بتسجيل الدخول باستخدام Apple";
+"Continue with Google" = "الدخول مع جوجل";
+"Use Facebook / Email / Phone" = "Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "Friends (لـ Spotify)";
+"Friend Activity" = "نشاط صديق";
+"Friend Activity for Spotify" = "نشاط صديق (لـ Spotify)";
+"Your device is disconnected from the network." = "جهازك غير متصل بالشبكة";
+"Try again later." = "حاول مرة أخرى في وقت لاحق";
+"Settings" = "إعدادات";
+"Logout" = "تسجيل خروج";
+"Acknowledgements" = "شكر وتقدير";
+"Special Thanks:" = ":شكر خاص";
+"Refresh" = "حاول مرة أخرى";
+"App made by Avi Wadhwa" = "التطبيق من صنع آفي وادوا";
+"now" = "حاليا";
+"Icon design by Aadi Khurana" = "تصميم أيقونة بواسطة آدي خورانا";
+"Version 1.2" = "الإصدار 1.2";
+"Other Acknowledgements:" = "شكر وتقدير أخرى";
+"Spanish translation by Anel" = "الترجمة الاسبانية أنيل";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "ليس لديك أصدقاء على Spotify\nأضف شخصًا وقم بالتحديث";
+"Close" = "قريب";
+
+"Play Song" = "تشغيل الأغنية";
+"View Profile" = "عرض الصفحة الشخصية";
+"View Album" = "عرض الألبوم";
+"View Artist" = "مشاهدة ملف Artist";
+"View Playlist" = "عرض قائمة التشغيل";

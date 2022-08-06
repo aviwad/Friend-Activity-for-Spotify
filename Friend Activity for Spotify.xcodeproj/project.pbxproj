@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F053162289E74A000ACDD49 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F15E8802891255B002680DF /* googleOrOther.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15E87F2891255B002680DF /* googleOrOther.swift */; };
 		8F15E882289126DF002680DF /* GoogleViewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15E881289126DF002680DF /* GoogleViewLogin.swift */; };
 		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
+		8F314D60289D18BB00D15139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */; };
 		8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B82857AA70003708F1 /* ContentView.swift */; };
 		8F3F90BB2857AA71003708F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3F90BA2857AA71003708F1 /* Assets.xcassets */; };
@@ -73,12 +75,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F05315E289E6C5300ACDD49 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8F05315F289E6E1D00ACDD49 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F053160289E70B400ACDD49 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F053161289E72E800ACDD49 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F053163289E769000ACDD49 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F15E87F2891255B002680DF /* googleOrOther.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = googleOrOther.swift; sourceTree = "<group>"; };
 		8F15E881289126DF002680DF /* GoogleViewLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleViewLogin.swift; sourceTree = "<group>"; };
 		8F1DB6B32889685900CBC078 /* montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat.ttf; sourceTree = "<group>"; };
 		8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewLogin.swift; sourceTree = "<group>"; };
 		8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetExtension.entitlements; sourceTree = "<group>"; };
 		8F1DB6C2288A098F00CBC078 /* Friend Activity for Spotify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Friend Activity for Spotify.entitlements"; sourceTree = "<group>"; };
+		8F314D61289D18BB00D15139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F314D65289D277B00D15139 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Friend Activity for Spotify.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend_Activity_for_SpotifyApp.swift; sourceTree = "<group>"; };
 		8F3F90B82857AA70003708F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -143,6 +152,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		8F314D5D289D188200D15139 /* Translations */ = {
+			isa = PBXGroup;
+			children = (
+				8F314D62289D18BB00D15139 /* Localizable.strings */,
+			);
+			path = Translations;
+			sourceTree = "<group>";
+		};
 		8F3F90AA2857AA70003708F1 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +183,7 @@
 		8F3F90B52857AA70003708F1 /* Friend Activity for Spotify */ = {
 			isa = PBXGroup;
 			children = (
+				8F314D5D289D188200D15139 /* Translations */,
 				8F1DB6C2288A098F00CBC078 /* Friend Activity for Spotify.entitlements */,
 				8F1DB6B6288969C100CBC078 /* Fonts */,
 				8F3F90D42857ABB0003708F1 /* Friend-Activity-for-Spotify-Info.plist */,
@@ -313,6 +331,13 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				hi,
+				"zh-Hans",
+				ar,
+				fr,
+				he,
+				ko,
 			);
 			mainGroup = 8F3F90AA2857AA70003708F1;
 			packageReferences = (
@@ -336,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3F90BE2857AA71003708F1 /* Preview Assets.xcassets in Resources */,
+				8F314D60289D18BB00D15139 /* Localizable.strings in Resources */,
 				8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */,
 				8F3F90BB2857AA71003708F1 /* Assets.xcassets in Resources */,
 			);
@@ -346,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3F90EA2857B3D7003708F1 /* Assets.xcassets in Resources */,
+				8F053162289E74A000ACDD49 /* Localizable.strings in Resources */,
 				8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +429,23 @@
 			targetProxy = 8F3F90EC2857B3D7003708F1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8F314D62289D18BB00D15139 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F314D61289D18BB00D15139 /* es */,
+				8F314D65289D277B00D15139 /* hi */,
+				8F05315E289E6C5300ACDD49 /* zh-Hans */,
+				8F05315F289E6E1D00ACDD49 /* ar */,
+				8F053160289E70B400ACDD49 /* fr */,
+				8F053161289E72E800ACDD49 /* he */,
+				8F053163289E769000ACDD49 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8F3F90BF2857AA71003708F1 /* Debug */ = {
@@ -589,6 +633,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ioswidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38TP6LZLJ5;
@@ -604,6 +649,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "aviwad.Friend-Activity-for-Spotify.ioswidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -618,6 +664,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ioswidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38TP6LZLJ5;
@@ -633,6 +680,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "aviwad.Friend-Activity-for-Spotify.ioswidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
