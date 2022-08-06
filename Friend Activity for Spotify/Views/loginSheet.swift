@@ -31,9 +31,6 @@ struct loginSheet: View {
                     .font(.custom("montserrat", size: 27))
                     //.font(.system(size: 30))
                     .multilineTextAlignment(.center)
-                if (FriendActivityBackend.shared.currentError != nil) {
-                    Text("You were logged out because \(FriendActivityBackend.shared.currentError ?? "")")
-                }
                 Spacer()
                 //Button{
                 //FriendActivityBackend.shared.loggedOut = false
