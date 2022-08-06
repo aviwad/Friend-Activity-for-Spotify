@@ -28,6 +28,7 @@ import WebKit
     var currentlyRunning = false
     //@Published var youHaveNoFriends: Bool = false
     init() {
+        currentError = keychain["currentError"]
         monitor.start(queue: DispatchQueue.main)
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {
@@ -76,6 +77,19 @@ import WebKit
         let json = try JSONDecoder().decode(T.self, from: data)
         return json
     }
+    
+    func fetchData(urlString: String, httpValue: String, httpField: String) async throws -> Data {
+        guard let url = URL(string: urlString) else {
+            throw URLError(.badURL)
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(httpValue, forHTTPHeaderField: httpField)
+        // URLSession.shared.configuration =
+         let (data, _) = try await URLSession.shared.data(for: request)
+        return data
+    }
+    
     
     func checkIfLoggedIn() {
         if (!FriendActivityBackend.shared.currentlyLoggingIn) {
@@ -157,6 +171,8 @@ import WebKit
                         friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                         //self.debugLog.append("testing123: friendarrayinitial \n")
                         print("testing123: friendarrayinitial")
+                        self.currentError = nil
+                        keychain["currentError"] = nil
                         //youHaveNoFriends = false
                         if (animation) {
                             withAnimation(){

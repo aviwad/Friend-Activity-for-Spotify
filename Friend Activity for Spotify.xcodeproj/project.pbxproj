@@ -639,7 +639,7 @@
 				DEVELOPMENT_TEAM = 38TP6LZLJ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ioswidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Friends (for Spotify) Widget";
+				INFOPLIST_KEY_CFBundleDisplayName = "Friends for Spotify Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -670,7 +670,7 @@
 				DEVELOPMENT_TEAM = 38TP6LZLJ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ioswidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Friends (for Spotify) Widget";
+				INFOPLIST_KEY_CFBundleDisplayName = "Friends for Spotify Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
