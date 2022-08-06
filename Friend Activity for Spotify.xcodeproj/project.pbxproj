@@ -82,6 +82,7 @@
 		8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetExtension.entitlements; sourceTree = "<group>"; };
 		8F1DB6C2288A098F00CBC078 /* Friend Activity for Spotify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Friend Activity for Spotify.entitlements"; sourceTree = "<group>"; };
 		8F314D61289D18BB00D15139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F314D65289D277B00D15139 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Friend Activity for Spotify.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend_Activity_for_SpotifyApp.swift; sourceTree = "<group>"; };
 		8F3F90B82857AA70003708F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -326,6 +327,7 @@
 				en,
 				Base,
 				es,
+				hi,
 			);
 			mainGroup = 8F3F90AA2857AA70003708F1;
 			packageReferences = (
@@ -423,6 +425,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8F314D61289D18BB00D15139 /* es */,
+				8F314D65289D277B00D15139 /* hi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

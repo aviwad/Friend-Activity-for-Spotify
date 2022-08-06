@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "Friends (Spotify के लिए)";
+"Log in to Spotify" = "Spotify में लॉग इन करें";
+"Continue with Apple" = "Apple के साथ लॉगिन करें";
+"Continue with Google" = "Google के साथ लॉगिन करें";
+"Use Facebook / Email / Phone" = "Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "Friends (Spotify के लिए)";
+"Friend Activity" = "दोस्तों की ऐक्टिवटी";
+"Friend Activity for Spotify" = "Friends (Spotify के लिए)";
+"Your device is disconnected from the network." = "आपका नेटवर्क बंद है.";
+"Try again later." = "बाद में कोशिश करना.";
+"Settings" = "सेटिंग्स";
+"Logout" = "लॉग आउट करें";
+"Acknowledgements" = "आभार";
+"Special Thanks:" = "विशेष धन्यवाद:";
+"Refresh" = "रीलोड";
+"App made by Avi Wadhwa" = "एवी वाधवा द्वारा बनाया गया ऐप";
+"now" = "अभी";
+"Icon design by Aadi Khurana" = "आदि खुराना द्वारा बनाया गया ऐप आइकन";
+"Version 1.2" = "वर्श़न 1.2";
+"Other Acknowledgements:" = "बाकी आभार:";
+"Spanish translation by Anel" = "Anel द्वारा स्पेनिश अनुवाद";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "Spotify पर आपका कोई मित्र नहीं है\naकिसी को जोड़ें और रीलोड करें";
