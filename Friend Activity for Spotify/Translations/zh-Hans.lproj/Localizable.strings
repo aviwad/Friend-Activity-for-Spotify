@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "欢迎来到 Friends（针对 Spotify)";
+"Log in to Spotify" = "登录到 Spotify";
+"Continue with Apple" = "使用 Apple 登录";
+"Continue with Google" = "使用 Google 登录";
+"Use Facebook / Email / Phone" = "Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "Friends（针对 Spotify)";
+"Friend Activity" = "好友活动";
+"Friend Activity for Spotify" = "好友活动 针对 Spotify)";
+"Your device is disconnected from the network." = "设备与网络断开连接.";
+"Try again later." = "稍后再试.";
+"Settings" = "选项";
+"Logout" = "登出";
+"Acknowledgements" = "谢谢";
+"Special Thanks:" = "特别感谢:";
+"Refresh" = "重试";
+"App made by Avi Wadhwa" = "由 Avi Wadhwa 制作的应用程序";
+"now" = "此时";
+"Icon design by Aadi Khurana" = "Aadi Khurana 的应用程序图标";
+"Version 1.2" = "1.2版";
+"Other Acknowledgements:" = "其他致谢:";
+"Spanish translation by Anel" = "由 Anel 完成的西班牙语翻译";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "你在 Spotify 上没有朋友\n添加某人并重试";
