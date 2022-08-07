@@ -1,0 +1,238 @@
+{
+  "friends": [
+    {
+      "timestamp": 1659189555637,
+      "user": {
+        "uri": "spotify:user:gwpivwxzwjshkh76wzyn0xbxt",
+        "name": "Satya",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg/1280px-MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg"
+      },
+      "track": {
+        "uri": "spotify:track:0hPLZrnDgtKxrym1BHjDhd",
+        "name": "can't leave without it",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b273280689ecc5e4b2038bb5e4bd",
+        "album": {
+          "uri": "spotify:album:007DWn799UWvfY1wwZeENR",
+          "name": "i am > i was"
+        },
+        "artist": {
+          "uri": "spotify:artist:1URnnhqYAYcrqrcwql10ft",
+          "name": "21 Savage"
+        },
+        "context": {
+          "uri": "spotify:album:007DWn799UWvfY1wwZeENR",
+          "name": "i am > i was",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659228686749,
+      "user": {
+        "uri": "spotify:user:kv1ylylcsw7ct8ymfk13mfiwy",
+        "name": "Aamir",
+        "imageUrl": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      },
+      "track": {
+        "uri": "spotify:track:2nMeu6UenVvwUktBCpLMK9",
+        "name": "Young And Beautiful",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b273d7fb3e4c63020039d1cff6b2",
+        "album": {
+          "uri": "spotify:album:1D92WOHWUI2AGQCCdplcXL",
+          "name": "Young And Beautiful"
+        },
+        "artist": {
+          "uri": "spotify:artist:00FQb4jTyendYWaN8pK0wa",
+          "name": "Lana Del Rey"
+        },
+        "context": {
+          "uri": "spotify:playlist:6Fxx4rnn88nsV6cDznpDq2",
+          "name": "♡",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659240369122,
+      "user": {
+        "uri": "spotify:user:ranya.zara",
+        "name": "Steve",
+        "imageUrl": "https://live.staticflickr.com/4062/4678522894_1b54a2080b_b.jpg"
+      },
+      "track": {
+        "uri": "spotify:track:1CDVadnneswMxi6gBqJTtC",
+        "name": "Legend",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b273768828c6867cd0472fc84e4d",
+        "album": {
+          "uri": "spotify:album:621cXqrTSSJi1WqDMSLmbL",
+          "name": "Trench"
+        },
+        "artist": {
+          "uri": "spotify:artist:3YQKmKGau1PzlVlkL1iodx",
+          "name": "Twenty One Pilots"
+        },
+        "context": {
+          "uri": "spotify:album:621cXqrTSSJi1WqDMSLmbL",
+          "name": "Trench",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659250505343,
+      "user": {
+        "uri": "spotify:user:cardistryrocs",
+        "name": "Charles",
+        "imageUrl": "https://images.theconversation.com/files/393210/original/file-20210401-13-z6rl6z.jpg?ixlib=rb-1.1.0&rect=9%2C0%2C2994%2C1999&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip"
+      },
+      "track": {
+        "uri": "spotify:track:4BhsuwtvsZQV9eHBXstqjh",
+        "name": "腦聲",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b27355060769858b9d1b51e8515a",
+        "album": {
+          "uri": "spotify:album:2g94sRrLzHWfkQwx4HOZd5",
+          "name": "超嬰格式化"
+        },
+        "artist": {
+          "uri": "spotify:artist:3zGGhKGLorCRgcXc22gYDX",
+          "name": "FORMOZA"
+        },
+        "context": {
+          "uri": "spotify:playlist:4RBYIRg1lhFJy5YmrylnYq",
+          "name": "XI",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659258639582,
+      "user": {
+        "uri": "spotify:user:2lrcij550egzej79zi0g9n0b4",
+        "name": "Comet",
+        "imageUrl": "https://i.scdn.co/image/ab67757000003b82f293b0100b7a6a08e4cc0e3a"
+      },
+      "track": {
+        "uri": "spotify:track:4CxFN5zON70B3VOPBYbd6P",
+        "name": "you were good to me",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b273d841ad4d4aa791514d7e9758",
+        "album": {
+          "uri": "spotify:album:16mjtcKPxpQ4ajFHmJ0hJC",
+          "name": "brent"
+        },
+        "artist": {
+          "uri": "spotify:artist:3gIRvgZssIb9aiirIg0nI3",
+          "name": "Jeremy Zucker"
+        },
+        "context": {
+          "uri": "spotify:album:16mjtcKPxpQ4ajFHmJ0hJC",
+          "name": "brent",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659260121082,
+      "user": {
+        "uri": "spotify:user:t6jujgqmy8y0awwgkd2sujigk",
+        "name": "Aadi",
+        "imageUrl": "https://images.theconversation.com/files/430483/original/file-20211105-9897-18ahqx2.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+      },
+      "track": {
+        "uri": "spotify:track:1lO9CZo6eDrOy0S7khgryG",
+        "name": "No Regrets (feat. Don Toliver)",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b2732f44aec83b20e40f3baef73c",
+        "album": {
+          "uri": "spotify:album:4otkd9As6YaxxEkIjXPiZ6",
+          "name": "Music To Be Murdered By"
+        },
+        "artist": {
+          "uri": "spotify:artist:7dGJo4pcD2V6oG8kP0tJRR",
+          "name": "Eminem"
+        },
+        "context": {
+          "uri": "spotify:album:4otkd9As6YaxxEkIjXPiZ6",
+          "name": "Music To Be Murdered By",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659260942819,
+      "user": {
+        "uri": "spotify:user:8efetm26aj36drbw2fehwv1s4",
+        "name": "Ria",
+        "imageUrl": "https://img.freepik.com/premium-vector/cute-elephant-cartoon_160606-195.jpg?w=1380"
+      },
+      "track": {
+        "uri": "spotify:track:6jHvX8ZnHKC1PnrPMJ0Emt",
+        "name": "Cigarette Daydreams",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b273415b79227c6cee25f42fbf41",
+        "album": {
+          "uri": "spotify:album:5nJ9B1KiydXoYWAcyqlG76",
+          "name": "Melophobia"
+        },
+        "artist": {
+          "uri": "spotify:artist:26T3LtbuGT1Fu9m0eRq5X3",
+          "name": "Cage The Elephant"
+        },
+        "context": {
+          "uri": "spotify:playlist:5jn0wV8XSjmDxHIFSwQpQy",
+          "name": "comevibewidme",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659261116295,
+      "user": {
+        "uri": "spotify:user:od4j2ohx4vnhqrwnual3cfhcx",
+        "name": "Jason",
+        "imageUrl": "https://play-lh.googleusercontent.com/JdKnwV7-BGPutguDoZUnY1RVE6cCYhpSYO70zu7KXH_OgY6UqPvtqHC2ndkC49RV6_AE"
+      },
+      "track": {
+        "uri": "spotify:track:15hJmqqEtASVXl6sM7i4UF",
+        "name": "trademark usa",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b2731bfa23b13d0504fb90c37b39",
+        "album": {
+          "uri": "spotify:album:3r46DPIQeBQbjvjjV5mXGg",
+          "name": "The Melodic Blue"
+        },
+        "artist": {
+          "uri": "spotify:artist:5SXuuuRpukkTvsLuUknva1",
+          "name": "Baby Keem"
+        },
+        "context": {
+          "uri": "spotify:album:3r46DPIQeBQbjvjjV5mXGg",
+          "name": "The Melodic Blue",
+          "index": 0
+        }
+      }
+    },
+    {
+      "timestamp": 1659261152193,
+      "user": {
+        "uri": "spotify:user:12josopa69rnqia84vumtpwbl",
+        "name": "Bob",
+        "imageUrl": "https://st.depositphotos.com/1809585/4656/i/950/depositphotos_46562679-stock-photo-happy-man-with-white-teeth.jpg?forcejpeg=true"
+      },
+      "track": {
+        "uri": "spotify:track:2p8IUWQDrpjuFltbdgLOag",
+        "name": "After Hours",
+        "imageUrl": "http://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36",
+        "album": {
+          "uri": "spotify:album:4yP0hdKOZPNshxUOjY0cZj",
+          "name": "After Hours"
+        },
+        "artist": {
+          "uri": "spotify:artist:1Xyo4u8uXC1ZmMpatF05PJ",
+          "name": "The Weeknd"
+        },
+        "context": {
+          "uri": "spotify:album:4yP0hdKOZPNshxUOjY0cZj",
+          "name": "After Hours",
+          "index": 0
+        }
+      }
+    }
+  ]
+}

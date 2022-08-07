@@ -34,7 +34,8 @@ struct Provider: TimelineProvider {
         if (accessToken != nil) {
             let friendArrayInitial: Welcome
             do {
-                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
+                friendArrayInitial = try await fetchJson()
+                //friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                  print("testing123: friendarrayinitial")
                 let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
                 var imageArray : [UIImage] = []
@@ -58,6 +59,14 @@ struct Provider: TimelineProvider {
         }
         return ([],[],nil)
     }
+    
+    func fetchJson() async throws -> Welcome {
+        let decoder = JSONDecoder()
+        let path = Bundle.main.path(forResource: "sampleFriendList", ofType: "json")
+        let data = try Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
+        let friendList = try? decoder.decode(Welcome.self, from: data)
+        return friendList!
+    }
 
     func GetFriendActivityWidgetWithNewToken() async -> ([Friend],[UIImage],String?) {
         let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
@@ -70,7 +79,8 @@ struct Provider: TimelineProvider {
             do {
                 let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
                 keychain["accessToken"] = accessToken.accessToken
-                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization")
+                friendArrayInitial = try await fetchJson()
+                //friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization")
                  print("testing123: friendarrayinitial")
                 let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
                 var imageArray : [UIImage] = []
