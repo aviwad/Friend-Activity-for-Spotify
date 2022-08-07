@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "Bienvenue aux Friends (pour spotify)";
+"Log in to Spotify" = "Connectez-vous à Spotify";
+"Continue with Apple" = "Continuer avec Apple";
+"Continue with Google" = "Continuer avec Google";
+"Use Facebook / Email / Phone" = "Utiliser Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Utiliser Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "Friends pour Spotify";
+"Friend Activity" = "Activité des amis";
+"Friend Activity for Spotify" = "Activité des amis (pour Spotify)";
+"Your device is disconnected from the network." = "Votre appareil est déconnecté du réseau.";
+"Try again later." = "Réessayez plus tard.";
+"Settings" = "Rélages";
+"Logout" = "Déconnexion";
+"Acknowledgements" = "Remerciements";
+"Special Thanks:" = "Remerciement Spécial:";
+"Refresh" = "Réessayer";
+"App made by Avi Wadhwa" = "Application créée par Avi Wadhwa";
+"now" = "maintenant";
+"Icon design by Aadi Khurana" = "Conception d'icônes par Aadi Khurana";
+"Version 1.3" = "Variante 1.3";
+"Other Acknowledgements:" = "Autres remerciements:";
+"Spanish translation by Anel" = "Traduction espagnole par Anel";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "Vous n'avez pas d'amis sur spotify\nAjouter quelqu'un et réessayer";
+"Close" = "Proche";
+
+"Play Song" = "Jouer la chanson";
+"View Profile" = "Voir le profil";
+"View Album" = "Voir l'album";
+"View Artist" = "Voir l'artiste";
+"View Playlist" = "Afficher la liste de lecture";

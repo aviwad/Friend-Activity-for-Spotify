@@ -19,7 +19,7 @@ struct SettingsPage: View {
                             .resizable()
                             .frame(width: 150, height: 150)
                             .cornerRadius(10)
-                        Text("Version 1.0 RELEASE")
+                        Text("Version 1.3")
                             .font(.custom("montserrat", size: 20))
                         Text("App made by Avi Wadhwa")
                             .font(.custom("montserrat", size: 15))
@@ -87,7 +87,8 @@ struct SettingsPage: View {
                 VStack (spacing: 15){
                     Text("Special Thanks:")
                         .bold()
-                    Text("Icon design by my close friend Aadi Khurana")
+                    Text("Icon design by Aadi Khurana")
+                    Text("Spanish translation by Anel")
                     Text("Other Acknowledgements:")
                         .bold()
                     Text("KeychainAccess by [@kishikawakatsumi](https://github.com/kishikawakatsumi)")

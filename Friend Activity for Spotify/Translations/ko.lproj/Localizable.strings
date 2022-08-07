@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "Friends에 오신 것을 환영합니다(Spotify용)";
+"Log in to Spotify" = "스포티파이에 로그인";
+"Continue with Apple" = "애플로 로그인";
+"Continue with Google" = "구글로 로그인";
+"Use Facebook / Email / Phone" = "Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "친구(Spotify용)";
+"Friend Activity" = "친구 활동";
+"Friend Activity for Spotify" = "Spotify의 친구 활동";
+"Your device is disconnected from the network." = "기기가 네트워크에서 연결 해제되었습니다.";
+"Try again later." = "나중에 다시 시도";
+"Settings" = "옵션";
+"Logout" = "로그 아웃";
+"Acknowledgements" = "감사의 말";
+"Special Thanks:" = "특별한 감사:";
+"Refresh" = "다시 해 보다";
+"App made by Avi Wadhwa" = "Avi Wadhwa에서 만든 앱";
+"now" = "지금";
+"Icon design by Aadi Khurana" = "Aadi Khurana의 아이콘 디자인";
+"Version 1.3" = "버전 1.3";
+"Other Acknowledgements:" = "기타 감사의 말:";
+"Spanish translation by Anel" = "Anel이 수행한 스페인어 번역";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "Spotify에 친구가 없습니다.\n사람을 추가하고 다시 시도";
+"Close" = "닫다";
+
+"Play Song" = "노래 재생";
+"View Profile" = "프로필보기";
+"View Album" = "앨범 보기";
+"View Artist" = "아티스트 보기";
+"View Playlist" = "재생목록 보기";

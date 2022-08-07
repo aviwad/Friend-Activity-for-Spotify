@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Friend Activity for Spotify
+
+  Created by Avi Wadhwa on 2022-08-05.
+  
+*/
+"Welcome to Friends (for Spotify™)" = "Friends for Spotify へようこそ";
+"Log in to Spotify" = "Spotifyにログイン";
+"Continue with Apple" = "Appleでログイン";
+"Continue with Google" = "Google でログイン";
+"Use Facebook / Email / Phone" = "Facebook / Email / Phone";
+"Use Facebook / Apple / Email / Phone" = "Facebook / Apple / Email / Phone";
+"Friends for Spotify" = "Spotify の友達";
+"Friend Activity" = "友達の活動";
+"Friend Activity for Spotify" = "Spotify の友達のアクティビティ";
+"Your device is disconnected from the network." = "お使いのデバイスはネットワークから切断されています";
+"Try again later." = "";
+"Settings" = "オプション";
+"Logout" = "ログアウト";
+"Acknowledgements" = "謝辞";
+"Special Thanks:" = "特別な感謝";
+"Refresh" = "リトライ";
+"App made by Avi Wadhwa" = "Avi Wadhwa が作成したアプリ";
+"now" = "今";
+"Icon design by Aadi Khurana" = "Aadi Khuranaによるアイコンデザイン";
+"Version 1.3" = "バージョン 1.3";
+"Other Acknowledgements:" = "その他の謝辞";
+"Spanish translation by Anel" = "アネルによるスペイン語翻訳";
+"You have no friends (on Spotify)!\nAdd someone and refresh" = "Spotify に友達がいません\n誰かを追加して再試行";
+"Close" = "近い";
+
+"Play Song" = "曲を再生";
+"View Profile" = "プロフィールを見る";
+"View Album" = "アルバムを見る";
+"View Artist" = "アーティストを見る";
+"View Playlist" = "プレイリストを見る";

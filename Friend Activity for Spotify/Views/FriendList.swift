@@ -95,66 +95,62 @@ struct FriendRowList: View {
                         }
                         
                         else {
-                            List {
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                                Button{
-                                    Task {
-                                        print("logged, getfriendactivity called from shimmering placeholder")
-                                        await viewModel.GetFriendActivity(animation: true)
-                                    }
-                                } label: {
-                                    Text("Refresh")
-                                        .font(.custom("montserrat",size: 20))
-                                        .bold()
-                                        .padding(10)
-                                        .foregroundColor(.white)
-                                        .background(Color.accentColor)
-                                        .cornerRadius(10)
-                                        .frame(maxWidth: .infinity, alignment: .center)
+                            ZStack {
+                                List {
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
+                                    FriendRowPlaceholder()
+                                        .redacted(reason: .placeholder)
+                                        .shimmering()
                                 }
-//                                Button(action: {
-//                                    print("logged, opening debug log")
-//                                    Task {
-//                                        await FriendActivityBackend.shared.mailto()
-//                                    }
-//                                }) {
-//                                    Label("I found a bug", systemImage: "ladybug")
-//                                        .font(.custom("montserrat",size: 15))
-//                                        .foregroundColor(.white)
-//                                        .padding(10)
-//                                        .background(.red)
-//                                        .cornerRadius(10)
-//                                        .frame(maxWidth: .infinity, alignment: .center)
-//                                        //.background(in: RoundedRectangle)
-//                                }
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                                FriendRowPlaceholder()
-                                    .redacted(reason: .placeholder)
-                                    .shimmering()
-                            }
-                            .listStyle(.plain)
-                            .refreshable {
-                                print("logged, getfriendactivity called from refreshing the shimmering placeholder")
-                                await viewModel.GetFriendActivity(animation: true)
+                                .listStyle(.plain)
+                                .refreshable {
+                                    print("logged, getfriendactivity called from refreshing the shimmering placeholder")
+                                    await viewModel.GetFriendActivity(animation: true)
+                                }
+                                VStack {
+                                    Button{
+                                        Task {
+                                            //viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
+                                            print("logged, getfriendactivity called from shimmering placeholder")
+                                            await viewModel.GetFriendActivity(animation: true)
+                                        }
+                                    } label: {
+                                        Text("Refresh")
+                                            .font(.custom("montserrat",size: 20))
+                                            .bold()
+                                            .padding(10)
+                                            .foregroundColor(.white)
+                                            .background(Color.accentColor)
+                                            .cornerRadius(10)
+                                            .frame(maxWidth: .infinity, alignment: .center)
+                                    }
+                                }
                             }
                         }
                     }
@@ -162,10 +158,16 @@ struct FriendRowList: View {
                         VStack(spacing: 30) {
                             Image(systemName: "wifi.slash")
                                 .font(.system(size: 100))
-                            Text("Your device is disconnected from the network.\nTry again later.")
-                                .font(.custom("montserrat", size: 15))
-                                .bold()
-                                .multilineTextAlignment(.center)
+                            VStack {
+                                Text("Your device is disconnected from the network.")
+                                    .font(.custom("montserrat", size: 15))
+                                    .bold()
+                                    .multilineTextAlignment(.center)
+                                Text("Try again later.")
+                                    .font(.custom("montserrat", size: 15))
+                                    .bold()
+                                    .multilineTextAlignment(.center)
+                            }
                             Button("Refresh") {
                                 Task {
                                     await getFriends()

@@ -135,7 +135,6 @@ struct iosWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
         if (widgetFamily == .systemLarge) {
-            var newEntry = entry
             LargeView(entry: entry)
         } else {
             MediumView(entry: entry)

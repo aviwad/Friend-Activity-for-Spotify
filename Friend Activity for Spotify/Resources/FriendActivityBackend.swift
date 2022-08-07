@@ -21,11 +21,11 @@ import WebKit
     let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
         .accessibility(.afterFirstUnlock)
     //var debugLog = ""
-    //var currentError : String? = nil
     @Published var tabSelection = 1
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
+    var currentlyRunning = false
     //@Published var youHaveNoFriends: Bool = false
     init() {
         monitor.start(queue: DispatchQueue.main)
@@ -35,6 +35,7 @@ import WebKit
                     case .satisfied:
                     //self.debugLog.append("LOGGED SATISFIED\n")
                         print("LOGGED SATISFIED")
+                    if (!self.currentlyRunning) {
                         withAnimation {
                             self.networkUp = true
                             Task {
@@ -43,6 +44,10 @@ import WebKit
                                 await self.GetFriendActivity(animation: true)
                             }
                         }
+                    }
+                    else {
+                        print("logged .satisfied canceled")
+                    }
                     default:
                         withAnimation {self.networkUp = false}
                 }
@@ -72,6 +77,18 @@ import WebKit
         return json
     }
     
+    func fetchData(urlString: String, httpValue: String, httpField: String) async throws -> Data {
+        guard let url = URL(string: urlString) else {
+            throw URLError(.badURL)
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(httpValue, forHTTPHeaderField: httpField)
+        // URLSession.shared.configuration =
+         let (data, _) = try await URLSession.shared.data(for: request)
+        return data
+    }
+    
     func fetchJson() async throws -> Welcome {
         let decoder = JSONDecoder()
         let path = Bundle.main.path(forResource: "sampleFriendList", ofType: "json")
@@ -79,7 +96,7 @@ import WebKit
         let friendList = try? decoder.decode(Welcome.self, from: data)
         return friendList!
     }
-    
+
     func checkIfLoggedIn() {
         if (!FriendActivityBackend.shared.currentlyLoggingIn) {
             FriendActivityBackend.shared.currentlyLoggingIn = true
@@ -113,25 +130,26 @@ import WebKit
         }
     }
 
-    
-    func GetAccessToken() async {
-        do {
-            let spDcCookie = keychain["spDcCookie"]
-            if (spDcCookie != nil) {
-                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-                keychain["accessToken"] = accessToken.accessToken
-            }
-        }
-        catch {
-            keychain["spDcCookie"] = nil
-            self.loggedOut = false
-            self.loggedOut = true
-            //self.debugLog.append("LOGGED OUT IN ACCESS TOKEN\n")
-            print("LOGGED OUT IN ACCESS TOKEN")
-            //self.debugLog.append("keychain[accessToken] = nil in catch\n")
-            keychain["accessToken"] = nil
-        }
-    }
+//
+//    func GetAccessToken() async {
+//        do {
+//            let spDcCookie = keychain["spDcCookie"]
+//            if (spDcCookie != nil) {
+//                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+//                keychain["accessToken"] = accessToken.accessToken
+//            }
+//        }
+//        catch {
+//            keychain["spDcCookie"] = nil
+//            self.loggedOut = false
+//            self.loggedOut = true
+//            self.debugLog.append("LOGGED OUT IN ACCESS TOKEN\n")
+//            print("LOGGED OUT IN ACCESS TOKEN")
+//            keychain["accessToken"] = nil
+//        }
+//        //KeychainWrapper.standard.set(accessToken.accessToken, forKey: "accessToken", withAccessibility: .always)
+//        //return accessToken.accessToken
+//    }
     
 //    func mailto() async{
 //        let mailto = "mailto:aviwad@gmail.com?subject=I found a bug! for Friends (for Spotify) Version 1.0&body=My bug (INSERT BUG) \n\n\nDEBUG LOG (Dont delete this)\n\(FriendActivityBackend.shared.debugLog)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -144,6 +162,7 @@ import WebKit
 //    }
     
     func GetFriendActivity(animation: Bool) async {
+        self.currentlyRunning = true
             let accessToken = try? keychain.get("accessToken")
             //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
             if (accessToken != nil) {
@@ -174,7 +193,9 @@ import WebKit
                     }
                 }
                 catch {
-                    if (error as? URLError)?.code == .timedOut {
+                    //if (error as? URLError)?.code == .timedOut {
+                    if(error is URLError) {
+                        print("logged timed out!")
                         //FriendActivityBackend.shared.friendArray =
                         //FriendActivityBackend.shared.networkUp = false
                         // Handle session timeout
@@ -186,7 +207,7 @@ import WebKit
                         print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
                         if (networkUp) {
                             do {
-                                let errorMessage: WelcomeError
+                                let errorMessage: AccessTokenError
                                 errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                                 //self.debugLog.append("logged, removing brokenaccesstoken from catching the errorjson \n")
                                 print("logged, removing brokenaccesstoken from catching the errorjson")
@@ -217,46 +238,65 @@ import WebKit
                 //self.debugLog.append("LOGGED OUT ACCESSTOKEN IS NIL, running logged getaccesstoken due to else clause in getfriendactivity")
                 print("LOGGED OUT ACCESSTOKEN IS NIL")
                 print("logged running getaccesstoken due to else clause in getfriendactivity")
-                do {
-                    let spDcCookie = keychain["spDcCookie"]
-                    print("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
-                    if (spDcCookie != nil) {
-                        //self.debugLog.append("logged: spdc is \(spDcCookie.unsafelyUnwrapped)")
-                        //self.debugLog.append("logged: getting access token")
-                        print("logged: getting access token")
-                        let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-                        keychain["accessToken"] = accessToken.accessToken
-                        //self.debugLog.append("logged: access token is \(keychain["accessToken"])\n")
-                        print("logged: access token is \(keychain["accessToken"])")
-                        await GetFriendActivity(animation: animation)
+                let spDcCookie = keychain["spDcCookie"]
+                if networkUp  {
+                    do {
+                        let spDcCookie = keychain["spDcCookie"]
+                        print("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
+                        if (spDcCookie != nil) {
+                            //self.debugLog.append("logged: spdc is \(spDcCookie.unsafelyUnwrapped)")
+                            //self.debugLog.append("logged: getting access token")
+                            print("logged: getting access token")
+                            let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+                            keychain["accessToken"] = accessToken.accessToken
+                            //self.debugLog.append("logged: access token is \(keychain["accessToken"])\n")
+                            print("logged: access token is \(keychain["accessToken"])")
+                            await GetFriendActivity(animation: animation)
+                        }
+                        else {
+                            // keychain current error will just say spdc is nil, so show previous REAL error
+                            keychain["spDcCookie"] = nil
+                            self.loggedOut = false
+                            self.loggedOut = true
+                            //self.debugLog.append("logged out in access token\n")
+                            print("LOGGED OUT IN ACCESS TOKEN")
+                            keychain["accessToken"] = nil
+                            
+                        }
                     }
-                    else {
-                        //self.debugLog.append("keychain[access and spdc are] = nil in else\n")
-                        keychain["spDcCookie"] = nil
-                        self.loggedOut = false
-                        self.loggedOut = true
-                        //self.debugLog.append("logged out in access token\n")
-                        print("LOGGED OUT IN ACCESS TOKEN")
-                        keychain["accessToken"] = nil
-                        
-                    }
-                }
-                catch {
-                    // serious error maybe
-                    withAnimation() {
-                       // self.currentError = error.localizedDescription
-                    }
-                    //self.debugLog.append("keychain[access and spdc are] = nil in catch\n")
-                    keychain["spDcCookie"] = nil
-                    self.loggedOut = false
-                    self.loggedOut = true
-                    //self.debugLog.append("logged out in access token\n")
-                    print("LOGGED OUT IN ACCESS TOKEN")
-                    keychain["accessToken"] = nil
+                    catch {
+                        print("error caused \(error)")
+                        if (error is URLError) {
+                            print("ok just a network error, ignore maro")
+                        }
+                        else {
+                            print("not url error")
+                            if (networkUp) {
+                                do {
+                                    let errorMessage: SpDcError
+                                    errorMessage =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+                                    //print(String(decoding: errorMessageData, as: UTF8.self))
+                                    //self.debugLog.append("confirmed, spdccookie is broken")
+                                    print("logged, removing broken spdc from catching the errorjson")
+                                    keychain["spDcCookie"] = nil
+                                    self.loggedOut = false
+                                    self.loggedOut = true
+                                    //self.debugLog.append("logged out with broken spdc\n")
 
+                                    //self.keychain["accessToken"] = nil
+                                    //self.keychain["spDcCookie"] = nil
+                                    //loggedOut = true
+                                }
+                                catch {
+                                    print("another error :( \(error)")
+                                }
+                            }
+                        }
+                    }
                 }
             }
         //print("testing123: \(friendArray.unsafelyUnwrapped)")
         //return friendArrayInitial.friends.reversed()
+        self.currentlyRunning = false
     }
 }

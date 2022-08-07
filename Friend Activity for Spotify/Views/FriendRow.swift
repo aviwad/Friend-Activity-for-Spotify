@@ -89,7 +89,8 @@ struct FriendRow: View {
                             //.font(.custom("montserrat", size: 15))
                             .font(.bold(.custom("montserrat", size: 15))())
                         Spacer()
-                        Text(friend.humanTimestamp.humanTimestamp)
+                        Text(LocalizedStringKey(friend.humanTimestamp.humanTimestamp))
+                        //Text(friend.humanTimestamp.humanTimestamp)
                             .font(.custom("montserrat", size: 15))
                     }
                     HStack (spacing: 2){
