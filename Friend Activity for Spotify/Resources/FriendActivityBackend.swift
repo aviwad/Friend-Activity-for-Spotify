@@ -264,24 +264,11 @@ import WebKit
                         else {
                             print("not url error")
                             if (networkUp) {
-                                do {
-                                    let errorMessage: SpDcError
-                                    errorMessage =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-                                    //print(String(decoding: errorMessageData, as: UTF8.self))
-                                    //self.debugLog.append("confirmed, spdccookie is broken")
-                                    print("logged, removing broken spdc from catching the errorjson")
-                                    keychain["spDcCookie"] = nil
-                                    self.loggedOut = false
-                                    self.loggedOut = true
-                                    //self.debugLog.append("logged out with broken spdc\n")
-
-                                    //self.keychain["accessToken"] = nil
-                                    //self.keychain["spDcCookie"] = nil
-                                    //loggedOut = true
-                                }
-                                catch {
-                                    print("another error :( \(error)")
-                                }
+                                print("logged, removing broken spdc from catching the errorjson")
+                                keychain["spDcCookie"] = nil
+                                self.loggedOut = false
+                                self.loggedOut = true
+                                //self.debugLog.append(
                             }
                         }
                     }
