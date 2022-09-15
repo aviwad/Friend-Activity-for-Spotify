@@ -36,16 +36,6 @@ struct loginSheet: View {
                 //FriendActivityBackend.shared.loggedOut = false
                 //}
                 //label: {
-                if #available(iOS 16, *) {
-                    VStack (spacing: 2) {
-                        Text("No support provided for iOS beta.")
-                        Text("Download the TestFlight beta for full iOS 16 compatibility")
-                        Text("TestFlight link available on the GitHub README")
-                    }
-                    .multilineTextAlignment(.center)
-                    .font(.custom("montserrat", size: 15))
-                    .foregroundColor(.red)
-                }
                 NavigationLink(destination: googleOrOther()) {
                         Text("Log in to Spotify")
                             .font(.custom("montserrat",size: 20))
