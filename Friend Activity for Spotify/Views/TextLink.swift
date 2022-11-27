@@ -16,11 +16,6 @@ struct TextLink: View {
             .underline(underline)
             .onHover { inside in
                 underline.toggle()
-                /*if inside {
-                    NSCursor.pointingHand.push()
-                } else {
-                    NSCursor.pop()
-                }*/
             }
             .lineLimit(1)
             .onTapGesture {

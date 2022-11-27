@@ -80,12 +80,6 @@ struct FriendRowList: View {
                                             .tint(.accentColor)
                                         }
                                 }
-                                //                            .onReceive(timer) { _ in
-                                //                                Task {
-                                //                                    print("timer works")
-                                //                                    await getFriends()
-                                //                                }
-                                //                            }
                                 .listStyle(.plain)
                                 .refreshable {
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
@@ -127,7 +121,6 @@ struct FriendRowList: View {
                                 VStack {
                                     Button{
                                         Task {
-                                            //viewModel.debugLog.append("logged, getfriendactivitynoanimation called from shimmering placeholder \n")
                                             print("logged, getfriendactivity called from shimmering placeholder")
                                             await viewModel.GetFriendActivity(animation: true)
                                         }
@@ -174,28 +167,12 @@ struct FriendRowList: View {
                     loginSheet()
                 }
             }
-            /*.onAppear {
-                Task {
-                    viewModel.debugLog.append("logged, on vstack appear \n")
-                    print("on appear of vstack")
-                    await getFriends()
-                }
-            }*/
             .onReceive(timer) { _ in
                 Task {
                     print("timer works")
                     await getFriends()
                 }
             }
-           /* if (FriendActivityBackend.shared.currentError != nil) {
-                Text("An error occurred \(FriendActivityBackend.shared.currentError!)")
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .foregroundColor(.red)
-                    .background(.white)
-                    .cornerRadius(5)
-                    .frame(maxHeight: .infinity, alignment: .top)
-            }*/
         }
     }
     

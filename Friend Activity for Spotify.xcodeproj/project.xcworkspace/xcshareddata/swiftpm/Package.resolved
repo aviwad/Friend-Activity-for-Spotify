@@ -15,7 +15,25 @@
       "location" : "https://github.com/kean/Nuke.git",
       "state" : {
         "branch" : "master",
-        "revision" : "40fdbd6c397b54646f8a66dfa9d0e987aa5f2213"
+        "revision" : "83e82ea65f7f23554f7755c4391243011fa20176"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "3312bf5e67b52fbce7c3caf431b0cda721a9f7bb",
+        "version" : "5.14.2"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+      "state" : {
+        "revision" : "ed288667c909c89127ab1b690113a3e397af3098",
+        "version" : "2.2.1"
       }
     },
     {
@@ -23,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/markiv/SwiftUI-Shimmer.git",
       "state" : {
-        "revision" : "61411771350a5a4e96666a8a202ae4b2be327a2b",
-        "version" : "1.0.1"
+        "revision" : "965a7cbcbf094cbcf22b9251a2323bdc3432e171",
+        "version" : "1.1.0"
       }
     }
   ],

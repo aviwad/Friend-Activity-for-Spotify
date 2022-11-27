@@ -13,6 +13,7 @@
 		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
+		8F308D0329335CBE00F18B83 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */; };
 		8F314D60289D18BB00D15139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */; };
 		8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90B82857AA70003708F1 /* ContentView.swift */; };
@@ -42,8 +43,6 @@
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
 		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
 		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
-		8F9C049A288AD3DA00076266 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 8F9C0499288AD3DA00076266 /* Nuke */; };
-		8F9C049C288AD3DA00076266 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8F9C049B288AD3DA00076266 /* NukeUI */; };
 		8FB5BADB2891A1E100E5AB76 /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BAD92891A1D200E5AB76 /* MediumView.swift */; };
 		8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */; };
 		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
@@ -126,10 +125,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F9C049A288AD3DA00076266 /* Nuke in Frameworks */,
+				8F308D0329335CBE00F18B83 /* SDWebImageSwiftUI in Frameworks */,
 				8FBFE09528892CD500476ECA /* Shimmer in Frameworks */,
 				8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */,
-				8F9C049C288AD3DA00076266 /* NukeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,8 +279,7 @@
 			packageProductDependencies = (
 				8FBFE09428892CD500476ECA /* Shimmer */,
 				8F628DE5288A785C00CBEBD8 /* KeychainAccess */,
-				8F9C0499288AD3DA00076266 /* Nuke */,
-				8F9C049B288AD3DA00076266 /* NukeUI */,
+				8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */,
 			);
 			productName = "Friend Activity for Spotify";
 			productReference = 8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */;
@@ -347,6 +344,7 @@
 				8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */,
+				8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 8F3F90B42857AA70003708F1 /* Products */;
 			projectDirPath = "";
@@ -728,6 +726,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
@@ -755,6 +761,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		8F628DE5288A785C00CBEBD8 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
@@ -764,16 +775,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
-		};
-		8F9C0499288AD3DA00076266 /* Nuke */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = Nuke;
-		};
-		8F9C049B288AD3DA00076266 /* NukeUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = NukeUI;
 		};
 		8FBFE09428892CD500476ECA /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;

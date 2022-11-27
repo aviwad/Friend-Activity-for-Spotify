@@ -7,8 +7,7 @@
 
 import Foundation
 import SwiftUI
-import Nuke
-import NukeUI
+import SDWebImageSwiftUI
 
 struct FriendRowMenuStyle: ButtonStyle {
 
@@ -26,7 +25,6 @@ struct FriendRowMenuStyle: ButtonStyle {
 
 struct FriendRow: View {
     var friend: Friend
-    //@State private var profilePictureHover = false
     var body: some View {
         Menu {
             Link(destination: friend.track.url) {
@@ -55,26 +53,12 @@ struct FriendRow: View {
                             .frame(width: 50, height: 50)
                             .clipShape(Circle())
                     } else{
-                        LazyImage(url: URL(string: friend.user.imageURL)!) { state in
-                            if let image = state.image {
-                                image // Displays the loaded image
-                            } else {
-                                Image(systemName: "person.fill") // Indicates an error
-                            }
-                        }
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
+                        WebImage(url: URL(string: friend.user.imageURL)) //{
+                            .placeholder(Image(systemName: "person").resizable())
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
                     }
-                    //KFImage(URL(string: friend.user.imageURL)!)
-                    //    .placeholder{Image(systemName: "person.fill")}
-                    //    .resizable()
-                    //#if os(iOS)
-                      //  .frame(width: 50, height: 50)
-                    //#endif
-                    //#if os(macOS)
-                      //  .frame(width: 45, height: 45)
-                    //#endif
-                      //  .clipShape(Circle())
                     if (friend.humanTimestamp.nowOrNot){
                         Circle()
                             .frame(width: 11, height: 11)
@@ -86,11 +70,9 @@ struct FriendRow: View {
                     HStack {
                         Text(friend.user.name)
                             .lineLimit(1)
-                            //.font(.custom("montserrat", size: 15))
                             .font(.bold(.custom("montserrat", size: 15))())
                         Spacer()
                         Text(LocalizedStringKey(friend.humanTimestamp.humanTimestamp))
-                        //Text(friend.humanTimestamp.humanTimestamp)
                             .font(.custom("montserrat", size: 15))
                     }
                     HStack (spacing: 2){
@@ -124,21 +106,5 @@ struct FriendRow: View {
             .foregroundColor(Color.white)
             .contentShape(Rectangle())
         }
-        /*.contextMenu{
-            Link(destination: friend.user.url) {
-                Label("View Profile", systemImage: "person")
-            }
-            Link(destination: friend.track.artist.url) {
-                Label("View Artist", systemImage: "music.mic.circle")
-            }
-            Link(destination: friend.track.album.url) {
-                Label("View Album", systemImage: "record.circle")
-            }
-            if (friend.track.context.name != friend.track.artist.name && friend.track.context.name != friend.track.album.name) {
-                Link(destination: friend.track.context.url) {
-                    Label("View Playlist", systemImage: "music.note")
-                }
-            }
-        }*/
     }
 }

@@ -93,7 +93,7 @@ struct SettingsPage: View {
                         .bold()
                     Text("KeychainAccess by [@kishikawakatsumi](https://github.com/kishikawakatsumi)")
                     Text("Montserrat font by [@JulietaUla](https://github.com/JulietaUla)")
-                    Text("Nuke by [@kean](https://github.com/kean)")
+                    Text("SDWebImageSwiftUI by [@SDWebImage](https://github.com/SDWebImage)")
                     Text("SwiftUI-Shimmer by [@markiv](https://github.com/markiv)")
                     Text("spotify-buddylist by [@valeriangalliat](https://github.com/valeriangalliat)")
                 }
