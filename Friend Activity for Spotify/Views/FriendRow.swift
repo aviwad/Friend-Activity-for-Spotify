@@ -56,8 +56,10 @@ struct FriendRow: View {
                         WebImage(url: URL(string: friend.user.imageURL)) //{
                             .placeholder(Image(systemName: "person").resizable())
                             .resizable()
-                            .frame(width: 50, height: 50)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50, alignment: .center)
                             .clipShape(Circle())
+                            
                     }
                     if (friend.humanTimestamp.nowOrNot){
                         Circle()
