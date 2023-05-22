@@ -134,9 +134,3 @@ struct WebviewLogin: View {
                             
     }
 }
-
-struct WebviewLogin_Previews: PreviewProvider {
-    static var previews: some View {
-        WebviewLogin()
-    }
-}
