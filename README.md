@@ -2,8 +2,6 @@
 
 [![Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917](https://user-images.githubusercontent.com/25706524/182048665-f8ae6d2e-dc63-4dd8-9a78-d2e86695423f.svg)](https://apple.co/3znnlSR)
 
-TESTFLIGHT LINK: [**https://testflight.apple.com/join/W3a22gg0**](https://testflight.apple.com/join/W3a22gg0)
-
 APPSTORE LINK: [**https://apple.co/3znnlSR**](https://apple.co/3znnlSR)
 
 iOS app &amp; widget for viewing what your Spotify friends are listening to. Made purely in SwiftUI. 
