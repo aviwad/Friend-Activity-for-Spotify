@@ -168,9 +168,14 @@ struct FriendRowList: View {
                 }
             }
             .onReceive(timer) { _ in
-                Task {
-                    print("timer works")
-                    await getFriends()
+                if (!viewModel.loggedOut) {
+                    Task {
+                        print("timer works")
+                        await getFriends()
+                    }
+                }
+                else {
+                    print("timer worked but it's logged out so nothign happened")
                 }
             }
         }
