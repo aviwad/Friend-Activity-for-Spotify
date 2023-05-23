@@ -36,7 +36,7 @@ struct loginSheet: View {
                 //FriendActivityBackend.shared.loggedOut = false
                 //}
                 //label: {
-                NavigationLink(destination: googleOrOther()) {
+                NavigationLink(destination: WebviewLogin()) {
                         Text("Log in to Spotify")
                             .font(.custom("montserrat",size: 20))
                             .padding()
@@ -44,6 +44,15 @@ struct loginSheet: View {
                             .background(Color.accentColor)
                             .cornerRadius(10)
                     }
+//                Button(action: {
+//                    Task {
+//                        if await FriendActivityBackend.shared.loggedOut == true {
+//                            await FriendActivityBackend.shared.checkIfLoggedIn()
+//                        }
+//                    }
+//                }) {
+//                    Text("retry")
+//                }
 //                Button(action: {
 //                    FriendActivityBackend.shared.debugLog.append("logged, opening debug log\n")
 //                    print("logged, opening debug log")
@@ -75,11 +84,5 @@ struct loginSheet: View {
             //.navigationTitle("Login to Friend Activity for Spotify")
             //.navigationBarTitleDisplayMode(.inline)
         }
-    }
-}
-
-struct loginSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        loginSheet()
     }
 }

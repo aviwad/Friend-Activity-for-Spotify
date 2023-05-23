@@ -20,21 +20,32 @@ extension NavigationState : WKNavigationDelegate {
     }*/
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         self.url = webView.url
-        if (self.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false) {
-            Task {
-                if await FriendActivityBackend.shared.loggedOut == true {
-                    await FriendActivityBackend.shared.checkIfLoggedIn()
-                }
+        Task {
+            if await FriendActivityBackend.shared.loggedOut == true {
+                await FriendActivityBackend.shared.checkIfLoggedIn()
             }
         }
-        /*else if (self.url?.absoluteString.starts(with: "https://accounts.google.com/CheckCookie") ?? false) {
-            Task {
-                if await FriendActivityBackend.shared.loggedOut == true {
-                    await FriendActivityBackend.shared.checkIfLoggedIn()
-                }
-            }
-        }*/
-        print("LOGGED \(self.url?.description ?? "none")")
+//        if (self.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false) {
+//            print("just reached \(self.url?.absoluteString ?? "none" )")
+//            Task {
+//                if await FriendActivityBackend.shared.loggedOut == true {
+//                    await FriendActivityBackend.shared.checkIfLoggedIn()
+//                }
+//            }
+//        }
+//        else if (self.url?.absoluteString.starts(with: "https://accounts.spotify.com/login/google/redirect") ?? false) {
+//            Task {
+//                if await FriendActivityBackend.shared.loggedOut == true {
+//                    await FriendActivityBackend.shared.checkIfLoggedIn()
+//                }
+//            }
+//        }
+        if (self.url?.absoluteString.starts(with: "https://accounts.google.com/") ?? false) {
+            print("google link discovered woah \(self.url?.absoluteString ?? "none" )")
+            //webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1"
+            webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15"
+        }
+        
     }
     
     
@@ -68,22 +79,23 @@ struct WebviewLogin: View {
         }
     }
     @StateObject var navigationState = NavigationState()
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    let removeGoogleIdScript = "var elements = document.querySelectorAll('[data-testid=\"google-login\"]'); for (let element of elements) { element.style.display = \"none\"; }"
+    //let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    //let removeGoogleIdScript = "var elements = document.querySelectorAll('[data-testid=\"google-login\"]'); for (let element of elements) { element.style.display = \"none\"; }"
     var body: some View {
         VStack {
             //WebView(request: URLRequest(url: URL(string: "https://www.whatismybrowser.com/detect/what-is-my-user-agent/")!), navigationState: navigationState)
             WebView(request: URLRequest(url: URL(string: "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F")!), navigationState: navigationState)
-                .onReceive(timer) { _ in
-                    navigationState.webView.evaluateJavaScript(removeGoogleIdScript) { (response, error) in
-                        print("logged timer for javascript run")
-                        if (response != nil) {
-                            print("logged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))")
-                            self.timer.upstream.connect().cancel()
-                        }
-                        //else if (error == WKError.javaScriptExceptionOccurred)
-                    }
-                 }
+            
+//                .onReceive(timer) { _ in
+//                    navigationState.webView.evaluateJavaScript(removeGoogleIdScript) { (response, error) in
+//                        print("logged timer for javascript run")
+//                        if (response != nil) {
+//                            print("logged \(response.debugDescription) and error \(String(describing: error?.localizedDescription))")
+//                            self.timer.upstream.connect().cancel()
+//                        }
+//                        //else if (error == WKError.javaScriptExceptionOccurred)
+//                    }
+//                 }
             /*if (navigationState.url?.absoluteString.starts(with: "https://accounts.google.com")) {
                 UIApplication.shared.open(navigationState.url, options: [:])
             }*/
