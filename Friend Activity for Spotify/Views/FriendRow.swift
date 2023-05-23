@@ -59,14 +59,15 @@ struct FriendRow: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 50, height: 50, alignment: .center)
                             .clipShape(Circle())
+                        if (friend.humanTimestamp.nowOrNot){
+                            Circle()
+                                .frame(width: 11, height: 11)
+                                .foregroundColor(Color.blue)
+                                .offset(x: 16, y: -16)
+                        }
                             
                     }
-                    if (friend.humanTimestamp.nowOrNot){
-                        Circle()
-                            .frame(width: 11, height: 11)
-                            .foregroundColor(Color.blue)
-                            .offset(x: 16, y: -16)
-                    }
+                    
                 }
                 VStack(alignment: .leading, spacing: 3) {
                     HStack {
@@ -77,29 +78,38 @@ struct FriendRow: View {
                         Text(LocalizedStringKey(friend.humanTimestamp.humanTimestamp))
                             .font(.custom("montserrat", size: 15))
                     }
-                    HStack (spacing: 2){
-                        Text(friend.track.name)
-                            .lineLimit(1)
-                            .font(.custom("montserrat", size: 15))
-                        Image(systemName: "circle.fill")
-                            .font(.system(size: 4))
-                        Text(friend.track.artist.name)
-                            .lineLimit(1)
-                            .font(.custom("montserrat", size: 15))
-                    }
-                    HStack (spacing: 5){
-                        if (friend.track.context.name == friend.track.album.name) {
-                            Image(systemName: "record.circle")
+                    HStack {
+                        VStack(alignment: .leading, spacing: 3) {
+                            HStack (spacing: 2){
+                                Text(friend.track.name)
+                                    .lineLimit(1)
+                                    .font(.custom("montserrat", size: 15))
+                                Image(systemName: "circle.fill")
+                                    .font(.system(size: 4))
+                                Text(friend.track.artist.name)
+                                    .lineLimit(1)
+                                    .font(.custom("montserrat", size: 15))
+                            }
+                            HStack (spacing: 5){
+                                if (friend.track.context.name == friend.track.album.name) {
+                                    Image(systemName: "record.circle")
+                                }
+                                else if (friend.track.context.name == friend.track.artist.name) {
+                                    Image(systemName: "person")
+                                }
+                                else {
+                                    Image(systemName: "music.note")
+                                }
+                                Text(friend.track.context.name)
+                                    .lineLimit(1)
+                                    .font(.custom("montserrat", size: 15))
+                            }
                         }
-                        else if (friend.track.context.name == friend.track.artist.name) {
-                            Image(systemName: "person")
-                        }
-                        else {
-                            Image(systemName: "music.note")
-                        }
-                        Text(friend.track.context.name)
-                            .lineLimit(1)
-                            .font(.custom("montserrat", size: 15))
+                        Spacer()
+                        WebImage(url: URL(string: friend.track.imageURL)) //{
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 30, height: 30, alignment: .trailing)
                     }
                 }
                 Spacer()
