@@ -35,7 +35,7 @@ import WebKit
                     case .satisfied:
                     //self.debugLog.append("LOGGED SATISFIED\n")
                         print("LOGGED SATISFIED")
-                    if (!self.currentlyRunning) {
+                    if (!self.currentlyRunning && !self.loggedOut) {
                         withAnimation {
                             self.networkUp = true
                             Task {
@@ -93,8 +93,6 @@ import WebKit
     func checkIfLoggedIn() {
         if (!FriendActivityBackend.shared.currentlyLoggingIn) {
             FriendActivityBackend.shared.currentlyLoggingIn = true
-            FriendActivityBackend.shared.tabSelection = 1
-            FriendActivityBackend.shared.loggedOut = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 //self.debugLog.append("LOGGED dispatch queue is working\n")
                 print("LOGGED dispatch queue is working")
@@ -105,6 +103,8 @@ import WebKit
                             //self.debugLog.append("LOGGED sp_dc is \(cookie.value)\n")
                             print("LOGGED sp_dc is \(cookie.value)")
                             FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
+                            FriendActivityBackend.shared.tabSelection = 1
+                            FriendActivityBackend.shared.loggedOut = false
                             Task {
                                 //self.debugLog.append("logged, getfriendactivity called from checkifloggedin\n")
                                 print("logged, getfriendactivity called from checkifloggedin")
