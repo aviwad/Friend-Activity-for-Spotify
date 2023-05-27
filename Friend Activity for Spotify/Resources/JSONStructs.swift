@@ -35,7 +35,7 @@ struct Welcome: Codable {
 }
 
 // MARK: - Friend
-struct Friend: Codable, Identifiable     {
+struct Friend: Codable, Identifiable {
     let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool) //{timePlayer(initialTimeStamp: timestamp)}
     let timestamp: Int
     let user: User
@@ -43,10 +43,11 @@ struct Friend: Codable, Identifiable     {
     let id : String
     //let id = self.user
     
-    struct Track: Codable {
+    struct Track: Codable, Identifiable {
+        let id: String
         let uri, name: String
         let url: URL
-        var imageURL: String
+        let imageURL: String
         let album, artist: Album
         let context: Context
 
@@ -62,12 +63,17 @@ struct Friend: Codable, Identifiable     {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
             self.name = try container.decode(String.self, forKey: .name)
-            self.imageURL = try container.decode(String.self, forKey: .imageURL)
-            self.imageURL = "https" + self.imageURL.dropFirst(4)
+            if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
+                self.imageURL = "https" + imageUrl.dropFirst(4)
+              }
+            else {
+                self.imageURL = ""
+            }
             self.album = try container.decode(Friend.Album.self, forKey: .album)
             self.artist = try container.decode(Friend.Album.self, forKey: .artist)
             self.context = try container.decode(Friend.Context.self, forKey: .context)
             self.url = getSpotifyUrl(initialUrl: self.uri)
+            self.id = self.uri
         }
         
         
@@ -78,9 +84,10 @@ struct Friend: Codable, Identifiable     {
         }*/
     }
     
-    struct Album: Codable {
+    struct Album: Codable, Identifiable {
         let uri, name: String
         let url: URL
+        let id: String
         
         
         private enum CodingKeys: String, CodingKey {
@@ -93,13 +100,15 @@ struct Friend: Codable, Identifiable     {
             self.uri = try container.decode(String.self, forKey: .uri)
             self.name = try container.decode(String.self, forKey: .name)
             self.url = getSpotifyUrl(initialUrl: self.uri)
+            self.id = self.uri
         }
     }
     
-    struct Context: Codable {
+    struct Context: Codable, Identifiable {
         let uri, name: String
         let index: Int
         let url: URL
+        let id: String
         //var url: URL {getSpotifyUrl(initialUrl: uri)}
         
         private enum CodingKeys: String, CodingKey {
@@ -114,12 +123,14 @@ struct Friend: Codable, Identifiable     {
             self.name = try container.decode(String.self, forKey: .name)
             self.index = try container.decode(Int.self, forKey: .index)
             self.url = getSpotifyUrl(initialUrl: self.uri)
+            self.id = self.uri
         }
     }
-    struct User: Codable {
+    struct User: Codable, Identifiable {
         let uri, name: String
         let imageURL: String
         let url: URL
+        let id: String
         //var url: URL {getSpotifyUserUrl(initialUrl: uri)}
 
         private enum CodingKeys: String, CodingKey {
@@ -140,6 +151,7 @@ struct Friend: Codable, Identifiable     {
             }
             //self.imageURL = try container.decode(String.self, forKey: .imageURL)
             self.url = getSpotifyUserUrl(initialUrl: self.uri)
+            self.id = self.uri
         }
     }
     

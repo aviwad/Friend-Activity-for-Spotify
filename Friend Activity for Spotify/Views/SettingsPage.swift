@@ -43,14 +43,12 @@ struct SettingsPage: View {
                     }
                     Button(action: {
                         print("LOGGED OUT CUZ OF BUTTON")
-                        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-                            print(" LOGGED OUT AFTER ALL")
-                            FriendActivityBackend.shared.keychain["spDcCookie"] = nil
-                            FriendActivityBackend.shared.keychain["accessToken"] = nil
-                            FriendActivityBackend.shared.loggedOut = true
-                            DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
-                                FriendActivityBackend.shared.tabSelection = 1
-                            }
+                        print(" LOGGED OUT AFTER ALL")
+                        FriendActivityBackend.shared.keychain["spDcCookie"] = nil
+                        FriendActivityBackend.shared.keychain["accessToken"] = nil
+                        FriendActivityBackend.shared.loggedOut = true
+                        DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(2))) {
+                            FriendActivityBackend.shared.tabSelection = 1
                         }
                     }) {
                         Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")

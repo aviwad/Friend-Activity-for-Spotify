@@ -11,13 +11,16 @@ import SwiftUI
 import WidgetKit
 import KeychainAccess
 import WebKit
-//import SwiftKeychainWrapper
+import os
 
 @MainActor final class FriendActivityBackend: ObservableObject{
     //var currentlyRunning = false
+    private static let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: String(describing: FriendActivityBackend.self)
+    )
     static let shared = FriendActivityBackend()
     let monitor = NWPathMonitor()
-    var currentlyLoggingIn = false
     let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
         .accessibility(.afterFirstUnlock)
     //var debugLog = ""
@@ -25,28 +28,34 @@ import WebKit
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
-    var currentlyRunning = false
+    //@Published var tappedRow: Int = 3
     //@Published var youHaveNoFriends: Bool = false
     init() {
+        FriendActivityBackend.logger.debug(" friendactivitybackend initialized")
         monitor.start(queue: DispatchQueue.main)
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {
                 switch path.status {
                     case .satisfied:
                     //self.debugLog.append("LOGGED SATISFIED\n")
-                        print("LOGGED SATISFIED")
-                    if (!self.currentlyRunning && !self.loggedOut) {
+                        FriendActivityBackend.logger.debug(" logged satisfied in initialization")
+                        //Nprint("LOGGED SATISFIED")
+                    if (!self.loggedOut) {
                         withAnimation {
                             self.networkUp = true
                             Task {
+                                FriendActivityBackend.logger.debug(" LOGGED getfriendactivitycalled from .satisfied of network up")
                                 //self.debugLog.append("LOGGED getfriendactivitycalled from .satisfied of network up\n")
-                                print("LOGGED getfriendactivitycalled from .satisfied of network up")
+                                //Nprint("LOGGED getfriendactivitycalled from .satisfied of network up")
                                 await self.GetFriendActivity(animation: true)
                             }
                         }
                     }
                     else {
-                        print("logged .satisfied canceled")
+                        //FriendActivityBackend.logger.debug(" logged .satisfied canceled (currently running: \(self.currentlyRunning) and logged out: \(self.loggedOut)")
+                        FriendActivityBackend.logger.debug(" logged .satisfied canceled (logged out: \(self.loggedOut)")
+
+                        //Nprint("logged .satisfied canceled")
                     }
                     default:
                         withAnimation {self.networkUp = false}
@@ -72,7 +81,8 @@ import WebKit
         request.setValue(httpValue, forHTTPHeaderField: httpField)
          let (data, _) = try await URLSession.shared.data(for: request)
         //self.debugLog.append("LOGGED \(data)\n")
-        print("LOGGED \(data)")
+        FriendActivityBackend.logger.debug(" LOGGED \(data.debugDescription)")
+        //Nprint("LOGGED \(data)")
         let json = try JSONDecoder().decode(T.self, from: data)
         return json
     }
@@ -91,35 +101,34 @@ import WebKit
     
     
     func checkIfLoggedIn() {
-        if (!FriendActivityBackend.shared.currentlyLoggingIn) {
-            FriendActivityBackend.shared.currentlyLoggingIn = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                //self.debugLog.append("LOGGED dispatch queue is working\n")
-                print("LOGGED dispatch queue is working")
-                WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
-                    cookies.forEach { cookie in
-                        //self.debugLog.append("logged checkingiflogged in cookie \(cookie.name) is \(cookie.value)")
-                        if (cookie.name == "sp_dc") {
-                            //self.debugLog.append("LOGGED sp_dc is \(cookie.value)\n")
-                            print("LOGGED sp_dc is \(cookie.value)")
-                            FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
-                            FriendActivityBackend.shared.tabSelection = 1
-                            FriendActivityBackend.shared.loggedOut = false
-                            Task {
-                                //self.debugLog.append("logged, getfriendactivity called from checkifloggedin\n")
-                                print("logged, getfriendactivity called from checkifloggedin")
-                                await FriendActivityBackend.shared.GetFriendActivity(animation: true)
-                            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            //self.debugLog.append("LOGGED dispatch queue is working\n")
+            FriendActivityBackend.logger.debug(" LOGGED dispatch queue is working (check if logged in function is running)")
+            //Nprint("LOGGED dispatch queue is working")
+            WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
+                cookies.forEach { cookie in
+                    //self.debugLog.append("logged checkingiflogged in cookie \(cookie.name) is \(cookie.value)")
+                    if (cookie.name == "sp_dc") {
+                        //self.debugLog.append("LOGGED sp_dc is \(cookie.value)\n")
+                        FriendActivityBackend.logger.debug(" sp_dc cookie was found! the value is \(cookie.value) and loggedout will be set to false")
+                        //Nprint("LOGGED sp_dc is \(cookie.value)")
+                        FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
+                        FriendActivityBackend.shared.tabSelection = 1
+                        FriendActivityBackend.shared.loggedOut = false
+                        Task {
+                            //self.debugLog.append("logged, getfriendactivity called from checkifloggedin\n")
+                            //Nprint("logged, getfriendactivity called from checkifloggedin")
+                            FriendActivityBackend.logger.debug(" getfriendactivity called from checkifloggedin")
+                            await FriendActivityBackend.shared.GetFriendActivity(animation: true)
                         }
                     }
                 }
-                //print(cookies)
-                //let newCookies = HTTPCookieStorage.shared.cookies
-                //newCookies!.forEach { cookie in
-                  //  print(cookie.name)
-                //}
-                FriendActivityBackend.shared.currentlyLoggingIn = false
             }
+            //print(cookies)
+            //let newCookies = HTTPCookieStorage.shared.cookies
+            //newCookies!.forEach { cookie in
+              //  print(cookie.name)
+            //}
         }
     }
 
@@ -155,21 +164,24 @@ import WebKit
 //    }
     
     func GetFriendActivity(animation: Bool) async {
-        self.currentlyRunning = true
+        FriendActivityBackend.logger.debug(" in getfriendactivity")
             let accessToken = try? keychain.get("accessToken")
             //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
             if (accessToken != nil) {
                 //self.debugLog.append("LOGGED ACCESS TOKEN FOUND\n")
-                print("LOGGED ACCESS TOKEN FOUND")
+                FriendActivityBackend.logger.debug(" access token found")
+                //Nprint("LOGGED ACCESS TOKEN FOUND")
                 self.loggedOut = false
                 let friendArrayInitial: Welcome
                 do {
                     if (networkUp) {
                         //self.debugLog.append("LOGGED NETWORK UP, FRIENDARRAYINITIAL CALLED \n")
-                        print("LOGGED NETWORK UP, FRIENDARRAYINTIAL CALLED")
+                        FriendActivityBackend.logger.debug(" network is up in friendarrayinitial")
+                        //Nprint("LOGGED NETWORK UP, FRIENDARRAYINTIAL CALLED")
                         friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                         //self.debugLog.append("testing123: friendarrayinitial \n")
-                        print("testing123: friendarrayinitial")
+                        FriendActivityBackend.logger.debug(" testing123: friendarrayinitial")
+                        //Nprint("testing123: friendarrayinitial")
                         //youHaveNoFriends = false
                         if (animation) {
                             withAnimation(){
@@ -187,28 +199,33 @@ import WebKit
                 catch {
                     //if (error as? URLError)?.code == .timedOut {
                     if(error is URLError) {
-                        print("logged timed out!")
+                        FriendActivityBackend.logger.debug(" logged timed out")
+                        //Nprint("logged timed out!")
                         //FriendActivityBackend.shared.friendArray =
                         //FriendActivityBackend.shared.networkUp = false
                         // Handle session timeout
                     }
                     else {
+                        
                         //self.debugLog.append("LOGGED \(accessToken.unsafelyUnwrapped) \n LOGGED Error info: \(error) \n LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
-                        print("LOGGED \(accessToken.unsafelyUnwrapped)")
-                        print("LOGGED Error info: \(error)")
-                        print("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
+                        //Nprint("LOGGED \(accessToken.unsafelyUnwrapped)")
+                        //Nprint("LOGGED Error info: \(error)")
+                        //Nprint("LOGGED OUT CUZ OF FRIENDARRAYINITIAL ERROR")
+                        FriendActivityBackend.logger.debug(" the accesstoken is \(accessToken.unsafelyUnwrapped)")
+                        FriendActivityBackend.logger.debug(" error info: \(error.localizedDescription)")
+                        FriendActivityBackend.logger.debug(" logged out bc of friendarrayinitial error")
                         if (networkUp) {
                             do {
-                                let errorMessage: AccessTokenError
-                                errorMessage = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
                                 //self.debugLog.append("logged, removing brokenaccesstoken from catching the errorjson \n")
-                                print("logged, removing brokenaccesstoken from catching the errorjson")
+                                FriendActivityBackend.logger.debug(" removing broken accesstoken from catching the error json")
+                                //Nprint("logged, removing brokenaccesstoken from catching the errorjson")
                                 keychain["accessToken"] = nil
                                 //self.debugLog.append("logged, getfriendactivity called from catching the errorjson \n")
-                                print("logged, getfriendactivity called from catching the errorjson")
+                                FriendActivityBackend.logger.debug(" calling getfriendactivity from catching errorjson")
+                                //Nprint("logged, getfriendactivity called from catching the errorjson")
                                 await GetFriendActivity(animation: animation)
                                 //self.debugLog.append("LOGGED \(errorMessage)")
-                                print("LOGGED \(errorMessage)")
+                                //Nprint("LOGGED \(errorMessage)")
                                 //self.keychain["accessToken"] = nil
                                 //self.keychain["spDcCookie"] = nil
                                 //loggedOut = true
@@ -219,7 +236,8 @@ import WebKit
                                    // self.currentError = error.localizedDescription
                                 }
                                 //self.debugLog.append("LOGGED \(error.localizedDescription)\n")
-                                print("LOGGED \(error.localizedDescription)")
+                                //Nprint("LOGGED \(error.localizedDescription)")
+                                FriendActivityBackend.logger.debug(" serious error \(error.localizedDescription)")
                             }
                         }
                         // network is down
@@ -228,21 +246,25 @@ import WebKit
             }
             else {
                 //self.debugLog.append("LOGGED OUT ACCESSTOKEN IS NIL, running logged getaccesstoken due to else clause in getfriendactivity")
-                print("LOGGED OUT ACCESSTOKEN IS NIL")
-                print("logged running getaccesstoken due to else clause in getfriendactivity")
+                //Nprint("LOGGED OUT ACCESSTOKEN IS NIL")
+                //Nprint("logged running getaccesstoken due to else clause in getfriendactivity")
+                FriendActivityBackend.logger.debug(" running getaccesstoken due to else clause in getfriendactivity")
                 let spDcCookie = keychain["spDcCookie"]
                 if networkUp  {
                     do {
                         let spDcCookie = keychain["spDcCookie"]
-                        print("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
+                        //Nprint("logged: getaccesstoken: spdc cookie is \(keychain["spDcCookie"])")
+                        FriendActivityBackend.logger.debug(" getaccesstoken spdc cookie is \(self.keychain["spDcCookie"].debugDescription)")
                         if (spDcCookie != nil) {
                             //self.debugLog.append("logged: spdc is \(spDcCookie.unsafelyUnwrapped)")
                             //self.debugLog.append("logged: getting access token")
-                            print("logged: getting access token")
+                            //Nprint("logged: getting access token")
+                            FriendActivityBackend.logger.debug(" getting acccess token")
                             let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
                             keychain["accessToken"] = accessToken.accessToken
                             //self.debugLog.append("logged: access token is \(keychain["accessToken"])\n")
-                            print("logged: access token is \(keychain["accessToken"])")
+                            FriendActivityBackend.logger.debug(" accesstoken is \(self.keychain["accessToken"].debugDescription)")
+                            //Nprint("logged: access token is \(keychain["accessToken"])")
                             await GetFriendActivity(animation: animation)
                         }
                         else {
@@ -251,20 +273,25 @@ import WebKit
                             self.loggedOut = false
                             self.loggedOut = true
                             //self.debugLog.append("logged out in access token\n")
-                            print("LOGGED OUT IN ACCESS TOKEN")
+                            FriendActivityBackend.logger.debug(" logged out in access token")
+                            //Nprint("LOGGED OUT IN ACCESS TOKEN")
                             keychain["accessToken"] = nil
                             
                         }
                     }
                     catch {
-                        print("error caused \(error)")
+                        FriendActivityBackend.logger.debug(" error caused \(error.localizedDescription)")
+                        //Nprint("error caused \(error)")
                         if (error is URLError) {
-                            print("ok just a network error, ignore maro")
+                            FriendActivityBackend.logger.debug(" just a network error")
+                            //Nprint("ok just a network error, ignore maro")
                         }
                         else {
-                            print("not url error")
+                            FriendActivityBackend.logger.debug(" not url error")
+                            //Nprint("not url error")
                             if (networkUp) {
-                                print("logged, removing broken spdc from catching the errorjson")
+                                FriendActivityBackend.logger.debug(" removing broken spdc from errorjson")
+                                //Nprint("logged, removing broken spdc from catching the errorjson")
                                 keychain["spDcCookie"] = nil
                                 self.loggedOut = false
                                 self.loggedOut = true
@@ -276,6 +303,5 @@ import WebKit
             }
         //print("testing123: \(friendArray.unsafelyUnwrapped)")
         //return friendArrayInitial.friends.reversed()
-        self.currentlyRunning = false
     }
 }

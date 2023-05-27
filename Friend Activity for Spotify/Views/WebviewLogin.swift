@@ -25,21 +25,6 @@ extension NavigationState : WKNavigationDelegate {
                 await FriendActivityBackend.shared.checkIfLoggedIn()
             }
         }
-//        if (self.url?.absoluteString.starts(with: "https://open.spotify.com") ?? false) {
-//            print("just reached \(self.url?.absoluteString ?? "none" )")
-//            Task {
-//                if await FriendActivityBackend.shared.loggedOut == true {
-//                    await FriendActivityBackend.shared.checkIfLoggedIn()
-//                }
-//            }
-//        }
-//        else if (self.url?.absoluteString.starts(with: "https://accounts.spotify.com/login/google/redirect") ?? false) {
-//            Task {
-//                if await FriendActivityBackend.shared.loggedOut == true {
-//                    await FriendActivityBackend.shared.checkIfLoggedIn()
-//                }
-//            }
-//        }
         if (self.url?.absoluteString.starts(with: "https://accounts.google.com/") ?? false) {
             print("google link discovered woah \(self.url?.absoluteString ?? "none" )")
             //webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1"

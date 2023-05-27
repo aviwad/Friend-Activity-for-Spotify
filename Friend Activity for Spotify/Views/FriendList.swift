@@ -13,9 +13,9 @@ import Shimmer
 
 struct FriendRowList: View {
     @StateObject var viewModel: FriendActivityBackend
-    private var timer = Timer.publish(every: 120, on: .main, in: .common).autoconnect()
+//    @State private var showAlert = false;
+    private var timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
     //@State var friendArray: [Friend] = []
-    
     init() {
         self._viewModel = StateObject(wrappedValue: FriendActivityBackend.shared)
     }
@@ -34,6 +34,7 @@ struct FriendRowList: View {
     var body: some View {
         ZStack {
             VStack {
+                //Text(viewModel.tappedRow)
                 ZStack {
                     if viewModel.networkUp {
                         if (viewModel.friendArray != nil) {
@@ -56,34 +57,69 @@ struct FriendRowList: View {
                                 }
                             }
                             else {
-                                List(viewModel.friendArray!) { friend in
-                                    FriendRow(friend: friend)
-                                    //.onTapGesture {
-                                    //  let impactMed = UIImpactFeedbackGenerator(style: .light)
-                                    //impactMed.impactOccurred()
-                                    //}
+                                ScrollView {
+                                    ForEach(viewModel.friendArray!) { friend in
+                                        VStack {
+                                            FriendRow(friend: friend)
+                                            Divider()
+                                        }
                                     
-                                        .swipeActions(edge: .leading){
-                                            Button {
-                                                globalURLOpener(URL: friend.user.url)
-                                            } label: {
-                                                Label("View Profile", systemImage: "person")
-                                            }
-                                            .tint(.accentColor)
-                                        }
-                                        .swipeActions(edge: .trailing){
-                                            Button {
-                                                globalURLOpener(URL: friend.track.album.url)
-                                            } label: {
-                                                Label("View Album", systemImage: "play.circle.fill")
-                                            }
-                                            .tint(.accentColor)
-                                        }
+                                    }
                                 }
-                                .listStyle(.plain)
+                                //hi
+//                                List(viewModel.friendArray!) { friend in
+//                                    FriendRow(friend: friend)
+//                                    //.onTapGesture {
+//                                    //  let impactMed = UIImpactFeedbackGenerator(style: .light)
+//                                    //impactMed.impactOccurred()
+//                                    //}
+//                                        .swipeActions(edge: .leading){
+//                                            Button {
+//                                                globalURLOpener(URL: friend.user.url)
+//                                            } label: {
+//                                                Label("View Profile", systemImage: "person")
+//                                            }
+//                                            .tint(.accentColor)
+//                                        }
+//                                        .swipeActions(edge: .trailing){
+//                                            Button {
+//                                                globalURLOpener(URL: friend.track.album.url)
+//                                            } label: {
+//                                                Label("View Album", systemImage: "play.circle.fill")
+//                                            }
+//                                            .tint(.accentColor)
+//                                        }
+//                                }
+                                //hi
+//                                .actionSheet(isPresented: $showAlert) {
+//                                    ActionSheet(title: Text("Resume Workout Recording"),
+//                                                message: Text("Choose a destination for workout data"),
+//                                                buttons: [
+//                                                    .cancel(),
+//                                                    .default(Text("Play Song \" \"")) {
+//                                                        print("hi")
+//                                                    },
+//                                                    .default(Text("Open Artist ")) {
+//
+//                                                    },
+//                                                    .default(Text("Open Album")) {
+//
+//                                                    },
+//                                                    .default(Text("Open Profile")) {
+//
+//                                                    }
+//                                                ]
+//                                    )
+//                                }
+                                //.popover
+                                //hi.listStyle(.plain)
                                 .refreshable {
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
-                                    await viewModel.GetFriendActivity(animation: false)
+                                    await viewModel.GetFriendActivity(animation: true)
+//                                    withAnimation {
+//                                        viewModel.friendArray?.shuffle()
+//                                    }
+                                    
                                 }
                             }
                         }
@@ -116,12 +152,22 @@ struct FriendRowList: View {
                                 .listStyle(.plain)
                                 .refreshable {
                                     print("logged, getfriendactivity called from refreshing the shimmering placeholder")
+                                    URLSession.shared.delegateQueue.cancelAllOperations()
+                                    URLSession.shared.invalidateAndCancel()
                                     await viewModel.GetFriendActivity(animation: true)
                                 }
                                 VStack {
                                     Button{
                                         Task {
                                             print("logged, getfriendactivity called from shimmering placeholder")
+                                            URLSession.shared.delegateQueue.cancelAllOperations()
+                                            URLSession.shared.invalidateAndCancel()
+                                            URLSession.shared.getAllTasks { tasks in
+//                                                .filter { $0.state == .running }
+                                                for task in tasks where task.state == .running {
+                                                    task.cancel()
+                                                }
+                                            }
                                             await viewModel.GetFriendActivity(animation: true)
                                         }
                                     } label: {
@@ -134,6 +180,11 @@ struct FriendRowList: View {
                                             .cornerRadius(10)
                                             .frame(maxWidth: .infinity, alignment: .center)
                                     }
+                                    Text("TestFlight Debug: Current Status")
+                                    Text("Logged out status: \(viewModel.loggedOut.description)")
+                                    Text("Friend Array Size: \(viewModel.friendArray?.count.description ?? "nil")")
+                                    Text("Network Up: \(viewModel.networkUp.description)")
+                                    Text("Tab Selection: \(viewModel.tabSelection)")
                                 }
                             }
                         }
