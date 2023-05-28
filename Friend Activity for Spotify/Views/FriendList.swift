@@ -20,21 +20,20 @@ struct FriendRowList: View {
         self._viewModel = StateObject(wrappedValue: FriendActivityBackend.shared)
     }
     
-    func getFriends() async {
-        if viewModel.networkUp {
-            print("logged, getfriendactivity called from getfriends function")
-            await viewModel.GetFriendActivity(animation: true)
-        }
-        // if data is empty: state text that says 0 friends
-        // check monitor connected
-        //withAnimation(){
-          //  friendArray = data
-        //}
-    }
+//    func getFriends() async {
+//        if viewModel.networkUp {
+//            print("logged, getfriendactivity called from getfriends function")
+//            await viewModel.GetFriendActivity()
+//        }
+//        // if data is empty: state text that says 0 friends
+//        // check monitor connected
+//        //withAnimation(){
+//          //  friendArray = data
+//        //}
+//    }
     var body: some View {
         ZStack {
             VStack {
-                //Text(viewModel.tappedRow)
                 ZStack {
                     if viewModel.networkUp {
                         if (viewModel.friendArray != nil) {
@@ -48,7 +47,7 @@ struct FriendRowList: View {
                                         .multilineTextAlignment(.center)
                                     Button {
                                         Task {
-                                            await getFriends()
+                                            await viewModel.GetFriends()
                                         }
                                     } label: {
                                         Text("Refresh")
@@ -66,59 +65,9 @@ struct FriendRowList: View {
                                     
                                     }
                                 }
-                                //hi
-//                                List(viewModel.friendArray!) { friend in
-//                                    FriendRow(friend: friend)
-//                                    //.onTapGesture {
-//                                    //  let impactMed = UIImpactFeedbackGenerator(style: .light)
-//                                    //impactMed.impactOccurred()
-//                                    //}
-//                                        .swipeActions(edge: .leading){
-//                                            Button {
-//                                                globalURLOpener(URL: friend.user.url)
-//                                            } label: {
-//                                                Label("View Profile", systemImage: "person")
-//                                            }
-//                                            .tint(.accentColor)
-//                                        }
-//                                        .swipeActions(edge: .trailing){
-//                                            Button {
-//                                                globalURLOpener(URL: friend.track.album.url)
-//                                            } label: {
-//                                                Label("View Album", systemImage: "play.circle.fill")
-//                                            }
-//                                            .tint(.accentColor)
-//                                        }
-//                                }
-                                //hi
-//                                .actionSheet(isPresented: $showAlert) {
-//                                    ActionSheet(title: Text("Resume Workout Recording"),
-//                                                message: Text("Choose a destination for workout data"),
-//                                                buttons: [
-//                                                    .cancel(),
-//                                                    .default(Text("Play Song \" \"")) {
-//                                                        print("hi")
-//                                                    },
-//                                                    .default(Text("Open Artist ")) {
-//
-//                                                    },
-//                                                    .default(Text("Open Album")) {
-//
-//                                                    },
-//                                                    .default(Text("Open Profile")) {
-//
-//                                                    }
-//                                                ]
-//                                    )
-//                                }
-                                //.popover
-                                //hi.listStyle(.plain)
                                 .refreshable {
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
-                                    await viewModel.GetFriendActivity(animation: true)
-//                                    withAnimation {
-//                                        viewModel.friendArray?.shuffle()
-//                                    }
+                                    await viewModel.GetFriends()
                                     
                                 }
                             }
@@ -154,7 +103,7 @@ struct FriendRowList: View {
                                     print("logged, getfriendactivity called from refreshing the shimmering placeholder")
                                     URLSession.shared.delegateQueue.cancelAllOperations()
                                     URLSession.shared.invalidateAndCancel()
-                                    await viewModel.GetFriendActivity(animation: true)
+                                    await viewModel.GetFriends()
                                 }
                                 VStack {
                                     Button{
@@ -168,7 +117,7 @@ struct FriendRowList: View {
                                                     task.cancel()
                                                 }
                                             }
-                                            await viewModel.GetFriendActivity(animation: true)
+                                            await viewModel.GetFriends()
                                         }
                                     } label: {
                                         Text("Refresh")
@@ -205,7 +154,7 @@ struct FriendRowList: View {
                             }
                             Button("Refresh") {
                                 Task {
-                                    await getFriends()
+                                    await viewModel.GetFriends()
                                 }
                             }
                         }
@@ -214,7 +163,7 @@ struct FriendRowList: View {
                         }
                     }
                 }
-                .fullScreenCover(isPresented: $viewModel.loggedOut) {
+                .sheet(isPresented: $viewModel.loggedOut) {
                     loginSheet()
                 }
             }
@@ -222,7 +171,7 @@ struct FriendRowList: View {
                 if (!viewModel.loggedOut) {
                     Task {
                         print("timer works")
-                        await getFriends()
+                        await viewModel.GetFriends()
                     }
                 }
                 else {
@@ -231,5 +180,4 @@ struct FriendRowList: View {
             }
         }
     }
-    
 }

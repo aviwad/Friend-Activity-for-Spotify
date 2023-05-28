@@ -17,15 +17,13 @@ struct ContentView: View {
         self._viewModel = StateObject(wrappedValue: FriendActivityBackend.shared)
     }
     var body: some View {
-        TabView (selection: $viewModel.tabSelection){
-            if(ProcessInfo().isiOSAppOnMac) {
-                FriendRowList()
-                    .tabItem{
-                        Label("Friend Activity", systemImage: "person.3")
-                    }
-                    .tag(1)
+        ZStack {
+            if (!viewModel.errorMessage.isEmpty) {
+                TempNotification(notificationText: $viewModel.errorMessage)
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .zIndex(1)
             }
-            else {
+            TabView (selection: $viewModel.tabSelection){
                 NavigationView{
                     FriendRowList()
                         .navigationBarTitle("Friend Activity")
@@ -35,16 +33,16 @@ struct ContentView: View {
                         Label("Friend Activity", systemImage: "person.3")
                     }
                     .tag(1)
+                SettingsPage()
+                    .tabItem{
+                        Label("Settings", systemImage: "gearshape.2")
+                    }
+                    .tag(2)
             }
-            SettingsPage()
-                .tabItem{
-                    Label("Settings", systemImage: "gearshape.2")
-                }
-                .tag(2)
-        }
-        .onChange(of: viewModel.tabSelection) { newValue in
-            let impactMed = UIImpactFeedbackGenerator(style: .light)
-            impactMed.impactOccurred()
+            .onChange(of: viewModel.tabSelection) { newValue in
+                let impactMed = UIImpactFeedbackGenerator(style: .light)
+                impactMed.impactOccurred()
+            }
         }
     }
             

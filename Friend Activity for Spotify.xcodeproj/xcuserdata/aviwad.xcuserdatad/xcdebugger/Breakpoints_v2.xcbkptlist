@@ -7,38 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B2E3ABA7-2B00-489C-9397-7470CE703A32"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "GetFriendActivity(animation:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A17F0983-18B6-4BEA-9727-25268AB8388F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "GetFriendActivity(animation:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "77AF3E43-CBD0-4318-BCC5-BF5E0C7B2B1D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -46,10 +14,10 @@
             filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "GetFriendActivity(animation:)"
-            landmarkType = "7">
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "FriendActivityBackend"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -62,8 +30,8 @@
             filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -129,6 +97,241 @@
                   offsetFromSymbolStart = "184">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02155E38-FCA7-4CEB-9ED6-8BD2407310AB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "GetFriends()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "02155E38-FCA7-4CEB-9ED6-8BD2407310AB - 6357d41fe9e9c19e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.GetFriends() async -&gt; ()"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "02155E38-FCA7-4CEB-9ED6-8BD2407310AB - 9fc8eeb60ce36ab9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.GetFriends() async -&gt; ()"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "02155E38-FCA7-4CEB-9ED6-8BD2407310AB - 7c6db959b3da1d9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.GetFriends() async -&gt; ()"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "02155E38-FCA7-4CEB-9ED6-8BD2407310AB - 94841d9a7d8b5992"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.GetFriends() async -&gt; ()"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "204">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE9BEA02-1D50-4DBE-81FD-22FE834B510A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "fetch(urlString:httpValue:httpField:getOrPost:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EE9BEA02-1D50-4DBE-81FD-22FE834B510A - 29fa3be7718cff26"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(urlString: Swift.String, httpValue: Swift.String, httpField: Swift.String, getOrPost: Friend_Activity_for_Spotify.GetOrPost) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "608">
+               </Location>
+               <Location
+                  uuid = "EE9BEA02-1D50-4DBE-81FD-22FE834B510A - 9987c249289b9c92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(urlString: Swift.String, httpValue: Swift.String, httpField: Swift.String, getOrPost: Friend_Activity_for_Spotify.GetOrPost) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "EE9BEA02-1D50-4DBE-81FD-22FE834B510A - 5ad9bd350ae53324"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(urlString: Swift.String, httpValue: Swift.String, httpField: Swift.String, getOrPost: Friend_Activity_for_Spotify.GetOrPost) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "EE9BEA02-1D50-4DBE-81FD-22FE834B510A - f329801cf98ad125"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(urlString: Swift.String, httpValue: Swift.String, httpField: Swift.String, getOrPost: Friend_Activity_for_Spotify.GetOrPost) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D038DC0-712C-4642-AC39-C8C9AD4BE7A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "GetFriends()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D038DC0-712C-4642-AC39-C8C9AD4BE7A7 - 6357d41fe9e9c1dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.GetFriends() async -&gt; ()"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "3D038DC0-712C-4642-AC39-C8C9AD4BE7A7 - 6357d41fe9e9c1dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.GetFriends() async -&gt; ()"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "3D038DC0-712C-4642-AC39-C8C9AD4BE7A7 - 6357d41fe9e9de01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Friend_Activity_for_Spotify.FriendActivityBackend.GetFriends() async -&gt; ()"
+                  moduleName = "Friend Activity for Spotify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aviwad/Downloads/Friend-Activity-for-Spotify/Friend%20Activity%20for%20Spotify/Resources/FriendActivityBackend.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D7E180B-38AB-45C9-93B0-3B4B863157BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Friend Activity for Spotify/Resources/FriendActivityBackend.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "GetFriends()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

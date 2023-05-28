@@ -35,13 +35,17 @@ struct Welcome: Codable {
 }
 
 // MARK: - Friend
-struct Friend: Codable, Identifiable {
+struct Friend: Codable, Identifiable,Equatable {
     let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool) //{timePlayer(initialTimeStamp: timestamp)}
     let timestamp: Int
     let user: User
     let track: Track
     let id : String
     //let id = self.user
+    
+    static func ==(lhs: Friend, rhs: Friend) -> Bool {
+        return lhs.id == rhs.id
+    }
     
     struct Track: Codable, Identifiable {
         let id: String
@@ -175,22 +179,14 @@ struct Friend: Codable, Identifiable {
     
 }
 
-// MARK: - WelcomeError
-struct AccessTokenError: Codable {
-    let error: Error
-}
-
-// MARK: - Error
-struct Error: Codable {
+struct TokenError: Codable {
     let status: Int
     let message: String
 }
-
-struct SpDcError: Codable {
-    let error: SpDcErrorInside
+struct ErrorWrapper: Codable {
+    let error: TokenError
 }
 
-struct SpDcErrorInside: Codable {
-    let code: Int
-    let message: String
+enum GetOrPost {
+    case get,post
 }
