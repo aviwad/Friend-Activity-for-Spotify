@@ -10,6 +10,7 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @Environment(\.scenePhase) var scenePhase
     @StateObject var viewModel : FriendActivityBackend
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "montserrat", size: 30)!]
@@ -42,6 +43,12 @@ struct ContentView: View {
             .onChange(of: viewModel.tabSelection) { newValue in
                 let impactMed = UIImpactFeedbackGenerator(style: .light)
                 impactMed.impactOccurred()
+            }
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .background {
+                    print("BACKGROUND")
+                    viewModel.updateWidget()
+                }
             }
         }
     }

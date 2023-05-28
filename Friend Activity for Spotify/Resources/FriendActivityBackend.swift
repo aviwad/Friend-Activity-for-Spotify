@@ -20,8 +20,8 @@ import os
     )
     static let shared = FriendActivityBackend()
     let monitor = NWPathMonitor()
-    let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-        .accessibility(.afterFirstUnlock)
+   // let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
+      //  .accessibility(.afterFirstUnlock)
     @Published var tabSelection = 1
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
@@ -79,7 +79,9 @@ import os
                 cookies.forEach { cookie in
                     if (cookie.name == "sp_dc") {
                         FriendActivityBackend.logger.debug(" sp_dc cookie was found! the value is \(cookie.value) and loggedout will be set to false")
-                        FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
+                        UserDefaults(suiteName:
+                                        "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(cookie.value, forKey: "spDcCookie")
+                        //FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
                         FriendActivityBackend.shared.tabSelection = 1
                         FriendActivityBackend.shared.loggedOut = false
                         Task {
@@ -94,7 +96,9 @@ import os
     
     func logout() {
         loggedOut = true
-        keychain["spDcCookie"] = nil
+        //keychain["spDcCookie"] = nil
+        UserDefaults(suiteName:
+                        "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(nil, forKey: "spDcCookie")
         errorNotification(newErrorMessage: "Logged out.")
     }
     
@@ -109,8 +113,17 @@ import os
            }
     }
     
+    func updateWidget() {
+        let friendData = try! JSONEncoder().encode(friendArray ?? [])
+        UserDefaults(suiteName:
+                        "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(friendData, forKey: "friendArray")
+        UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(Int(CACurrentMediaTime()), forKey: "lastSavedTime")
+        WidgetCenter.shared.reloadAllTimelines()
+    }
+    
     func GetFriends() async {
-        guard let cookie = keychain["spDcCookie"] else {
+        //guard let cookie = keychain["spDcCookie"] else {
+        guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             logout()
             return
         }
@@ -126,7 +139,9 @@ import os
                     withAnimation() {
                         friendArray = tempFriendArray
                     }
-                    WidgetCenter.shared.reloadAllTimelines()
+//                    UserDefaults(suiteName:
+//                                    "group.aviwad.Friend-Activity-for-Spotify")!.set(friendArray!, forKey: "friendArray")
+//                    WidgetCenter.shared.reloadAllTimelines()
                 }
                 // CONTINUE
             }

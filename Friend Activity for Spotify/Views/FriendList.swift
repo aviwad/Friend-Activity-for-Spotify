@@ -129,11 +129,6 @@ struct FriendRowList: View {
                                             .cornerRadius(10)
                                             .frame(maxWidth: .infinity, alignment: .center)
                                     }
-                                    Text("TestFlight Debug: Current Status")
-                                    Text("Logged out status: \(viewModel.loggedOut.description)")
-                                    Text("Friend Array Size: \(viewModel.friendArray?.count.description ?? "nil")")
-                                    Text("Network Up: \(viewModel.networkUp.description)")
-                                    Text("Tab Selection: \(viewModel.tabSelection)")
                                 }
                             }
                         }

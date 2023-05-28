@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8F053162289E74A000ACDD49 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F0F0BDF2A23BE4F00B97DA4 /* TempNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */; };
+		8F0F0BE32A23EB2100B97DA4 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F0BE22A23EB2100B97DA4 /* person.png */; };
 		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
@@ -77,6 +78,7 @@
 		8F053161289E72E800ACDD49 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F053163289E769000ACDD49 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempNotification.swift; sourceTree = "<group>"; };
+		8F0F0BE22A23EB2100B97DA4 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 		8F1DB6B32889685900CBC078 /* montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat.ttf; sourceTree = "<group>"; };
 		8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewLogin.swift; sourceTree = "<group>"; };
 		8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		8F3F90E62857B3D5003708F1 /* ioswidget */ = {
 			isa = PBXGroup;
 			children = (
+				8F0F0BE22A23EB2100B97DA4 /* person.png */,
 				8F3F90E72857B3D5003708F1 /* ioswidget.swift */,
 				8F3F90F52857B403003708F1 /* LargeView.swift */,
 				8FB5BAD92891A1D200E5AB76 /* MediumView.swift */,
@@ -365,6 +368,7 @@
 			files = (
 				8F3F90EA2857B3D7003708F1 /* Assets.xcassets in Resources */,
 				8F053162289E74A000ACDD49 /* Localizable.strings in Resources */,
+				8F0F0BE32A23EB2100B97DA4 /* person.png in Resources */,
 				8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

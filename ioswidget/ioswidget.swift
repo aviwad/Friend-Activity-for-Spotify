@@ -13,101 +13,178 @@ import KeychainAccess
 
 struct Provider: TimelineProvider {
     var friendArray : [Friend]?
-    func fetch<T: Decodable>(urlString: String, httpValue: String, httpField: String) async throws -> T {
+    func fetch<T: Decodable>(urlString: String, httpValue: String, httpField: String, getOrPost: GetOrPost) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        if (getOrPost == .get) {
+            request.httpMethod = "GET"
+        } else {
+            request.httpMethod = "POST"
+        }
         request.setValue(httpValue, forHTTPHeaderField: httpField)
-        // URLSession.shared.configuration =
          let (data, _) = try await URLSession.shared.data(for: request)
+        //FriendActivityBackend.logger.debug(" LOGGED \(data.debugDescription)")
         let json = try JSONDecoder().decode(T.self, from: data)
         return json
     }
-
-    func GetFriendActivityWidget() async -> ([Friend],[UIImage], String?) {
-        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-            .accessibility(.afterFirstUnlock)
-        let accessToken = try? keychain.get("accessToken")
-        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
-        if (accessToken != nil) {
-            let friendArrayInitial: Welcome
-            do {
-                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-                 print("testing123: friendarrayinitial")
-                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
+    
+    func friendsFromApp() async -> ([Friend],[UIImage]){
+        let lastUpdated = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.integer(forKey: "lastSavedTime")
+        print(lastUpdated.distance(to: Int(CACurrentMediaTime())))
+        if (lastUpdated.distance(to: Int(CACurrentMediaTime())) > 600) {
+            // query online
+            return await GetFriends()
+        }
+        let encodedData  = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.object(forKey: "friendArray") as? Data
+        /* Decoding it using JSONDecoder*/
+        if let friendEncoded = encodedData {
+             let friendDecoded = try? JSONDecoder().decode([Friend].self, from: friendEncoded)
+            if let friendArray2 = friendDecoded{
+                let friendArray = Array(friendArray2.prefix(4))
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
                     if (friend.user.imageURL.isEmpty) {
-                        imageArray.append(UIImage(systemName: "person.fill")!)
+                        imageArray.append(UIImage(named: "person.png")!)
                     } else {
+                        //imageArray.append(UIImage(named: "person.png")!)
+                        //imageArray.append(UIImage(systemName: "person", withConfiguration: UIImage.SymbolConfiguration(paletteColors: [.white, .magenta]))!)
+                        //imageArray.append(UIImage(systemName: "person")!.withTintColor(.green))
                         imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
                     }
                 }
-                return (friendArray,imageArray,nil)
-                 //youHaveNoFriends = false
-                
-                 //WidgetCenter.shared.reloadAllTimelines()
-            }
-            catch {
-                return await GetFriendActivityWidgetWithNewToken()
-                //print(error)
-                //return ([],[],error.localizedDescription)
+                return (friendArray,imageArray)
+                // You successfully retrieved your car object!
             }
         }
-        return ([],[],nil)
-    }
-
-    func GetFriendActivityWidgetWithNewToken() async -> ([Friend],[UIImage],String?) {
-        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-            .accessibility(.afterFirstUnlock)
-        //let accessToken = try? keychain.get("accessToken")
-        let spDcCookie = try? keychain.get("spDcCookie")
-        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
-        if (spDcCookie != nil) {
-            let friendArrayInitial: Welcome
-            do {
-                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-                keychain["accessToken"] = accessToken.accessToken
-                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization")
-                 print("testing123: friendarrayinitial")
-                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
-                var imageArray : [UIImage] = []
-                for friend in friendArray {
-                    if (friend.user.imageURL.isEmpty) {
-                        imageArray.append(UIImage(systemName: "person.fill")!)
-                    } else {
-                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
-                    }
-                }
-                return (friendArray,imageArray,nil)
-                 //youHaveNoFriends = false
-                
-                 //WidgetCenter.shared.reloadAllTimelines()
-            }
-            catch {
-                print(error)
-                return ([],[],error.localizedDescription)
-            }
-        }
-        return ([],[],nil)
+        return ([],[])
     }
     
+    func GetFriends() async -> ([Friend],[UIImage]){
+        //guard let cookie = keychain["spDcCookie"] else {
+        guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
+            // error
+            return ([],[])
+        }
+        do {
+            let accessTokenJson: accessTokenJSON = try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(cookie)", httpField: "Cookie", getOrPost: .get)
+            let accessToken:String = accessTokenJson.accessToken
+            do {
+                print("access token ")
+                let friendArrayInitial: Welcome = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .get)
+                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
+                var imageArray : [UIImage] = []
+                for friend in friendArray {
+                    if (friend.user.imageURL.isEmpty) {
+                        imageArray.append(UIImage(systemName: "person.fill")!)
+                    } else {
+                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                    }
+                }
+                return (friendArray,imageArray)
+//                    UserDefaults(suiteName:
+//                                    "group.aviwad.Friend-Activity-for-Spotify")!.set(friendArray!, forKey: "friendArray")
+//                    WidgetCenter.shared.reloadAllTimelines()
+                //}
+                // CONTINUE
+            }
+            catch {
+                return ([],[])
+            }
+        }
+        catch {
+            print("error for token")
+            print(error)
+            return ([],[])
+            // NOTIFICATION THAT ERROR OCCURRED
+        }
+
+    }
+    
+
+//    func GetFriendActivityWidget() async -> ([Friend],[UIImage], String?) {
+//        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
+//            .accessibility(.afterFirstUnlock)
+//        let accessToken = try? keychain.get("accessToken")
+//        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
+//        if (accessToken != nil) {
+//            let friendArrayInitial: Welcome
+//            do {
+//                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
+//                 print("testing123: friendarrayinitial")
+//                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
+//                var imageArray : [UIImage] = []
+//                for friend in friendArray {
+//                    if (friend.user.imageURL.isEmpty) {
+//                        imageArray.append(UIImage(systemName: "person.fill")!)
+//                    } else {
+//                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+//                    }
+//                }
+//                return (friendArray,imageArray,nil)
+//                 //youHaveNoFriends = false
+//
+//                 //WidgetCenter.shared.reloadAllTimelines()
+//            }
+//            catch {
+//                return await GetFriendActivityWidgetWithNewToken()
+//                //print(error)
+//                //return ([],[],error.localizedDescription)
+//            }
+//        }
+//        return ([],[],nil)
+//    }
+
+//    func GetFriendActivityWidgetWithNewToken() async -> ([Friend],[UIImage],String?) {
+//        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
+//            .accessibility(.afterFirstUnlock)
+//        //let accessToken = try? keychain.get("accessToken")
+//        let spDcCookie = try? keychain.get("spDcCookie")
+//        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
+//        if (spDcCookie != nil) {
+//            let friendArrayInitial: Welcome
+//            do {
+//                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
+//                keychain["accessToken"] = accessToken.accessToken
+//                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization")
+//                 print("testing123: friendarrayinitial")
+//                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
+//                var imageArray : [UIImage] = []
+//                for friend in friendArray {
+//                    if (friend.user.imageURL.isEmpty) {
+//                        imageArray.append(UIImage(systemName: "person.fill")!)
+//                    } else {
+//                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+//                    }
+//                }
+//                return (friendArray,imageArray,nil)
+//                 //youHaveNoFriends = false
+//
+//                 //WidgetCenter.shared.reloadAllTimelines()
+//            }
+//            catch {
+//                print(error)
+//                return ([],[],error.localizedDescription)
+//            }
+//        }
+//        return ([],[],nil)
+//    }
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), friends: ([],[UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!],nil))
+        return SimpleEntry(date: Date(), friends: ([],[UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!]))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         Task {
-            let entry = await SimpleEntry(date: Date(), friends: self.GetFriendActivityWidget())
+            let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp())
             completion(entry)
         }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Task {
-            let entry = await SimpleEntry(date: Date(), friends: self.GetFriendActivityWidget())
+            let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp())
             let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
             completion(timeline)
@@ -117,7 +194,7 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let friends: ([Friend],[UIImage], String?)
+    let friends: ([Friend],[UIImage])
 }
 
 struct iosWidgetEntryView : View {
