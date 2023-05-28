@@ -62,7 +62,7 @@ struct FriendRowList: View {
                                             FriendRow(friend: friend)
                                             Divider()
                                         }
-                                    
+
                                     }
                                 }
                                 .refreshable {

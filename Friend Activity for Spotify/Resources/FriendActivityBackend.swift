@@ -135,13 +135,8 @@ import os
                 let friendArrayInitial: Welcome = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .get)
                 var tempFriendArray = friendArrayInitial.friends
                 tempFriendArray.reverse()
-                if (tempFriendArray != friendArray ?? []) {
-                    withAnimation() {
-                        friendArray = tempFriendArray
-                    }
-//                    UserDefaults(suiteName:
-//                                    "group.aviwad.Friend-Activity-for-Spotify")!.set(friendArray!, forKey: "friendArray")
-//                    WidgetCenter.shared.reloadAllTimelines()
+                withAnimation() {
+                    friendArray = tempFriendArray
                 }
                 // CONTINUE
             }

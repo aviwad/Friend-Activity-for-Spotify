@@ -35,7 +35,7 @@ struct Welcome: Codable {
 }
 
 // MARK: - Friend
-struct Friend: Codable, Identifiable,Equatable {
+struct Friend: Codable, Identifiable {
     let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool) //{timePlayer(initialTimeStamp: timestamp)}
     let timestamp: Int
     let user: User
@@ -43,9 +43,7 @@ struct Friend: Codable, Identifiable,Equatable {
     let id : String
     //let id = self.user
     
-    static func ==(lhs: Friend, rhs: Friend) -> Bool {
-        return lhs.id == rhs.id
-    }
+
     
     struct Track: Codable, Identifiable {
         let id: String
