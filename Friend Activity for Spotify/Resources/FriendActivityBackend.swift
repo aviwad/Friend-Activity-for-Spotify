@@ -20,8 +20,8 @@ import os
     )
     static let shared = FriendActivityBackend()
     let monitor = NWPathMonitor()
-   // let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-      //  .accessibility(.afterFirstUnlock)
+    let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
+        .accessibility(.afterFirstUnlock)
     @Published var tabSelection = 1
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
@@ -41,7 +41,7 @@ import os
                                 Task {
                                     FriendActivityBackend.logger.debug(" LOGGED getfriendactivitycalled from .satisfied of network up")
                                     await self.GetFriends()
-                                }
+                                } // Aksy das yrwr
                             }
                         }
                         else {
@@ -124,7 +124,12 @@ import os
     func GetFriends() async {
         //guard let cookie = keychain["spDcCookie"] else {
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
-            logout()
+            guard let cookie = keychain["spDcCookie"] else {
+                logout()
+                return
+            }
+            UserDefaults(suiteName:
+                            "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(cookie, forKey: "spDcCookie")
             return
         }
         do {
@@ -138,6 +143,14 @@ import os
                 withAnimation() {
                     friendArray = tempFriendArray
                 }
+                var count = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.integer(forKey: "successCount") ?? 0
+                count += 1
+                UserDefaults(suiteName:
+                                "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(count, forKey: "successCount")
+                
+                
+                // increase success count
+                // if count is 50 then show the popup
                 // CONTINUE
             }
             catch let error as DecodingError {

@@ -28,7 +28,25 @@ struct SettingsPage: View {
                             .font(.custom("montserrat", size: 14))
                             .foregroundColor(.gray)
                     }
-                    
+                    Button(action: {
+                        let url = "https://apps.apple.com/app/id1636288237?action=write-review"
+                        guard let writeReviewURL = URL(string: url)
+                            else { fatalError("Expected a valid URL") }
+                        UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+                    }) {
+                        VStack(spacing: 4) {
+                            Label("Rate App", systemImage: "star")
+                                .font(.custom("montserrat",size: 20))
+                                //.background(in: RoundedRectangle)
+                            Text("(Opens App Store)")
+                                .font(.custom("montserrat", size: 15))
+                        }
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 300)
+                        .background(Color.accentColor)
+                        .cornerRadius(10)
+                    }
                     Button(action: {
                         showAcknowledgements = true
                     }) {
