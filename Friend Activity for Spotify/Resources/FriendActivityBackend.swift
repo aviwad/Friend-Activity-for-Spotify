@@ -19,6 +19,7 @@ import os
         category: String(describing: FriendActivityBackend.self)
     )
     static let shared = FriendActivityBackend()
+    let actor = MyActor()
     let monitor = NWPathMonitor()
     let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
         .accessibility(.afterFirstUnlock)
@@ -40,7 +41,7 @@ import os
                                 self.networkUp = true
                                 Task {
                                     FriendActivityBackend.logger.debug(" LOGGED getfriendactivitycalled from .satisfied of network up")
-                                    await self.GetFriends()
+                                    await self.actor.getFriends()
                                 } // Aksy das yrwr
                             }
                         }
@@ -86,7 +87,7 @@ import os
                         FriendActivityBackend.shared.loggedOut = false
                         Task {
                             FriendActivityBackend.logger.debug(" getfriendactivity called from checkifloggedin")
-                            await FriendActivityBackend.shared.GetFriends()
+                            await FriendActivityBackend.shared.actor.getFriends()
                         }
                     }
                 }
@@ -157,8 +158,11 @@ import os
                 print("decoding error for frienddata. token is fucked or i haven't accounted for something")
                 print(error)
                 do {
-                    let _: ErrorWrapper = try await fetch(urlString: "https://spclient.wg.spotify.com/find-friends/v1/friends", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .post)
-                    logout()
+                    let errorWrap: ErrorWrapper = try await fetch(urlString: "https://spclient.wg.spotify.com/find-friends/v1/friends", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .post)
+                    
+                    if (errorWrap.error.status == 401) {
+                        logout()
+                    }
                     // LOGOUT
                 }
                 catch let error as DecodingError {
@@ -280,4 +284,20 @@ import os
 //                }
 //            }
 //    }
+}
+
+actor MyActor {
+    var running = false
+    //@Published var latestResult: Date?
+    func getFriends() async {
+        if !running {
+            running = true
+            await FriendActivityBackend.shared.GetFriends()
+            running = false
+        }
+        return
+//        for await result in $latestResult.values {
+//            return result
+//        }
+    }
 }
