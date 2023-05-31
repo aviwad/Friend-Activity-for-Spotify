@@ -163,6 +163,9 @@ import os
                     if (errorWrap.error.status == 401) {
                         logout()
                     }
+                    else if (errorWrap.error.status == 429) {
+                        errorNotification(newErrorMessage: "Too many requests. Try again later")
+                    }
                     // LOGOUT
                 }
                 catch let error as DecodingError {
