@@ -19,7 +19,7 @@ struct SettingsPage: View {
                             .resizable()
                             .frame(width: 150, height: 150)
                             .cornerRadius(10)
-                        Text("Version 1.6")
+                        Text("Version 1.7")
                             .font(.custom("montserrat", size: 20))
                         Text("App made by Avi Wadhwa")
                             .font(.custom("montserrat", size: 15))
