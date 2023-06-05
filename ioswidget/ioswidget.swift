@@ -77,7 +77,7 @@ struct Provider: TimelineProvider {
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
                     if (friend.user.imageURL.isEmpty) {
-                        imageArray.append(UIImage(systemName: "person.fill")!)
+                        imageArray.append(UIImage(systemName: "person.png")!)
                     } else {
                         imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
                     }
