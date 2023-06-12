@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 import KeychainAccess
+import SDWebImage
 //import Kingfisher
 //import SwiftKeychainWrapper
 
@@ -31,9 +32,10 @@ struct Provider: TimelineProvider {
     }
     
     func friendsFromApp() async -> ([Friend],[UIImage]){
+        SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         let lastUpdated = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.integer(forKey: "lastSavedTime")
         print(lastUpdated.distance(to: Int(CACurrentMediaTime())))
-        if (lastUpdated.distance(to: Int(CACurrentMediaTime())) > 600) {
+        if (lastUpdated.distance(to: Int(CACurrentMediaTime())) > 300) {
             // query online
             return await GetFriends()
         }
@@ -48,10 +50,14 @@ struct Provider: TimelineProvider {
                     if (friend.user.imageURL.isEmpty) {
                         imageArray.append(UIImage(named: "person.png")!)
                     } else {
-                        //imageArray.append(UIImage(named: "person.png")!)
-                        //imageArray.append(UIImage(systemName: "person", withConfiguration: UIImage.SymbolConfiguration(paletteColors: [.white, .magenta]))!)
-                        //imageArray.append(UIImage(systemName: "person")!.withTintColor(.green))
-                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                        let key = SDWebImageManager.shared.cacheKey(for: URL(string: friend.user.imageURL))
+                        if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
+                            imageArray.append(image)
+                        }
+                        else {
+                            imageArray.append(UIImage(named: "person.png")!)
+                        }
+                        //imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
                     }
                 }
                 return (friendArray,imageArray)

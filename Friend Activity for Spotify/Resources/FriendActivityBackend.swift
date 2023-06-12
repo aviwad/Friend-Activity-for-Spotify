@@ -12,6 +12,7 @@ import WidgetKit
 import KeychainAccess
 import WebKit
 import os
+import SDWebImage
 
 @MainActor final class FriendActivityBackend: ObservableObject{
     private static let logger = Logger(
@@ -29,6 +30,7 @@ import os
     @Published var loggedOut: Bool = false
     @Published var errorMessage: String = ""
     init() {
+        SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         FriendActivityBackend.logger.debug(" friendactivitybackend initialized")
         monitor.start(queue: DispatchQueue.main)
         monitor.pathUpdateHandler = { path in
