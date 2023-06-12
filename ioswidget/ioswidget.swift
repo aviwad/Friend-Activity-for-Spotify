@@ -217,8 +217,23 @@ struct iosWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             iosWidgetEntryView(entry: entry)
         }
+        .contentMarginsDisabledIfAvailable()
         .supportedFamilies([.systemMedium,.systemLarge])
         .configurationDisplayName("Friend Activity")
         .description("See what your friends are listening to at a glance.")
+    }
+}
+extension WidgetConfiguration
+{
+    func contentMarginsDisabledIfAvailable() -> some WidgetConfiguration
+    {
+        if #available(iOSApplicationExtension 17.0, *)
+        {
+            return self.contentMarginsDisabled()
+        }
+        else
+        {
+            return self
+        }
     }
 }
