@@ -55,6 +55,7 @@ struct MediumView: View {
             .containerBackground(for: .widget) {
                 Color("WidgetBackground")
             }
+            .transition(.push(from: .bottom))
         } else {
             ZStack {
                 Color("WidgetBackground")

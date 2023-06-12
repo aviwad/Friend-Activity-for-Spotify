@@ -57,6 +57,7 @@ struct LargeView: View {
                 .containerBackground(for: .widget) {
                     Color("WidgetBackground")
                 }
+                .transition(.push(from: .bottom))
         } else {
             // Fallback on earlier versions
             ZStack {
