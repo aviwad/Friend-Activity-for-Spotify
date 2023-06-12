@@ -46,8 +46,8 @@ struct LargeView: View {
                     }
                         .frame(maxHeight: .infinity)
                 }
-                ForEach(0..<entry.friends.0.count, id: \.self){ friend in
-                    LargeViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
+                ForEach(Array(entry.friends.0.enumerated()), id: \.element.id) { index, friend in
+                    LargeViewRow(friend: friend, image: entry.friends.1[index])
                         .foregroundColor(Color("WhiteColor"))
                         .frame(maxHeight: .infinity)
                 }

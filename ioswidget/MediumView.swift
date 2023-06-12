@@ -12,8 +12,7 @@ struct MediumView: View {
     @Environment(\.displayScale) var displayScale
     
     var body: some View {
-        ZStack {
-            Color("WidgetBackground")
+        if #available(iOSApplicationExtension 17.0, *) {
             VStack (spacing: 0){
                 VStack (spacing: 0) {
                     HStack() {
@@ -21,24 +20,17 @@ struct MediumView: View {
                             .foregroundColor(Color("WhiteColor"))
                             .font(.system(size: 12))
                         Text("Friend Activity for Spotify")
-                            //.minimumScaleFactor(0.8)
                             .font(.bold(.system(size: 12))())
                             .foregroundColor(Color("WhiteColor"))
-                            //.fontWeight(.bold)
                         Spacer()
                     }
-                    //TODO.padding(.top, 5)
                     .padding(.vertical, 7)
                     .padding(.horizontal, 20)
                     .background(Color("HeaderColor"))
                     .clipped()
-                    //Divider()
                 }
                 .frame(maxWidth: .infinity, // Full Screen Width
-                            //maxHeight: .infinity, // Full Screen Height
                             alignment: .topLeading) // Align To top
-               // .border(.blue)
-                //.frame(alignment: .topLeading)
                 if (entry.friends.0.isEmpty) {
                     VStack (spacing: 10) {
                         Image(systemName: "person.fill.xmark")
@@ -50,40 +42,70 @@ struct MediumView: View {
                     }
                         .frame(maxHeight: .infinity)
                 }
-                //Spacer()
-                if (entry.friends.0.count > 1) {
-                    ForEach(0..<2, id: \.self){ friend in
-                        MediumViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
-                            .foregroundColor(Color("WhiteColor"))
-                            .frame(maxHeight: .infinity)
-                           // .border(.red)
-                        //Divider()
-                          //  .padding(0)
-                    }
-                    //TODO.frame(alignment: .center)
-                    .padding(.horizontal, 16)
-                }
                 else {
-                    ForEach(0..<entry.friends.0.count, id: \.self){ friend in
-                        MediumViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
+                    ForEach(Array(entry.friends.0.prefix(2).enumerated()), id: \.element.id) { index, friend in  //0..<entry.friends.0.count){ friend in
+                        MediumViewRow(friend: friend, image: entry.friends.1[index])
                             .foregroundColor(Color("WhiteColor"))
                             .frame(maxHeight: .infinity)
-                           // .border(.red)
-                        //Divider()
-                          //  .padding(0)
                     }
-                    //TODO.frame(alignment: .center)
                     .padding(.horizontal, 16)
                 }
-                //LargeViewRow(friend: entry.friends[entry.friends.count])
-                //.padding(.vertical,7)
-                //Spacer()
-                //Spacer()
             }
-            //.padding(.horizontal,20)
+            .environment(\.sizeCategory, .large)
+            .containerBackground(for: .widget) {
+                Color("WidgetBackground")
+            }
+        } else {
+            ZStack {
+                Color("WidgetBackground")
+                VStack (spacing: 0){
+                    VStack (spacing: 0) {
+                        HStack() {
+                            Image(systemName: "person.3")
+                                .foregroundColor(Color("WhiteColor"))
+                                .font(.system(size: 12))
+                            Text("Friend Activity for Spotify")
+                                .font(.bold(.system(size: 12))())
+                                .foregroundColor(Color("WhiteColor"))
+                            Spacer()
+                        }
+                        .padding(.vertical, 7)
+                        .padding(.horizontal, 20)
+                        .background(Color("HeaderColor"))
+                        .clipped()
+                    }
+                    .frame(maxWidth: .infinity, // Full Screen Width
+                                alignment: .topLeading) // Align To top
+                    if (entry.friends.0.isEmpty) {
+                        VStack (spacing: 10) {
+                            Image(systemName: "person.fill.xmark")
+                                .font(.system(size: 40))
+                                .foregroundColor(Color("WhiteColor"))
+                            Text("No friends available")
+                                .font(.bold(.system(size: 20))())
+                                .foregroundColor(Color("WhiteColor"))
+                        }
+                            .frame(maxHeight: .infinity)
+                    }
+                    if (entry.friends.0.count > 1) {
+                        ForEach(0..<2, id: \.self){ friend in
+                            MediumViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
+                                .foregroundColor(Color("WhiteColor"))
+                                .frame(maxHeight: .infinity)
+                        }
+                        .padding(.horizontal, 16)
+                    }
+                    else {
+                        ForEach(0..<entry.friends.0.count, id: \.self){ friend in
+                            MediumViewRow(friend: entry.friends.0[friend], image: entry.friends.1[friend])
+                                .foregroundColor(Color("WhiteColor"))
+                                .frame(maxHeight: .infinity)
+                        }
+                        .padding(.horizontal, 16)
+                    }
+                }
+            }
+            .environment(\.sizeCategory, .large)
         }
-
-        .environment(\.sizeCategory, .large)
-        //Text(entry.friends[0].track.name)
     }
 }
