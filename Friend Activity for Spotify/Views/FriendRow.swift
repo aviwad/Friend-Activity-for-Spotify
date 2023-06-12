@@ -54,7 +54,7 @@ struct FriendRow: View {
                                 .clipShape(Circle())
                         } else{
                             WebImage(url: URL(string: friend.user.imageURL)) //{
-                                .placeholder(Image(systemName: "person").resizable())
+                                .placeholder(Image(systemName: "person.fill").resizable())
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 50, height: 50, alignment: .center)
