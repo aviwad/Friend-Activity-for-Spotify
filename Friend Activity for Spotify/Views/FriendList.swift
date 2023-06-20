@@ -162,9 +162,6 @@ struct FriendRowList: View {
                                 }
                             }
                         }
-                        .onChange(of: viewModel.friendArray?.count) { change in
-                            WidgetCenter.shared.reloadAllTimelines()
-                        }
                     }
                 }
                 .sheet(isPresented: $viewModel.loggedOut) {

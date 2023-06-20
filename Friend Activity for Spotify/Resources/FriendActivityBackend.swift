@@ -31,6 +31,7 @@ import SDWebImage
     @Published var errorMessage: String = ""
     init() {
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
+        SDImageCache.shared.config.maxDiskAge = -1
         FriendActivityBackend.logger.debug(" friendactivitybackend initialized")
         monitor.start(queue: DispatchQueue.main)
         monitor.pathUpdateHandler = { path in
@@ -200,8 +201,10 @@ import SDWebImage
         catch let error as DecodingError {
             print("decoding error for token. cookie was probably fucked")
             print(error)
-            logout()
-            // LOGOUT
+            errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+            //logout()
+            //DONT LOGOUT
+            // might be the reason im getting logged out on my own sometimes, maybe something to do with requesting a bunch in a moment
         }
         catch let error as URLError {
             print("url error for token. network is down or incorrect url")

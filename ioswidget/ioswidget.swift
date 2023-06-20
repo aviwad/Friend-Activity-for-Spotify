@@ -85,7 +85,14 @@ struct Provider: TimelineProvider {
                     if (friend.user.imageURL.isEmpty) {
                         imageArray.append(UIImage(systemName: "person.png")!)
                     } else {
-                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                        let key = SDWebImageManager.shared.cacheKey(for: URL(string: friend.user.imageURL))
+                        if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
+                            imageArray.append(image)
+                        }
+                        else {
+                            imageArray.append(UIImage(named: "person.png")!)
+                        }
+                        //imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
                     }
                 }
                 return (friendArray,imageArray)
@@ -225,8 +232,8 @@ struct iosWidget: Widget {
         }
         .contentMarginsDisabledIfAvailable()
         .supportedFamilies([.systemMedium,.systemLarge])
-        .configurationDisplayName("Friend Activity")
-        .description("See what your friends are listening to at a glance.")
+        .configurationDisplayName("Spotify Friend Activity")
+        .description("See what your friends are listening to, at a glance.")
     }
 }
 extension WidgetConfiguration
