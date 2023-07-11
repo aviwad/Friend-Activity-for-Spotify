@@ -116,7 +116,6 @@ struct FriendRow: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .transition(.opacity)
                 .foregroundColor(Color.white)
                 .contentShape(Rectangle())
         }
