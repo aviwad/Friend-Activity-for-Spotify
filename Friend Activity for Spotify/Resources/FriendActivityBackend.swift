@@ -29,6 +29,7 @@ import SDWebImage
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
     @Published var errorMessage: String = ""
+    @Published var isLoading: Bool = false
     init() {
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         SDImageCache.shared.config.maxDiskAge = -1
@@ -42,6 +43,7 @@ import SDWebImage
                         if (!self.loggedOut) {
                             withAnimation {
                                 self.networkUp = true
+                                self.isLoading = true
                                 Task {
                                     FriendActivityBackend.logger.debug(" LOGGED getfriendactivitycalled from .satisfied of network up")
                                     await self.actor.getFriends()
@@ -88,6 +90,7 @@ import SDWebImage
                         //FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
                         FriendActivityBackend.shared.tabSelection = 1
                         FriendActivityBackend.shared.loggedOut = false
+                        FriendActivityBackend.shared.isLoading = true
                         Task {
                             FriendActivityBackend.logger.debug(" getfriendactivity called from checkifloggedin")
                             await FriendActivityBackend.shared.actor.getFriends()
@@ -130,10 +133,12 @@ import SDWebImage
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             guard let cookie = keychain["spDcCookie"] else {
                 logout()
+                isLoading = false
                 return
             }
             UserDefaults(suiteName:
                             "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(cookie, forKey: "spDcCookie")
+            isLoading = false
             return
         }
         do {
@@ -218,7 +223,7 @@ import SDWebImage
             errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
             // NOTIFICATION THAT ERROR OCCURRED
         }
-
+        isLoading = false
     }
     
 //    func GetFriendActivity() async {

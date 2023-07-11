@@ -47,6 +47,7 @@ struct FriendRowList: View {
                                         .bold()
                                         .multilineTextAlignment(.center)
                                     Button {
+                                        viewModel.isLoading = true
                                         Task {
                                             await viewModel.actor.getFriends()
                                         }
@@ -170,6 +171,7 @@ struct FriendRowList: View {
             }
             .onReceive(timer) { _ in
                 if (!viewModel.loggedOut) {
+                    viewModel.isLoading = true
                     Task {
                         print("timer works")
                         await viewModel.actor.getFriends()

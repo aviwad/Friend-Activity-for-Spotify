@@ -28,6 +28,11 @@ struct ContentView: View {
                 NavigationView{
                     FriendRowList()
                         .navigationBarTitle("Friend Activity")
+                        .toolbar {
+                            if (viewModel.isLoading) {
+                                ProgressView()
+                            }
+                        }
                 }
                     .navigationViewStyle(StackNavigationViewStyle())
                     .tabItem{
