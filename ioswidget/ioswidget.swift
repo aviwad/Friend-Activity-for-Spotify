@@ -231,23 +231,21 @@ struct iosWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             iosWidgetEntryView(entry: entry)
         }
-        .contentMarginsDisabledIfAvailable()
+        .contentMarginsDisabled()
         .supportedFamilies([.systemMedium,.systemLarge])
         .configurationDisplayName("Spotify Friend Activity")
         .description("See what your friends are listening to, at a glance.")
     }
 }
-extension WidgetConfiguration
-{
-    func contentMarginsDisabledIfAvailable() -> some WidgetConfiguration
-    {
-        if #available(iOSApplicationExtension 17.0, *)
-        {
-            return self.contentMarginsDisabled()
-        }
-        else
-        {
-            return self
+
+extension View {
+    func widgetBackground(backgroundView: some View) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            return containerBackground(for: .widget) {
+                backgroundView
+            }
+        } else {
+            return background(backgroundView)
         }
     }
 }
