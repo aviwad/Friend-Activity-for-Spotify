@@ -9,8 +9,6 @@ import WidgetKit
 import SwiftUI
 import KeychainAccess
 import SDWebImage
-//import Kingfisher
-//import SwiftKeychainWrapper
 
 struct Provider: TimelineProvider {
     var friendArray : [Friend]?
@@ -52,6 +50,9 @@ struct Provider: TimelineProvider {
                     } else {
                         let key = SDWebImageManager.shared.cacheKey(for: URL(string: friend.user.imageURL))
                         if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
+                            imageArray.append(image)
+                        }
+                        else if let image = UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data) {
                             imageArray.append(image)
                         }
                         else {
