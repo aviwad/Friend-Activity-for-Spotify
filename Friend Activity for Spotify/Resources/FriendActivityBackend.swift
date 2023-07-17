@@ -195,7 +195,9 @@ import SDWebImage
             catch let error as URLError {
                 print("urlerror for frienddata. network is down or incorrect URL")
                 print(error)
-                errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+                if error.errorCode != -999 {
+                    errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+                }
             }
             catch {
                 print("error for friend data")
@@ -214,7 +216,9 @@ import SDWebImage
         catch let error as URLError {
             print("url error for token. network is down or incorrect url")
             print(error)
-            errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+            if error.errorCode != -999 {
+                errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+            }
             // NOTIFICATION THAT NETWORK IS DOWN
         }
         catch {
