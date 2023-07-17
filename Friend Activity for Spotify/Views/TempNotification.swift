@@ -10,26 +10,41 @@ import SwiftUI
 struct TempNotification: View {
     @Binding var notificationText: String
     var body: some View {
-        ZStack {
-            Color.red
-                .frame(height: 60)
-                .cornerRadius(20)
-            
-            HStack {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(.white)
-                    .font(.system(size: 24))
-                    .padding(.leading, 16)
+        if (!notificationText.isEmpty) {
+            ZStack {
+                Color.red
+                    .frame(height: 60)
+                    .cornerRadius(20)
                 
-                Text(notificationText)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 8)
-                    .font(.system(size: 16, weight: .medium))
-                    .disabled(true)
-                
-                Spacer()
+                HStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(.white)
+                        .font(.system(size: 24))
+                        .padding(.leading, 16)
+                    
+                    Text(notificationText)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
+                        .font(.system(size: 16, weight: .medium))
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation {
+                            notificationText = ""
+                        }
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                            .foregroundColor(.white)
+                            .font(.system(size: 24))
+                            .padding(.trailing, 16)
+                            .buttonStyle(.bordered)
+                        
+                    })
+                }
             }
+            .padding(.horizontal, 20)
+            .transition(.move(edge: .top))
         }
-        .padding(.horizontal, 20)
     }
 }

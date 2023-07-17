@@ -19,11 +19,9 @@ struct ContentView: View {
     }
     var body: some View {
         ZStack {
-            if (!viewModel.errorMessage.isEmpty) {
-                TempNotification(notificationText: $viewModel.errorMessage)
-                    .frame(maxHeight: .infinity, alignment: .top)
-                    .zIndex(1)
-            }
+            TempNotification(notificationText: $viewModel.errorMessage)
+                .frame(maxHeight: .infinity, alignment: .top)
+                .zIndex(1)
             TabView (selection: $viewModel.tabSelection){
                 NavigationView{
                     FriendRowList()
