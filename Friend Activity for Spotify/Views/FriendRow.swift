@@ -27,47 +27,56 @@ struct FriendRow: View {
     var friend: Friend
     var body: some View {
             Menu {
-                    Link(destination: friend.track.url) {
-                        Label("Play Song", systemImage: "play")
-                    }
-                    Link(destination: friend.user.url) {
-                        Label("View Profile", systemImage: "person")
-                    }
-                    Link(destination: friend.track.artist.url) {
-                        Label("View Artist", systemImage: "music.mic.circle")
-                    }
-                    Link(destination: friend.track.album.url) {
-                        Label("View Album", systemImage: "record.circle")
-                    }
-                    if (friend.track.context.name != friend.track.artist.name && friend.track.context.name != friend.track.album.name) {
-                        Link(destination: friend.track.context.url) {
-                            Label("View Playlist", systemImage: "music.note")
-                        }
+                Link(destination: friend.track.url) {
+                    Label("Play Song", systemImage: "play")
+                }
+                Link(destination: friend.user.url) {
+                    Label("View Profile", systemImage: "person")
+                }
+                Link(destination: friend.track.artist.url) {
+                    Label("View Artist", systemImage: "music.mic.circle")
+                }
+                Link(destination: friend.track.album.url) {
+                    Label("View Album", systemImage: "record.circle")
+                }
+                if (friend.track.context.name != friend.track.artist.name && friend.track.context.name != friend.track.album.name) {
+                    Link(destination: friend.track.context.url) {
+                        Label("View Playlist", systemImage: "music.note")
                     }
                 }
+            
+                #if DEBUG
+                if let userImage = friend.user.imageURL {
+                    Link(destination: userImage) {
+                        Label("View User Image", systemImage: "person.circle.fill")
+                    }
+                }
+                if let albumArt = friend.track.imageURL {
+                    Link(destination: albumArt) {
+                        Label("View Album Art", systemImage: "play.square")
+                    }
+                }
+                #endif
+            }
             label: {
                 HStack {
                     ZStack {
-                        if (friend.user.imageURL.isEmpty) {
-                            Image(systemName: "person.fill")
-                                .frame(width: 50, height: 50)
-                                .clipShape(Circle())
-                        } else{
-                            WebImage(url: URL(string: friend.user.imageURL)) //{
-                                .placeholder(Image(systemName: "person.fill").resizable())
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 50, height: 50, alignment: .center)
-                                .clipShape(Circle())
-                            if (friend.humanTimestamp.nowOrNot){
-                                Circle()
-                                    .frame(width: 11, height: 11)
-                                    .foregroundColor(Color.blue)
-                                    .offset(x: 16, y: -16)
+                        WebImage(url: friend.user.imageURL) //{
+                            .placeholder {
+                                Image(systemName: "person.fill")
                             }
-                                
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50, alignment: .center)
+                            .animation(.default, value: friend.user.imageURL)
+                            .transition(.fade)
+                            .clipShape(Circle())
+                        if (friend.humanTimestamp.nowOrNot){
+                            Circle()
+                                .frame(width: 11, height: 11)
+                                .foregroundColor(Color.blue)
+                                .offset(x: 16, y: -16)
                         }
-                        
                     }
                     
                     VStack(alignment: .leading, spacing: 3) {
@@ -107,10 +116,12 @@ struct FriendRow: View {
                                 }
                             }
                             Spacer()
-                            WebImage(url: URL(string: friend.track.imageURL)) //{
+                            WebImage(url: friend.track.imageURL) //{
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 30, height: 30, alignment: .trailing)
+                                .animation(.default)
+                                .transition(.fade)
                         }
                     }
                     Spacer()

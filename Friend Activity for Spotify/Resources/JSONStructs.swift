@@ -7,27 +7,12 @@
 
 import Foundation
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
-
 // access token json
 struct accessTokenJSON: Codable {
     let accessToken: String
     let isAnonymous: Bool
 }
 
-// getfriendactivity: error struct
-
-/*struct ErrorContainer: Codable {
-    let error: [Error]
-}
-
-struct Error: Codable {
-    let status: Int
-    let message: String
-}*/
 
 // MARK: - Welcome
 struct Welcome: Codable {
@@ -41,15 +26,12 @@ struct Friend: Codable, Identifiable {
     let user: User
     let track: Track
     let id : String
-    //let id = self.user
-    
 
-    
     struct Track: Codable, Identifiable {
         let id: String
         let uri, name: String
         let url: URL
-        let imageURL: String
+        let imageURL: URL?
         let album, artist: Album
         let context: Context
 
@@ -65,25 +47,18 @@ struct Friend: Codable, Identifiable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
             self.name = try container.decode(String.self, forKey: .name)
-            if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
-                self.imageURL = "https" + imageUrl.dropFirst(4)
-              }
-            else {
-                self.imageURL = ""
-            }
+            self.imageURL = try {
+                if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
+                    return URL(string: "https" + imageUrl.dropFirst(4))
+                }
+                return nil
+            }()
             self.album = try container.decode(Friend.Album.self, forKey: .album)
             self.artist = try container.decode(Friend.Album.self, forKey: .artist)
             self.context = try container.decode(Friend.Context.self, forKey: .context)
             self.url = getSpotifyUrl(initialUrl: self.uri)
             self.id = self.uri
         }
-        
-        
-        /*enum CodingKeys: String, CodingKey {
-            case uri, name
-            case imageURL = "imageUrl"
-            case album, artist, context
-        }*/
     }
     
     struct Album: Codable, Identifiable {
@@ -94,7 +69,6 @@ struct Friend: Codable, Identifiable {
         
         private enum CodingKeys: String, CodingKey {
             case uri, name
-            // case url
         }
         
         init(from decoder: Decoder) throws {
@@ -111,12 +85,10 @@ struct Friend: Codable, Identifiable {
         let index: Int
         let url: URL
         let id: String
-        //var url: URL {getSpotifyUrl(initialUrl: uri)}
         
         private enum CodingKeys: String, CodingKey {
             case uri, name
             case index
-            // case url
         }
         
         init(from decoder: Decoder) throws {
@@ -130,10 +102,9 @@ struct Friend: Codable, Identifiable {
     }
     struct User: Codable, Identifiable {
         let uri, name: String
-        let imageURL: String
+        let imageURL: URL?
         let url: URL
         let id: String
-        //var url: URL {getSpotifyUserUrl(initialUrl: uri)}
 
         private enum CodingKeys: String, CodingKey {
             case uri,name
@@ -145,13 +116,12 @@ struct Friend: Codable, Identifiable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
             self.name = try container.decode(String.self, forKey: .name)
-            if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
-                  self.imageURL = imageUrl
-              }
-            else {
-                self.imageURL = ""
-            }
-            //self.imageURL = try container.decode(String.self, forKey: .imageURL)
+            self.imageURL = try {
+                if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
+                    return URL(string: imageUrl)
+                }
+                return nil
+            }()
             self.url = getSpotifyUserUrl(initialUrl: self.uri)
             self.id = self.uri
         }

@@ -45,20 +45,15 @@ struct Provider: TimelineProvider {
                 let friendArray = Array(friendArray2.prefix(4))
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
-                    if (friend.user.imageURL.isEmpty) {
+                    let key = SDWebImageManager.shared.cacheKey(for: friend.user.imageURL)
+                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
+                        imageArray.append(image)
+                    }
+//                    else if let userImage = friend.user.imageURL, let image = UIImage(data: try! Data.ReferenceType(contentsOf: userImage as Data) {
+//                        imageArray.append(image)
+//                    }
+                    else {
                         imageArray.append(UIImage(named: "person.png")!)
-                    } else {
-                        let key = SDWebImageManager.shared.cacheKey(for: URL(string: friend.user.imageURL))
-                        if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
-                            imageArray.append(image)
-                        }
-                        else if let image = UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data) {
-                            imageArray.append(image)
-                        }
-                        else {
-                            imageArray.append(UIImage(named: "person.png")!)
-                        }
-                        //imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
                     }
                 }
                 return (friendArray,imageArray)
@@ -83,17 +78,12 @@ struct Provider: TimelineProvider {
                 let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
-                    if (friend.user.imageURL.isEmpty) {
-                        imageArray.append(UIImage(systemName: "person.png")!)
-                    } else {
-                        let key = SDWebImageManager.shared.cacheKey(for: URL(string: friend.user.imageURL))
-                        if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
-                            imageArray.append(image)
-                        }
-                        else {
-                            imageArray.append(UIImage(named: "person.png")!)
-                        }
-                        //imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                    let key = SDWebImageManager.shared.cacheKey(for: friend.user.imageURL)
+                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
+                        imageArray.append(image)
+                    }
+                    else {
+                        imageArray.append(UIImage(named: "person.png")!)
                     }
                 }
                 return (friendArray,imageArray)
