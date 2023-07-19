@@ -27,7 +27,7 @@ struct loginSheet: View {
                 //Image("Icon")
                   //  .cornerRadius(10)
                     //.padding(.bottom,50)
-                Text("Welcome to Friends (for Spotify™)")
+                Text("Welcome to Friends (for Spotify)")
                     .font(.custom("montserrat", size: 27))
                     //.font(.system(size: 30))
                     .multilineTextAlignment(.center)
@@ -76,8 +76,6 @@ struct loginSheet: View {
                         .font(.custom("montserrat", size: 16))
                     Text("https://www.github.com/aviwad")
                         .font(.custom("montserrat", size: 16))
-                    Text("Icon design by Aadi Khurana")
-                        .font(.custom("montserrat", size: 15))
                 }
                 .padding(.vertical)
             }
