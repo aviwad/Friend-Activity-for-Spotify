@@ -8,10 +8,12 @@
 import WidgetKit
 import SwiftUI
 import KeychainAccess
+import Intents
 import SDWebImage
 
-struct Provider: TimelineProvider {
+struct Provider: IntentTimelineProvider {
     var friendArray : [Friend]?
+    
     func fetch<T: Decodable>(urlString: String, httpValue: String, httpField: String, getOrPost: GetOrPost) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
@@ -29,45 +31,53 @@ struct Provider: TimelineProvider {
         return json
     }
     
-    func friendsFromApp() async -> ([Friend],[UIImage]){
+    private func entryFromFriends(friends: [Friend], config: SelectFriendsConfigIntent) -> ([Friend],[UIImage],Bool) {
+        let friendArray = {
+            if let selectedFriends = config.friends, config.showAll?.boolValue == false {
+                return friends.filter { friend in
+                    selectedFriends.contains { configFriend in
+                        configFriend.identifier == friend.id
+                    }
+                }
+            }
+            return Array(friends.prefix(4))
+        }()
+        var imageArray : [UIImage] = []
+        for friend in friendArray {
+            let key = SDWebImageManager.shared.cacheKey(for: friend.user.imageURL)
+            if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
+                imageArray.append(image)
+            }
+//                    else if let userImage = friend.user.imageURL, let image = UIImage(data: try! Data.ReferenceType(contentsOf: userImage as Data) {
+//                        imageArray.append(image)
+//                    }
+            else {
+                imageArray.append(UIImage(named: "person.png")!)
+            }
+        }
+        return (friendArray,imageArray, config.showAll?.boolValue == false)
+    }
+    
+    func friendsFromApp(_ configuration: SelectFriendsConfigIntent) async -> ([Friend],[UIImage],Bool){
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         let lastUpdated = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.integer(forKey: "lastSavedTime")
         print(lastUpdated.distance(to: Int(CACurrentMediaTime())))
         if (lastUpdated.distance(to: Int(CACurrentMediaTime())) > 300) {
             // query online
-            return await GetFriends()
+            return await GetFriends(configuration)
         }
         let encodedData  = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.object(forKey: "friendArray") as? Data
         /* Decoding it using JSONDecoder*/
-        if let friendEncoded = encodedData {
-             let friendDecoded = try? JSONDecoder().decode([Friend].self, from: friendEncoded)
-            if let friendArray2 = friendDecoded{
-                let friendArray = Array(friendArray2.prefix(4))
-                var imageArray : [UIImage] = []
-                for friend in friendArray {
-                    let key = SDWebImageManager.shared.cacheKey(for: friend.user.imageURL)
-                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
-                        imageArray.append(image)
-                    }
-//                    else if let userImage = friend.user.imageURL, let image = UIImage(data: try! Data.ReferenceType(contentsOf: userImage as Data) {
-//                        imageArray.append(image)
-//                    }
-                    else {
-                        imageArray.append(UIImage(named: "person.png")!)
-                    }
-                }
-                return (friendArray,imageArray)
-                // You successfully retrieved your car object!
-            }
+        if let friendEncoded = encodedData, let friendDecoded = try? JSONDecoder().decode([Friend].self, from: friendEncoded) {
+            return entryFromFriends(friends: friendDecoded, config: configuration)
         }
-        return ([],[])
+        return ([],[],false)
     }
     
-    func GetFriends() async -> ([Friend],[UIImage]){
-        //guard let cookie = keychain["spDcCookie"] else {
+    func GetFriends(_ configuration: SelectFriendsConfigIntent) async -> ([Friend],[UIImage],Bool){
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             // error
-            return ([],[])
+            return ([],[],false)
         }
         do {
             let accessTokenJson: accessTokenJSON = try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(cookie)", httpField: "Cookie", getOrPost: .get)
@@ -75,130 +85,46 @@ struct Provider: TimelineProvider {
             do {
                 print("access token ")
                 let friendArrayInitial: Welcome = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .get)
-                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
-                var imageArray : [UIImage] = []
-                for friend in friendArray {
-                    let key = SDWebImageManager.shared.cacheKey(for: friend.user.imageURL)
-                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
-                        imageArray.append(image)
-                    }
-                    else {
-                        imageArray.append(UIImage(named: "person.png")!)
-                    }
-                }
-                return (friendArray,imageArray)
-//                    UserDefaults(suiteName:
-//                                    "group.aviwad.Friend-Activity-for-Spotify")!.set(friendArray!, forKey: "friendArray")
-//                    WidgetCenter.shared.reloadAllTimelines()
-                //}
-                // CONTINUE
+                return entryFromFriends(friends: friendArrayInitial.friends, config: configuration)
             }
             catch {
-                return ([],[])
+                return ([],[],false)
             }
         }
         catch {
             print("error for token")
             print(error)
-            return ([],[])
+            return ([],[],false)
             // NOTIFICATION THAT ERROR OCCURRED
         }
 
     }
     
-
-//    func GetFriendActivityWidget() async -> ([Friend],[UIImage], String?) {
-//        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-//            .accessibility(.afterFirstUnlock)
-//        let accessToken = try? keychain.get("accessToken")
-//        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
-//        if (accessToken != nil) {
-//            let friendArrayInitial: Welcome
-//            do {
-//                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-//                 print("testing123: friendarrayinitial")
-//                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
-//                var imageArray : [UIImage] = []
-//                for friend in friendArray {
-//                    if (friend.user.imageURL.isEmpty) {
-//                        imageArray.append(UIImage(systemName: "person.fill")!)
-//                    } else {
-//                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
-//                    }
-//                }
-//                return (friendArray,imageArray,nil)
-//                 //youHaveNoFriends = false
-//
-//                 //WidgetCenter.shared.reloadAllTimelines()
-//            }
-//            catch {
-//                return await GetFriendActivityWidgetWithNewToken()
-//                //print(error)
-//                //return ([],[],error.localizedDescription)
-//            }
-//        }
-//        return ([],[],nil)
-//    }
-
-//    func GetFriendActivityWidgetWithNewToken() async -> ([Friend],[UIImage],String?) {
-//        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-//            .accessibility(.afterFirstUnlock)
-//        //let accessToken = try? keychain.get("accessToken")
-//        let spDcCookie = try? keychain.get("spDcCookie")
-//        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
-//        if (spDcCookie != nil) {
-//            let friendArrayInitial: Welcome
-//            do {
-//                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-//                keychain["accessToken"] = accessToken.accessToken
-//                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization")
-//                 print("testing123: friendarrayinitial")
-//                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
-//                var imageArray : [UIImage] = []
-//                for friend in friendArray {
-//                    if (friend.user.imageURL.isEmpty) {
-//                        imageArray.append(UIImage(systemName: "person.fill")!)
-//                    } else {
-//                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
-//                    }
-//                }
-//                return (friendArray,imageArray,nil)
-//                 //youHaveNoFriends = false
-//
-//                 //WidgetCenter.shared.reloadAllTimelines()
-//            }
-//            catch {
-//                print(error)
-//                return ([],[],error.localizedDescription)
-//            }
-//        }
-//        return ([],[],nil)
-//    }
-    
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), friends: ([],[UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!]))
+        return SimpleEntry(date: Date(), friends: ([],[],false))
     }
-
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    
+    func getSnapshot(for configuration: SelectFriendsConfigIntent, in context: Context, completion: @escaping (SimpleEntry) -> Void) {
         Task {
-            let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp())
+            let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp(configuration))
             completion(entry)
         }
     }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    
+    func getTimeline(for configuration: SelectFriendsConfigIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         Task {
-            let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp())
+            let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp(configuration))
             let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
             let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
             completion(timeline)
         }
     }
+
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let friends: ([Friend],[UIImage])
+    let friends: ([Friend],[UIImage],Bool)
 }
 
 struct iosWidgetEntryView : View {
@@ -218,7 +144,7 @@ struct iosWidget: Widget {
     let kind: String = "iosWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: SelectFriendsConfigIntent.self, provider: Provider()) { entry in
             iosWidgetEntryView(entry: entry)
         }
         .contentMarginsDisabled()

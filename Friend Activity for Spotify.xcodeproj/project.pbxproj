@@ -25,9 +25,7 @@
 		8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90CC2857AB5F003708F1 /* FriendActivityBackend.swift */; };
 		8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90CE2857AB6D003708F1 /* GetTime.swift */; };
 		8F3F90D12857AB76003708F1 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
-		8F3F90D32857AB85003708F1 /* GlobalUrlOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D22857AB85003708F1 /* GlobalUrlOpener.swift */; };
 		8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */; };
-		8F3F90DB2857AD21003708F1 /* TextLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90DA2857AD21003708F1 /* TextLink.swift */; };
 		8F3F90E32857B3D5003708F1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3F90E22857B3D5003708F1 /* WidgetKit.framework */; };
 		8F3F90E52857B3D5003708F1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3F90E42857B3D5003708F1 /* SwiftUI.framework */; };
 		8F3F90E82857B3D5003708F1 /* ioswidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90E72857B3D5003708F1 /* ioswidget.swift */; };
@@ -41,11 +39,21 @@
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
 		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
 		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
+		8F7A39222A68F9C8009E4049 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7A39212A68F9C8009E4049 /* SDWebImageSwiftUI */; };
+		8F7A39232A690BB4009E4049 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
+		8F7B24772A68659A004B56C9 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
+		8F7B247E2A686613004B56C9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7B247D2A686613004B56C9 /* Intents.framework */; };
+		8F7B24812A686613004B56C9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24802A686613004B56C9 /* IntentHandler.swift */; };
+		8F7B24852A686613004B56C9 /* ioswidgetintent.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8F7B247C2A686613004B56C9 /* ioswidgetintent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8FAC2F972A37B32D00AE1D9F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8FAC2F962A37B32D00AE1D9F /* SDWebImageSwiftUI */; };
+		8FAD66122A686AE5008265FE /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
+		8FAD66132A686AE7008265FE /* GetSpotifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */; };
+		8FAD66142A6870ED008265FE /* GetTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90CE2857AB6D003708F1 /* GetTime.swift */; };
 		8FB5BADB2891A1E100E5AB76 /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BAD92891A1D200E5AB76 /* MediumView.swift */; };
 		8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */; };
 		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
 		8FBFE09728892D8C00476ECA /* FriendRowPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */; };
+		8FCA552E2A6866C20038133A /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +64,13 @@
 			remoteGlobalIDString = 8F3F90DF2857B3D5003708F1;
 			remoteInfo = ioswidgetExtension;
 		};
+		8F7B24832A686613004B56C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F3F90AB2857AA70003708F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F7B247B2A686613004B56C9;
+			remoteInfo = ioswidgetintent;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +80,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				8F7B24852A686613004B56C9 /* ioswidgetintent.appex in Embed Foundation Extensions */,
 				8F3F90EE2857B3D7003708F1 /* ioswidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -97,10 +113,8 @@
 		8F3F90CC2857AB5F003708F1 /* FriendActivityBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendActivityBackend.swift; sourceTree = "<group>"; };
 		8F3F90CE2857AB6D003708F1 /* GetTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTime.swift; sourceTree = "<group>"; };
 		8F3F90D02857AB76003708F1 /* JSONStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructs.swift; sourceTree = "<group>"; };
-		8F3F90D22857AB85003708F1 /* GlobalUrlOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalUrlOpener.swift; sourceTree = "<group>"; };
 		8F3F90D42857ABB0003708F1 /* Friend-Activity-for-Spotify-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Friend-Activity-for-Spotify-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSpotifyUrl.swift; sourceTree = "<group>"; };
-		8F3F90DA2857AD21003708F1 /* TextLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLink.swift; sourceTree = "<group>"; };
 		8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ioswidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3F90E22857B3D5003708F1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8F3F90E42857B3D5003708F1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -110,6 +124,12 @@
 		8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewRow.swift; sourceTree = "<group>"; };
 		8F3F90F52857B403003708F1 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
 		8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginSheet.swift; sourceTree = "<group>"; };
+		8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = iosWidgetContfiguration.intentdefinition; sourceTree = "<group>"; };
+		8F7B247C2A686613004B56C9 /* ioswidgetintent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ioswidgetintent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F7B247D2A686613004B56C9 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		8F7B24802A686613004B56C9 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		8F7B24822A686613004B56C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FAD660F2A686796008265FE /* ioswidgetintent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetintent.entitlements; sourceTree = "<group>"; };
 		8FB5BAD92891A1D200E5AB76 /* MediumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumView.swift; sourceTree = "<group>"; };
 		8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumViewRow.swift; sourceTree = "<group>"; };
 		8FB5CE18289EFA01006B7286 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -139,6 +159,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8F7B24792A686613004B56C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F7A39222A68F9C8009E4049 /* SDWebImageSwiftUI in Frameworks */,
+				8F7B247E2A686613004B56C9 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -164,6 +193,7 @@
 				8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */,
 				8F3F90B52857AA70003708F1 /* Friend Activity for Spotify */,
 				8F3F90E62857B3D5003708F1 /* ioswidget */,
+				8F7B247F2A686613004B56C9 /* ioswidgetintent */,
 				8F3F90E12857B3D5003708F1 /* Frameworks */,
 				8F3F90B42857AA70003708F1 /* Products */,
 			);
@@ -174,6 +204,7 @@
 			children = (
 				8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */,
 				8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */,
+				8F7B247C2A686613004B56C9 /* ioswidgetintent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,7 +243,6 @@
 				8F3F90C82857AB2F003708F1 /* FriendList.swift */,
 				8F3F90CA2857AB47003708F1 /* FriendRow.swift */,
 				8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */,
-				8F3F90DA2857AD21003708F1 /* TextLink.swift */,
 				8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */,
 			);
 			path = Views;
@@ -225,7 +255,6 @@
 				8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */,
 				8F3F90CE2857AB6D003708F1 /* GetTime.swift */,
 				8F3F90D02857AB76003708F1 /* JSONStructs.swift */,
-				8F3F90D22857AB85003708F1 /* GlobalUrlOpener.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -235,6 +264,7 @@
 			children = (
 				8F3F90E22857B3D5003708F1 /* WidgetKit.framework */,
 				8F3F90E42857B3D5003708F1 /* SwiftUI.framework */,
+				8F7B247D2A686613004B56C9 /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,8 +280,19 @@
 				8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */,
 				8F3F90E92857B3D7003708F1 /* Assets.xcassets */,
 				8F3F90EB2857B3D7003708F1 /* Info.plist */,
+				8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */,
 			);
 			path = ioswidget;
+			sourceTree = "<group>";
+		};
+		8F7B247F2A686613004B56C9 /* ioswidgetintent */ = {
+			isa = PBXGroup;
+			children = (
+				8FAD660F2A686796008265FE /* ioswidgetintent.entitlements */,
+				8F7B24802A686613004B56C9 /* IntentHandler.swift */,
+				8F7B24822A686613004B56C9 /* Info.plist */,
+			);
+			path = ioswidgetintent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +311,7 @@
 			);
 			dependencies = (
 				8F3F90ED2857B3D7003708F1 /* PBXTargetDependency */,
+				8F7B24842A686613004B56C9 /* PBXTargetDependency */,
 			);
 			name = "Friend Activity for Spotify";
 			packageProductDependencies = (
@@ -302,6 +344,26 @@
 			productReference = 8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		8F7B247B2A686613004B56C9 /* ioswidgetintent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F7B24862A686613004B56C9 /* Build configuration list for PBXNativeTarget "ioswidgetintent" */;
+			buildPhases = (
+				8F7B24782A686613004B56C9 /* Sources */,
+				8F7B24792A686613004B56C9 /* Frameworks */,
+				8F7B247A2A686613004B56C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ioswidgetintent;
+			packageProductDependencies = (
+				8F7A39212A68F9C8009E4049 /* SDWebImageSwiftUI */,
+			);
+			productName = ioswidgetintent;
+			productReference = 8F7B247C2A686613004B56C9 /* ioswidgetintent.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -309,7 +371,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					8F3F90B22857AA70003708F1 = {
@@ -317,6 +379,9 @@
 					};
 					8F3F90DF2857B3D5003708F1 = {
 						CreatedOnToolsVersion = 13.3.1;
+					};
+					8F7B247B2A686613004B56C9 = {
+						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
@@ -349,6 +414,7 @@
 			targets = (
 				8F3F90B22857AA70003708F1 /* Friend Activity for Spotify */,
 				8F3F90DF2857B3D5003708F1 /* ioswidgetExtension */,
+				8F7B247B2A686613004B56C9 /* ioswidgetintent */,
 			);
 		};
 /* End PBXProject section */
@@ -376,6 +442,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8F7B247A2A686613004B56C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -387,13 +460,12 @@
 				8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */,
 				8F3F90CB2857AB47003708F1 /* FriendRow.swift in Sources */,
 				8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */,
+				8F7A39232A690BB4009E4049 /* iosWidgetContfiguration.intentdefinition in Sources */,
 				8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */,
 				8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */,
 				8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */,
 				8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */,
-				8F3F90D32857AB85003708F1 /* GlobalUrlOpener.swift in Sources */,
 				8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */,
-				8F3F90DB2857AD21003708F1 /* TextLink.swift in Sources */,
 				8F0F0BDF2A23BE4F00B97DA4 /* TempNotification.swift in Sources */,
 				8F3F90D12857AB76003708F1 /* JSONStructs.swift in Sources */,
 				8F3F90C92857AB2F003708F1 /* FriendList.swift in Sources */,
@@ -407,12 +479,25 @@
 			files = (
 				8F3F90F82857B41E003708F1 /* GetSpotifyUrl.swift in Sources */,
 				8F3F90E82857B3D5003708F1 /* ioswidget.swift in Sources */,
+				8F7B24772A68659A004B56C9 /* iosWidgetContfiguration.intentdefinition in Sources */,
 				8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */,
 				8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */,
 				8F3F90F92857B420003708F1 /* GetTime.swift in Sources */,
 				8FB5BADB2891A1E100E5AB76 /* MediumView.swift in Sources */,
 				8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */,
 				8F3F90FA2857B423003708F1 /* JSONStructs.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F7B24782A686613004B56C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCA552E2A6866C20038133A /* iosWidgetContfiguration.intentdefinition in Sources */,
+				8FAD66122A686AE5008265FE /* JSONStructs.swift in Sources */,
+				8FAD66142A6870ED008265FE /* GetTime.swift in Sources */,
+				8F7B24812A686613004B56C9 /* IntentHandler.swift in Sources */,
+				8FAD66132A686AE7008265FE /* GetSpotifyUrl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +508,11 @@
 			isa = PBXTargetDependency;
 			target = 8F3F90DF2857B3D5003708F1 /* ioswidgetExtension */;
 			targetProxy = 8F3F90EC2857B3D7003708F1 /* PBXContainerItemProxy */;
+		};
+		8F7B24842A686613004B56C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F7B247B2A686613004B56C9 /* ioswidgetintent */;
+			targetProxy = 8F7B24832A686613004B56C9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -690,6 +780,69 @@
 			};
 			name = Release;
 		};
+		8F7B24872A686613004B56C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = ioswidgetintent/ioswidgetintent.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 38TP6LZLJ5;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ioswidgetintent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ioswidgetintent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "aviwad.Friend-Activity-for-Spotify.ioswidgetintent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F7B24882A686613004B56C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = ioswidgetintent/ioswidgetintent.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 38TP6LZLJ5;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ioswidgetintent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ioswidgetintent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "aviwad.Friend-Activity-for-Spotify.ioswidgetintent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -716,6 +869,15 @@
 			buildConfigurations = (
 				8F3F90F02857B3D7003708F1 /* Debug */,
 				8F3F90F12857B3D7003708F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F7B24862A686613004B56C9 /* Build configuration list for PBXNativeTarget "ioswidgetintent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F7B24872A686613004B56C9 /* Debug */,
+				8F7B24882A686613004B56C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -772,6 +934,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		8F7A39212A68F9C8009E4049 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		8FAC2F962A37B32D00AE1D9F /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

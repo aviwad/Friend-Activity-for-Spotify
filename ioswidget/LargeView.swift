@@ -18,7 +18,7 @@ struct LargeView: View {
                     Image(systemName: "person.3")
                         .foregroundColor(Color("WhiteColor"))
                         .font(.system(size: 15))
-                    Text("Friend Activity for Spotify")
+                    Text(entry.friends.2 ? "Best Friends on Spotify" : "Friend Activity for Spotify")
                         //.minimumScaleFactor(0.8)
                         .font(.bold(.system(size: 15))())
                         .foregroundColor(Color("WhiteColor"))

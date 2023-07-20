@@ -18,7 +18,7 @@ struct MediumView: View {
                     Image(systemName: "person.3")
                         .foregroundColor(Color("WhiteColor"))
                         .font(.system(size: 12))
-                    Text("Friend Activity for Spotify")
+                    Text(entry.friends.2 ? "Best Friends on Spotify" : "Friend Activity for Spotify")
                         .font(.bold(.system(size: 12))())
                         .foregroundColor(Color("WhiteColor"))
                     Spacer()
