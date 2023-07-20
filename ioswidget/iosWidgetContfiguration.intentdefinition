@@ -97,6 +97,10 @@
 						<dict>
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Pick your best friends to view their friend activity on Spotify</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>GmwhRp</string>
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Configuration</string>
 						</dict>
