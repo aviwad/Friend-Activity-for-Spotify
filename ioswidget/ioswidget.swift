@@ -145,7 +145,13 @@ struct iosWidget: Widget {
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: SelectFriendsConfigIntent.self, provider: Provider()) { entry in
-            iosWidgetEntryView(entry: entry)
+            if #available(iOSApplicationExtension 17.0, *) {
+                iosWidgetEntryView(entry: entry)
+                .transition(.push(from: .bottom))
+            } else {
+                iosWidgetEntryView(entry: entry)
+            }
+            
         }
         .contentMarginsDisabled()
         .supportedFamilies([.systemMedium,.systemLarge])
