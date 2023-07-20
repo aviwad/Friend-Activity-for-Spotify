@@ -13,14 +13,15 @@ class IntentHandler: INExtension, SelectFriendsConfigIntentHandling {
         let encodedData  = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.object(forKey: "friendArray") as? Data
         if let friendEncoded = encodedData, let friendDecoded = try? JSONDecoder().decode([Friend].self, from: friendEncoded) {
             let friends = friendDecoded.map { friend in
-                let INimage: INImage = {
+                let image: INImage = {
+                    SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
                     let key = SDWebImageManager.shared.cacheKey(for: friend.user.imageURL)
-                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key)?.pngData() {
+                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key)?.sd_imageData() {
                         return INImage(imageData: image)
                     }
                     return INImage(named: "person.png")
                 }()
-                let configFriend = ConfigFriend(identifier: friend.id, display: friend.user.name, subtitle: nil, image: INimage)
+                let configFriend = ConfigFriend(identifier: friend.id, display: friend.user.name, subtitle: nil, image: image)
                 return configFriend
             }
             let collection = INObjectCollection(items: friends)

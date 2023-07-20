@@ -36,6 +36,7 @@
 		8F3F90FA2857B423003708F1 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
 		8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F52857B403003708F1 /* LargeView.swift */; };
 		8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */; };
+		8F44180F2A69BDF4006CEDEE /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F0BE22A23EB2100B97DA4 /* person.png */; };
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
 		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
 		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
@@ -446,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F44180F2A69BDF4006CEDEE /* person.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
