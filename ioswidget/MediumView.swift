@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MediumView: View {
     var entry: SimpleEntry
-    @Environment(\.displayScale) var displayScale
-    
+
     var body: some View {
         VStack (spacing: 0){
             VStack (spacing: 0) {
@@ -42,7 +41,7 @@ struct MediumView: View {
                     .frame(maxHeight: .infinity)
             }
             else {
-                ForEach(Array(entry.friends.0.prefix(2).enumerated()), id: \.element.id) { index, friend in  //0..<entry.friends.0.count){ friend in
+                ForEach(Array(entry.friends.0.prefix(2).enumerated()), id: \.element.id) { index, friend in
                     MediumViewRow(friend: friend, image: entry.friends.1[index])
                         .foregroundColor(Color("WhiteColor"))
                         .frame(maxHeight: .infinity)
