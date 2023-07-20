@@ -71,7 +71,8 @@ import SDWebImage
         }
         request.setValue(httpValue, forHTTPHeaderField: httpField)
          let (data, _) = try await URLSession.shared.data(for: request)
-        //FriendActivityBackend.logger.debug(" LOGGED \(data.debugDescription)")
+        let jsonText = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments])
+        print(jsonText)
         let json = try JSONDecoder().decode(T.self, from: data)
         return json
     }
@@ -87,7 +88,6 @@ import SDWebImage
                         FriendActivityBackend.logger.debug(" sp_dc cookie was found! the value is \(cookie.value) and loggedout will be set to false")
                         UserDefaults(suiteName:
                                         "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(cookie.value, forKey: "spDcCookie")
-                        //FriendActivityBackend.shared.keychain["spDcCookie"] = cookie.value
                         FriendActivityBackend.shared.tabSelection = 1
                         FriendActivityBackend.shared.loggedOut = false
                         FriendActivityBackend.shared.isLoading = true
@@ -103,7 +103,6 @@ import SDWebImage
     
     func logout() {
         loggedOut = true
-        //keychain["spDcCookie"] = nil
         UserDefaults(suiteName:
                         "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(nil, forKey: "spDcCookie")
         errorNotification(newErrorMessage: "Logged out.")
@@ -129,7 +128,6 @@ import SDWebImage
     }
     
     func GetFriends() async {
-        //guard let cookie = keychain["spDcCookie"] else {
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             guard let cookie = keychain["spDcCookie"] else {
                 logout()
@@ -206,12 +204,21 @@ import SDWebImage
             }
         }
         catch let error as DecodingError {
+            do {
+                let errorWrap: spDcErrorWrapper = try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(cookie)", httpField: "Cookie", getOrPost: .get)
+                
+                if (errorWrap.error.code == 401) {
+                    logout()
+                }
+                else if (errorWrap.error.code == 429) {
+                    errorNotification(newErrorMessage: "Too many requests. Try again later")
+                }
+            }
+            catch {
+                print(error)
+                errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+            }
             print("decoding error for token. cookie was probably fucked")
-            print(error)
-            errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
-            //logout()
-            //DONT LOGOUT
-            // might be the reason im getting logged out on my own sometimes, maybe something to do with requesting a bunch in a moment
         }
         catch let error as URLError {
             print("url error for token. network is down or incorrect url")
@@ -219,88 +226,14 @@ import SDWebImage
             if error.errorCode != -999 {
                 errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
             }
-            // NOTIFICATION THAT NETWORK IS DOWN
         }
         catch {
             print("error for token")
             print(error)
             errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
-            // NOTIFICATION THAT ERROR OCCURRED
         }
         isLoading = false
     }
-    
-//    func GetFriendActivity() async {
-//        FriendActivityBackend.logger.debug("\(self.keychain["spDcCookie"].unsafelyUnwrapped)")
-//        FriendActivityBackend.logger.debug(" in getfriendactivity")
-//            let accessToken = try? keychain.get("accessToken")
-//            if (accessToken != nil) {
-//                FriendActivityBackend.logger.debug(" access token found")
-//                self.loggedOut = false
-//                let friendArrayInitial: Welcome
-//                do {
-//                    FriendActivityBackend.logger.debug(" network is up in friendarrayinitial")
-//                    friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-//                    FriendActivityBackend.logger.debug(" testing123: friendarrayinitial")
-//                    withAnimation(){
-//                        friendArray = friendArrayInitial.friends.reversed()
-//                        WidgetCenter.shared.reloadAllTimelines()
-//                    }
-//                }
-//                catch {
-//                    if(error is URLError) {
-//                        FriendActivityBackend.logger.debug(" logged timed out")
-//                    }
-//                    else {
-//                        FriendActivityBackend.logger.debug(" the accesstoken is \(accessToken.unsafelyUnwrapped)")
-//                        FriendActivityBackend.logger.debug(" error info: \(error.localizedDescription)")
-//                        FriendActivityBackend.logger.debug(" logged out bc of friendarrayinitial error")
-//                        FriendActivityBackend.logger.debug(" removing broken accesstoken from catching the error json")
-//                        keychain["accessToken"] = nil
-//                        FriendActivityBackend.logger.debug(" calling getfriendactivity from catching errorjson")
-//                        await GetFriendActivity()
-//                    }
-//                }
-//            }
-//            else {
-//                FriendActivityBackend.logger.debug(" running getaccesstoken due to else clause in getfriendactivity")
-//                let spDcCookie = keychain["spDcCookie"]
-//                do {
-//                    FriendActivityBackend.logger.debug(" getaccesstoken spdc cookie is \(self.keychain["spDcCookie"].debugDescription)")
-//                    if (spDcCookie != nil) {
-//                        FriendActivityBackend.logger.debug(" getting acccess token")
-//                        let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-//                        keychain["accessToken"] = accessToken.accessToken
-//                        FriendActivityBackend.logger.debug(" accesstoken is \(self.keychain["accessToken"].debugDescription)")
-//                        await GetFriendActivity()
-//                    }
-//                    else {
-//                        // keychain current error will just say spdc is nil, so show previous REAL error
-//                        keychain["spDcCookie"] = nil
-//                        self.loggedOut = false
-//                        self.loggedOut = true
-//                        FriendActivityBackend.logger.debug(" logged out in access token")
-//                        keychain["accessToken"] = nil
-//
-//                    }
-//                }
-//                catch {
-//                    FriendActivityBackend.logger.debug(" error caused \(error.localizedDescription)")
-//                    if (error is URLError) {
-//                        FriendActivityBackend.logger.debug(" just a network error")
-//                    }
-//                    else {
-//                        FriendActivityBackend.logger.debug(" not url error")
-//                        if (networkUp) {
-//                            FriendActivityBackend.logger.debug(" removing broken spdc from errorjson")
-//                            keychain["spDcCookie"] = nil
-//                            self.loggedOut = false
-//                            self.loggedOut = true
-//                        }
-//                    }
-//                }
-//            }
-//    }
 }
 
 actor MyActor {
@@ -313,8 +246,5 @@ actor MyActor {
             running = false
         }
         return
-//        for await result in $latestResult.values {
-//            return result
-//        }
     }
 }

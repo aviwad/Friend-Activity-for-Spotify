@@ -21,7 +21,7 @@ struct Welcome: Codable {
 
 // MARK: - Friend
 struct Friend: Codable, Identifiable {
-    let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool) //{timePlayer(initialTimeStamp: timestamp)}
+    let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool) 
     let timestamp: Int
     let user: User
     let track: Track
@@ -153,6 +153,13 @@ struct TokenError: Codable {
 }
 struct ErrorWrapper: Codable {
     let error: TokenError
+}
+struct spDcErrorWrapper: Codable {
+    let error: spDcTokenError
+}
+struct spDcTokenError: Codable {
+    let code: Int
+    let message: String
 }
 
 enum GetOrPost {

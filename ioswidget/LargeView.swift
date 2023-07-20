@@ -19,10 +19,8 @@ struct LargeView: View {
                         .foregroundColor(Color("WhiteColor"))
                         .font(.system(size: 15))
                     Text(entry.friends.2 ? "Best Friends on Spotify" : "Friend Activity for Spotify")
-                        //.minimumScaleFactor(0.8)
                         .font(.bold(.system(size: 15))())
                         .foregroundColor(Color("WhiteColor"))
-                        //.fontWeight(.bold)
                     Spacer()
                 }
                 .padding(.vertical, 10)

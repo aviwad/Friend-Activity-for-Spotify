@@ -9,19 +9,6 @@ import Foundation
 import SwiftUI
 import SDWebImageSwiftUI
 
-// struct FriendRowMenuStyle: ButtonStyle {
-
-//  func makeBody(configuration: Self.Configuration) -> some View {
-//    configuration.label
-//      .padding()
-//      .foregroundColor(.white)
-//      .background(configuration.isPressed ? Color.green : Color.accentColor)
-//      .cornerRadius(8.0)
-//  }
-//
-//}
-//
-
 
 struct FriendRow: View {
     var friend: Friend
