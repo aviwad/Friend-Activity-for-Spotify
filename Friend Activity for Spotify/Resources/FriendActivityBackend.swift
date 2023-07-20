@@ -30,6 +30,7 @@ import SDWebImage
     @Published var loggedOut: Bool = false
     @Published var errorMessage: String = ""
     @Published var isLoading: Bool = false
+    //@Published var errorText: String = ""
     init() {
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         SDImageCache.shared.config.maxDiskAge = -1
@@ -71,8 +72,9 @@ import SDWebImage
         }
         request.setValue(httpValue, forHTTPHeaderField: httpField)
          let (data, _) = try await URLSession.shared.data(for: request)
-        let jsonText = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments])
-        print(jsonText)
+        #if DEBUG
+       // errorText.append(String(decoding: data, as: UTF8.self))
+        #endif
         let json = try JSONDecoder().decode(T.self, from: data)
         return json
     }
