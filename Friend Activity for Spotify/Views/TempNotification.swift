@@ -38,7 +38,6 @@ struct TempNotification: View {
                             .foregroundColor(.white)
                             .font(.system(size: 24))
                             .padding(.trailing, 16)
-                            .buttonStyle(.bordered)
                         
                     })
                 }

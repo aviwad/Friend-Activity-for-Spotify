@@ -165,7 +165,7 @@ struct FriendRowList: View {
                         }
                     }
                 }
-                .sheet(isPresented: $viewModel.loggedOut) {
+                .fullScreenCover(isPresented: $viewModel.loggedOut) {
                     loginSheet()
                 }
             }

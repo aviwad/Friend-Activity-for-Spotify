@@ -15,12 +15,7 @@ struct FriendRowPlaceholder: View {
                 ZStack {
                     Image(systemName: "person.fill")
                         .resizable()
-                    #if os(iOS)
                         .frame(width: 50, height: 50)
-                    #endif
-                    #if os(macOS)
-                        .frame(width: 45, height: 45)
-                    #endif
                         .clipShape(Circle())
                 }
                 VStack(alignment: .leading, spacing: 3) {

@@ -82,7 +82,6 @@ struct loginSheet: View {
             //.navigationTitle("Login to Friend Activity for Spotify")
             //.navigationBarTitleDisplayMode(.inline)
         }
-        .interactiveDismissDisabled()
         
     }
 }
