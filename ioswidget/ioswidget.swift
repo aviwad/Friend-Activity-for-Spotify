@@ -31,6 +31,12 @@ struct Provider: IntentTimelineProvider {
         return json
     }
     
+    private func entryForPlaceholder(friends: [Friend]) -> ([Friend],[UIImage],Bool) {
+        let friends = Array(friends.prefix(4))
+        let images = [UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!]
+        return (friends,images,false)
+    }
+    
     private func entryFromFriends(friends: [Friend], config: SelectFriendsConfigIntent) -> ([Friend],[UIImage],Bool) {
         let friendArray = {
             if let selectedFriends = config.friends, config.showAll?.boolValue == false {
@@ -48,9 +54,6 @@ struct Provider: IntentTimelineProvider {
             if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
                 imageArray.append(image)
             }
-//                    else if let userImage = friend.user.imageURL, let image = UIImage(data: try! Data.ReferenceType(contentsOf: userImage as Data) {
-//                        imageArray.append(image)
-//                    }
             else {
                 imageArray.append(UIImage(named: "person.png")!)
             }
@@ -67,7 +70,7 @@ struct Provider: IntentTimelineProvider {
             return await GetFriends(configuration)
         }
         let encodedData  = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.object(forKey: "friendArray") as? Data
-        /* Decoding it using JSONDecoder*/
+        /* Decoding it using JSONDecoder */
         if let friendEncoded = encodedData, let friendDecoded = try? JSONDecoder().decode([Friend].self, from: friendEncoded) {
             return entryFromFriends(friends: friendDecoded, config: configuration)
         }
@@ -101,6 +104,11 @@ struct Provider: IntentTimelineProvider {
     }
     
     func placeholder(in context: Context) -> SimpleEntry {
+        let encodedData  = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.object(forKey: "friendArray") as? Data
+        /* Decoding it using JSONDecoder*/
+        if let friendEncoded = encodedData, let friendDecoded = try? JSONDecoder().decode([Friend].self, from: friendEncoded) {
+            return SimpleEntry(date: .now, friends: entryForPlaceholder(friends: friendDecoded))
+        }
         return SimpleEntry(date: Date(), friends: ([],[],false))
     }
     
