@@ -12,8 +12,7 @@ struct Friend_Activity_for_SpotifyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            //ContentView()
-            .preferredColorScheme(.dark)
+                .preferredColorScheme(.dark)
         }
     }
 }

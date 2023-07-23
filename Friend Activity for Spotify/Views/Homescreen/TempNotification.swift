@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TempNotification: View {
-    @Binding var notificationText: String
+    @EnvironmentObject var viewModel: FriendActivityBackend
+    
     var body: some View {
-        if (!notificationText.isEmpty) {
+        if let errorMessage = viewModel.errorMessage {
             ZStack {
                 Color.red
                     .frame(height: 60)
@@ -22,7 +23,7 @@ struct TempNotification: View {
                         .font(.system(size: 24))
                         .padding(.leading, 16)
                     
-                    Text(notificationText)
+                    Text(errorMessage)
                         .foregroundColor(.white)
                         .padding(.horizontal, 8)
                         .font(.system(size: 16, weight: .medium))
@@ -31,7 +32,8 @@ struct TempNotification: View {
                     
                     Button(action: {
                         withAnimation {
-                            notificationText = ""
+                            viewModel.errorMessage = nil
+                            viewModel.tempNotificationSwipeOffset = CGSize.zero
                         }
                     }, label: {
                         Image(systemName: "xmark.circle")
@@ -44,6 +46,20 @@ struct TempNotification: View {
             }
             .padding(.horizontal, 20)
             .transition(.move(edge: .top))
+            .offset(y: viewModel.tempNotificationSwipeOffset.height)
+            .gesture(
+                DragGesture(coordinateSpace: .local)
+                    .onChanged { gesture in
+                        viewModel.tempNotificationSwipeOffset.height = min(0, gesture.translation.height)
+                    }
+                    .onEnded { _ in
+                        if viewModel.tempNotificationSwipeOffset.height < -50 {
+                            // remove the card
+                            viewModel.errorMessage = nil
+                        }
+                        viewModel.tempNotificationSwipeOffset = CGSize.zero
+                    }
+            )
         }
     }
 }

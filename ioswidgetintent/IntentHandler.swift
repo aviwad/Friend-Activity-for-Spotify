@@ -6,6 +6,7 @@
 //
 
 import Intents
+import IntentsUI
 import SDWebImage
 
 class IntentHandler: INExtension, SelectFriendsConfigIntentHandling {
@@ -16,8 +17,8 @@ class IntentHandler: INExtension, SelectFriendsConfigIntentHandling {
                 let image: INImage = {
                     SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
                     let key = SDWebImageManager.shared.cacheKey(for: friend.user.imageURL)
-                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key)?.sd_imageData() {
-                        return INImage(imageData: image)
+                    if let image = SDImageCache.shared.imageFromDiskCache(forKey: key) {
+                        return INImage(uiImage: image)
                     }
                     return INImage(named: "person.png")
                 }()

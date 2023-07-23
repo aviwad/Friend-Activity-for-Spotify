@@ -28,9 +28,9 @@ import SDWebImage
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
-    @Published var errorMessage: String = ""
+    @Published var errorMessage: String? = nil
     @Published var isLoading: Bool = false
-    //@Published var errorText: String = ""
+    @Published var tempNotificationSwipeOffset = CGSize.zero
     init() {
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         SDImageCache.shared.config.maxDiskAge = -1
@@ -116,7 +116,8 @@ import SDWebImage
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                withAnimation {
-                   self.errorMessage = ""
+                   self.errorMessage = nil
+                   self.tempNotificationSwipeOffset = CGSize.zero
                }
            }
     }
@@ -149,6 +150,8 @@ import SDWebImage
                 let friendArrayInitial: Welcome = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .get)
                 var tempFriendArray = friendArrayInitial.friends
                 tempFriendArray.reverse()
+                self.errorMessage = nil
+                self.tempNotificationSwipeOffset = CGSize.zero
                 withAnimation() {
                     friendArray = tempFriendArray
                 }
@@ -156,7 +159,6 @@ import SDWebImage
                 count += 1
                 UserDefaults(suiteName:
                                 "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(count, forKey: "successCount")
-                
                 
                 // increase success count
                 // if count is 50 then show the popup
@@ -215,6 +217,9 @@ import SDWebImage
                 else if (errorWrap.error.code == 429) {
                     errorNotification(newErrorMessage: "Too many requests. Try again later")
                 }
+                else {
+                    errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+                }
             }
             catch {
                 print(error)
@@ -240,7 +245,6 @@ import SDWebImage
 
 actor MyActor {
     var running = false
-    //@Published var latestResult: Date?
     func getFriends() async {
         if !running {
             running = true

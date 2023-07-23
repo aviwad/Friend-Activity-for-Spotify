@@ -37,6 +37,7 @@
 		8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F52857B403003708F1 /* LargeView.swift */; };
 		8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */; };
 		8F44180F2A69BDF4006CEDEE /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F0BE22A23EB2100B97DA4 /* person.png */; };
+		8F4418162A6B0835006CEDEE /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4418152A6B0835006CEDEE /* IntentsUI.framework */; };
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
 		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
 		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
@@ -46,6 +47,11 @@
 		8F7B247E2A686613004B56C9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7B247D2A686613004B56C9 /* Intents.framework */; };
 		8F7B24812A686613004B56C9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24802A686613004B56C9 /* IntentHandler.swift */; };
 		8F7B24852A686613004B56C9 /* ioswidgetintent.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8F7B247C2A686613004B56C9 /* ioswidgetintent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8F9AB0282A6DA05A00C776BA /* NoFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9AB0272A6DA05A00C776BA /* NoFriendView.swift */; };
+		8F9AB02A2A6DA54800C776BA /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9AB0292A6DA54800C776BA /* NoNetworkView.swift */; };
+		8F9AB02C2A6DA5E400C776BA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9AB02B2A6DA5E400C776BA /* LoadingView.swift */; };
+		8F9AB0322A6DAFC800C776BA /* GreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9AB0312A6DAFC800C776BA /* GreenButton.swift */; };
+		8F9AB0342A6DB0D800C776BA /* FriendRowPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9AB0332A6DB0D800C776BA /* FriendRowPlaceholder.swift */; };
 		8FAC2F972A37B32D00AE1D9F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8FAC2F962A37B32D00AE1D9F /* SDWebImageSwiftUI */; };
 		8FAD66122A686AE5008265FE /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D02857AB76003708F1 /* JSONStructs.swift */; };
 		8FAD66132A686AE7008265FE /* GetSpotifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90D82857AC40003708F1 /* GetSpotifyUrl.swift */; };
@@ -53,7 +59,6 @@
 		8FB5BADB2891A1E100E5AB76 /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BAD92891A1D200E5AB76 /* MediumView.swift */; };
 		8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */; };
 		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
-		8FBFE09728892D8C00476ECA /* FriendRowPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */; };
 		8FCA552E2A6866C20038133A /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 /* End PBXBuildFile section */
 
@@ -124,18 +129,23 @@
 		8F3F90EB2857B3D7003708F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewRow.swift; sourceTree = "<group>"; };
 		8F3F90F52857B403003708F1 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
+		8F4418152A6B0835006CEDEE /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginSheet.swift; sourceTree = "<group>"; };
 		8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = iosWidgetContfiguration.intentdefinition; sourceTree = "<group>"; };
 		8F7B247C2A686613004B56C9 /* ioswidgetintent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ioswidgetintent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7B247D2A686613004B56C9 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8F7B24802A686613004B56C9 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		8F7B24822A686613004B56C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F9AB0272A6DA05A00C776BA /* NoFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFriendView.swift; sourceTree = "<group>"; };
+		8F9AB0292A6DA54800C776BA /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
+		8F9AB02B2A6DA5E400C776BA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		8F9AB0312A6DAFC800C776BA /* GreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButton.swift; sourceTree = "<group>"; };
+		8F9AB0332A6DB0D800C776BA /* FriendRowPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRowPlaceholder.swift; sourceTree = "<group>"; };
 		8FAD660F2A686796008265FE /* ioswidgetintent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetintent.entitlements; sourceTree = "<group>"; };
 		8FB5BAD92891A1D200E5AB76 /* MediumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumView.swift; sourceTree = "<group>"; };
 		8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumViewRow.swift; sourceTree = "<group>"; };
 		8FB5CE18289EFA01006B7286 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8FB6D62A289EE628004B7DD9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRowPlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +176,7 @@
 			files = (
 				8F7A39222A68F9C8009E4049 /* SDWebImageSwiftUI in Frameworks */,
 				8F7B247E2A686613004B56C9 /* Intents.framework in Frameworks */,
+				8F4418162A6B0835006CEDEE /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,15 +247,10 @@
 		8F3F90C42857AA9A003708F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */,
-				8F3F90B82857AA70003708F1 /* ContentView.swift */,
-				8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */,
-				8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */,
-				8F3F90C62857AB22003708F1 /* SettingsPage.swift */,
-				8F3F90C82857AB2F003708F1 /* FriendList.swift */,
-				8F3F90CA2857AB47003708F1 /* FriendRow.swift */,
-				8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */,
-				8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */,
+				8F9AB0302A6DAFAC00C776BA /* Elements */,
+				8F9AB02F2A6DAF3100C776BA /* Homescreen */,
+				8F9AB02E2A6DAEF900C776BA /* Logged In */,
+				8F9AB02D2A6DAEF300C776BA /* Login */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 		8F3F90E12857B3D5003708F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F4418152A6B0835006CEDEE /* IntentsUI.framework */,
 				8F3F90E22857B3D5003708F1 /* WidgetKit.framework */,
 				8F3F90E42857B3D5003708F1 /* SwiftUI.framework */,
 				8F7B247D2A686613004B56C9 /* Intents.framework */,
@@ -294,6 +301,47 @@
 				8F7B24822A686613004B56C9 /* Info.plist */,
 			);
 			path = ioswidgetintent;
+			sourceTree = "<group>";
+		};
+		8F9AB02D2A6DAEF300C776BA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */,
+				8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8F9AB02E2A6DAEF900C776BA /* Logged In */ = {
+			isa = PBXGroup;
+			children = (
+				8F3F90C82857AB2F003708F1 /* FriendList.swift */,
+				8F9AB02B2A6DA5E400C776BA /* LoadingView.swift */,
+				8F9AB0292A6DA54800C776BA /* NoNetworkView.swift */,
+				8F9AB0272A6DA05A00C776BA /* NoFriendView.swift */,
+				8F3F90CA2857AB47003708F1 /* FriendRow.swift */,
+			);
+			path = "Logged In";
+			sourceTree = "<group>";
+		};
+		8F9AB02F2A6DAF3100C776BA /* Homescreen */ = {
+			isa = PBXGroup;
+			children = (
+				8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */,
+				8F3F90B82857AA70003708F1 /* ContentView.swift */,
+				8F3F90C62857AB22003708F1 /* SettingsPage.swift */,
+				8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */,
+			);
+			path = Homescreen;
+			sourceTree = "<group>";
+		};
+		8F9AB0302A6DAFAC00C776BA /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				8F9AB0332A6DB0D800C776BA /* FriendRowPlaceholder.swift */,
+				8F9AB0312A6DAFC800C776BA /* GreenButton.swift */,
+			);
+			path = Elements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,9 +506,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F9AB02A2A6DA54800C776BA /* NoNetworkView.swift in Sources */,
 				8F3F90C72857AB22003708F1 /* SettingsPage.swift in Sources */,
 				8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */,
 				8F3F90CB2857AB47003708F1 /* FriendRow.swift in Sources */,
+				8F9AB0342A6DB0D800C776BA /* FriendRowPlaceholder.swift in Sources */,
+				8F9AB02C2A6DA5E400C776BA /* LoadingView.swift in Sources */,
 				8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */,
 				8F7A39232A690BB4009E4049 /* iosWidgetContfiguration.intentdefinition in Sources */,
 				8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */,
@@ -469,9 +520,10 @@
 				8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */,
 				8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */,
 				8F0F0BDF2A23BE4F00B97DA4 /* TempNotification.swift in Sources */,
+				8F9AB0282A6DA05A00C776BA /* NoFriendView.swift in Sources */,
+				8F9AB0322A6DAFC800C776BA /* GreenButton.swift in Sources */,
 				8F3F90D12857AB76003708F1 /* JSONStructs.swift in Sources */,
 				8F3F90C92857AB2F003708F1 /* FriendList.swift in Sources */,
-				8FBFE09728892D8C00476ECA /* FriendRowPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
