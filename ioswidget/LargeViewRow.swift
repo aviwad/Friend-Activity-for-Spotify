@@ -16,7 +16,7 @@ struct LargeViewRow: View {
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 50, height: 50)
+                .frame(width: 40, height: 40)
                 .clipShape(Circle())
             VStack(alignment: .leading, spacing: 3) {
                 HStack {

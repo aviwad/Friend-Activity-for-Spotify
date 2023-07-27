@@ -63,6 +63,7 @@ struct FriendRow: View {
                                 .frame(width: 11, height: 11)
                                 .foregroundColor(Color.blue)
                                 .offset(x: 16, y: -16)
+                                .transition(.scale)
                         }
                     }
                     
@@ -111,6 +112,7 @@ struct FriendRow: View {
                                 .transition(.fade)
                         }
                     }
+                    .transition(.opacity)
                     Spacer()
                 }
                 .padding(.horizontal)

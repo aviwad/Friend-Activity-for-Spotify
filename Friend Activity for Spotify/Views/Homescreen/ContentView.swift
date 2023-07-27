@@ -54,6 +54,11 @@ struct ContentView: View {
                 }
             }
         }
+        #if DEBUG
+        .alert(isPresented: $viewModel.showDebugAlert) {
+            Alert(title: Text("Debug Log"), message: Text(viewModel.debugError ?? "no error. suspicious"), dismissButton: .cancel())
+        }
+        #endif
         .environmentObject(viewModel)
     }
             

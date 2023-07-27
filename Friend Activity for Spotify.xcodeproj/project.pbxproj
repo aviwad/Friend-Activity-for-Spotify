@@ -42,7 +42,6 @@
 		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
 		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
 		8F7A39222A68F9C8009E4049 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7A39212A68F9C8009E4049 /* SDWebImageSwiftUI */; };
-		8F7A39232A690BB4009E4049 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 		8F7B24772A68659A004B56C9 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 		8F7B247E2A686613004B56C9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7B247D2A686613004B56C9 /* Intents.framework */; };
 		8F7B24812A686613004B56C9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24802A686613004B56C9 /* IntentHandler.swift */; };
@@ -60,6 +59,7 @@
 		8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */; };
 		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
 		8FCA552E2A6866C20038133A /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
+		8FD940ED2A7306F900B3D610 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -506,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD940ED2A7306F900B3D610 /* iosWidgetContfiguration.intentdefinition in Sources */,
 				8F9AB02A2A6DA54800C776BA /* NoNetworkView.swift in Sources */,
 				8F3F90C72857AB22003708F1 /* SettingsPage.swift in Sources */,
 				8F3F90B92857AA70003708F1 /* ContentView.swift in Sources */,
@@ -513,7 +514,6 @@
 				8F9AB0342A6DB0D800C776BA /* FriendRowPlaceholder.swift in Sources */,
 				8F9AB02C2A6DA5E400C776BA /* LoadingView.swift in Sources */,
 				8F3F90CD2857AB5F003708F1 /* FriendActivityBackend.swift in Sources */,
-				8F7A39232A690BB4009E4049 /* iosWidgetContfiguration.intentdefinition in Sources */,
 				8F3F90B72857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift in Sources */,
 				8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */,
 				8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */,

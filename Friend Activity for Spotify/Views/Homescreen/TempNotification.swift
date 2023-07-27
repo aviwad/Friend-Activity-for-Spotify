@@ -30,6 +30,15 @@ struct TempNotification: View {
                     
                     Spacer()
                     
+                    #if DEBUG
+                    Button(action: {
+                        viewModel.showDebugAlert = true
+                    }, label: {
+                        Text("Details")
+                            .foregroundColor(.white)
+                        
+                    })
+                    #endif
                     Button(action: {
                         withAnimation {
                             viewModel.errorMessage = nil
@@ -54,7 +63,7 @@ struct TempNotification: View {
                     }
                     .onEnded { _ in
                         if viewModel.tempNotificationSwipeOffset.height < -50 {
-                            // remove the card
+                            // remove the notification
                             viewModel.errorMessage = nil
                         }
                         viewModel.tempNotificationSwipeOffset = CGSize.zero

@@ -31,6 +31,10 @@ import SDWebImage
     @Published var errorMessage: String? = nil
     @Published var isLoading: Bool = false
     @Published var tempNotificationSwipeOffset = CGSize.zero
+    #if DEBUG
+    @Published var debugError: String? = nil
+    @Published var showDebugAlert = false
+    #endif
     init() {
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         SDImageCache.shared.config.maxDiskAge = -1
@@ -73,6 +77,7 @@ import SDWebImage
         request.setValue(httpValue, forHTTPHeaderField: httpField)
          let (data, _) = try await URLSession.shared.data(for: request)
         #if DEBUG
+        debugError = request.debugDescription + String(decoding: data, as: UTF8.self)
        // errorText.append(String(decoding: data, as: UTF8.self))
         #endif
         let json = try JSONDecoder().decode(T.self, from: data)
@@ -150,9 +155,9 @@ import SDWebImage
                 let friendArrayInitial: Welcome = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .get)
                 var tempFriendArray = friendArrayInitial.friends
                 tempFriendArray.reverse()
-                self.errorMessage = nil
-                self.tempNotificationSwipeOffset = CGSize.zero
                 withAnimation() {
+                    self.errorMessage = nil
+                    self.tempNotificationSwipeOffset = CGSize.zero
                     friendArray = tempFriendArray
                 }
                 var count = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.integer(forKey: "successCount") ?? 0

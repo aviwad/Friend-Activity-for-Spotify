@@ -32,8 +32,8 @@ struct Provider: IntentTimelineProvider {
     }
     
     private func entryForPlaceholder(friends: [Friend]) -> ([Friend],[UIImage],Bool) {
-        let friends = Array(friends.prefix(4))
-        let images = [UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!]
+        let friends = Array(friends.prefix(5))
+        let images = [UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!,UIImage(named: "person.png")!]
         return (friends,images,false)
     }
     
@@ -46,7 +46,7 @@ struct Provider: IntentTimelineProvider {
                     }
                 }
             }
-            return Array(friends.prefix(4))
+            return Array(friends.prefix(5))
         }()
         var imageArray : [UIImage] = []
         for friend in friendArray {
