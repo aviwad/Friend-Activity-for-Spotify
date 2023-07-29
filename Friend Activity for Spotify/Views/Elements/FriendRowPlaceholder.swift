@@ -46,7 +46,6 @@ struct FriendRowPlaceholder: View {
                 }
                 Spacer()
             }
-            .transition(.opacity)
             .foregroundColor(Color.white)
             .contentShape(Rectangle())
         }
