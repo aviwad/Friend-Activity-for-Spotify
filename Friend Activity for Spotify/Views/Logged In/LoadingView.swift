@@ -36,12 +36,6 @@ struct LoadingView: View {
             }
             .shimmering(active: viewModel.friendArray == nil)
             .listStyle(.plain)
-            .refreshable {
-                print("logged, getfriendactivity called from refreshing the shimmering placeholder")
-                URLSession.shared.delegateQueue.cancelAllOperations()
-                URLSession.shared.invalidateAndCancel()
-                await viewModel.actor.getFriends()
-            }
             VStack {
                 Button{
                     Task {
