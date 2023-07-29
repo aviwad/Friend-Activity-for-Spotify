@@ -26,7 +26,7 @@ struct TempNotification: View {
                     Text(errorMessage)
                         .foregroundColor(.white)
                         .padding(.horizontal, 8)
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 14, weight: .medium))
                     
                     Spacer()
                     
