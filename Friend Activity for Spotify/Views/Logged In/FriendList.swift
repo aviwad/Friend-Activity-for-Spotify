@@ -37,6 +37,7 @@ struct FriendRowList: View {
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
                                     Task {
                                         await viewModel.actor.getFriends()
+                                        #if RELEASE
                                         let count = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.integer(forKey: "successCount") ?? 0
                                         if (count > 20) {
                                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
@@ -45,6 +46,7 @@ struct FriendRowList: View {
                                                 }
                                             }
                                         }
+                                        #endif
                                     }
                                 }
                             }
