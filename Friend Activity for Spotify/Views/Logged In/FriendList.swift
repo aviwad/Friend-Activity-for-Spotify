@@ -10,6 +10,7 @@ import SwiftUI
 import WidgetKit
 import Network
 import StoreKit
+import SwiftUIBackports
 
 struct FriendRowList: View {
     @EnvironmentObject var viewModel: FriendActivityBackend
@@ -33,7 +34,7 @@ struct FriendRowList: View {
 
                                     }
                                 }
-                                .refreshable {
+                                .backport.refreshable {
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
                                     Task {
                                         await viewModel.actor.getFriends()
