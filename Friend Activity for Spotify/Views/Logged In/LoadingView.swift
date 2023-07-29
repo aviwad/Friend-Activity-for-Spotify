@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct LoadingView: View {
     @EnvironmentObject var viewModel: FriendActivityBackend

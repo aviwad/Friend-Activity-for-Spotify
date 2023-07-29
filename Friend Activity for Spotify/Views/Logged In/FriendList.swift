@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import WidgetKit
 import Network
-import Shimmer
 import StoreKit
 
 struct FriendRowList: View {
