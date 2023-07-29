@@ -43,6 +43,19 @@ struct Friend: Codable, Identifiable {
             case album, artist
             case context
         }
+        
+        // solely for testing purposes
+        init() {
+            self.name = "kpop track"
+            self.uri = "spotify:track:5TSN8BueHQSo8LM7m2zsf9"
+            self.id = self.uri
+            self.url = URL(string: "https://open.spotify.com/track/5TSN8BueHQSo8LM7m2zsf9")!
+            self.imageURL = nil
+            self.album = Album()
+            self.artist = self.album
+            self.context = Context()
+        }
+        
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
@@ -71,6 +84,14 @@ struct Friend: Codable, Identifiable {
             case uri, name
         }
         
+        // solely for testing purposes
+        init() {
+            self.uri = "spotify:album:7hBhbBkQzO1lkeVAorr9ZU"
+            self.url = URL(string: "https://open.spotify.com/album/7hBhbBkQzO1lkeVAorr9ZU")!
+            self.name = "kpop album"
+            self.id = self.uri
+        }
+        
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
@@ -89,6 +110,15 @@ struct Friend: Codable, Identifiable {
         private enum CodingKeys: String, CodingKey {
             case uri, name
             case index
+        }
+        
+        // solely for testing purposes
+        init() {
+            self.uri = "spotify:playlist:5Ayh396jSuy1BMjjktfhIx"
+            self.name = "idk"
+            self.index = 0
+            self.url = URL(string: "https://open.spotify.com/playlist/5Ayh396jSuy1BMjjktfhIx")!
+            self.id = self.uri
         }
         
         init(from decoder: Decoder) throws {
@@ -112,6 +142,15 @@ struct Friend: Codable, Identifiable {
             // case url
         }
         
+        // solely for testing purposes
+        init() {
+            self.name = "Demo User"
+            self.uri = "spotify:user:ramitbratabiswas"
+            self.url = URL(string: "https://open.spotify.com/user/ramitbratabiswas")!
+            self.imageURL = nil
+            self.id = self.uri
+        }
+        
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.uri = try container.decode(String.self, forKey: .uri)
@@ -133,6 +172,15 @@ struct Friend: Codable, Identifiable {
         case user
         case track
         // case id
+    }
+    
+    // solely for testing purposes
+    init() {
+        self.timestamp = 1690489932417
+        self.humanTimestamp = timePlayer(initialTimeStamp: self.timestamp)
+        self.user = User()
+        self.track = Track()
+        self.id = self.user.uri
     }
     
     init(from decoder: Decoder) throws {
