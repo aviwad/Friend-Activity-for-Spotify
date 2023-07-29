@@ -63,7 +63,7 @@ struct FriendRow: View {
                                 .frame(width: 11, height: 11)
                                 .foregroundColor(Color.blue)
                                 .offset(x: 16, y: -16)
-                                .transition(.scale)
+                                .zIndex(1)
                         }
                     }
                     
@@ -75,6 +75,9 @@ struct FriendRow: View {
                             Spacer()
                             Text(LocalizedStringKey(friend.humanTimestamp.humanTimestamp))
                                 .font(.custom("montserrat", size: 15))
+                                .animation(.default, value: friend.humanTimestamp.humanTimestamp)
+                                .contentTransitionNumericText()
+                                .transition(.opacity)
                         }
                         HStack {
                             VStack(alignment: .leading, spacing: 3) {
@@ -103,6 +106,8 @@ struct FriendRow: View {
                                         .font(.custom("montserrat", size: 15))
                                 }
                             }
+                            .animation(.default, value: friend.track.id)
+                            .transition(.opacity)
                             Spacer()
                             WebImage(url: friend.track.imageURL) //{
                                 .resizable()
@@ -112,12 +117,28 @@ struct FriendRow: View {
                                 .transition(.fade)
                         }
                     }
-                    .transition(.opacity)
                     Spacer()
                 }
                 .padding(.horizontal)
                 .foregroundColor(Color.white)
                 .contentShape(Rectangle())
         }
+    }
+}
+
+public struct ContentTransitionNumericText: ViewModifier {
+    public func body(content: Content) -> some View {
+        if #available(iOS 16.0, watchOS 9.0, tvOS 16.0, macCatalyst 16.0, macOS 13.0, *) {
+            content
+                .contentTransition(.numericText())
+        } else {
+            content
+        }
+    }
+}
+
+public extension View {
+    func contentTransitionNumericText() -> some View {
+        modifier(ContentTransitionNumericText())
     }
 }
