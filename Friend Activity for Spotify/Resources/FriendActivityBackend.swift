@@ -49,11 +49,11 @@ import SDWebImage
                             withAnimation {
                                 self.networkUp = true
                                 self.isLoading = true
-                                Task {
-                                    FriendActivityBackend.logger.debug(" LOGGED getfriendactivitycalled from .satisfied of network up")
-                                    await self.actor.getFriends()
-                                } // Aksy das yrwr
                             }
+                            Task {
+                                FriendActivityBackend.logger.debug(" LOGGED getfriendactivitycalled from .satisfied of network up")
+                                await self.actor.getFriends()
+                            } // Aksy das yrwr
                         }
                         else {
                             FriendActivityBackend.logger.debug(" logged .satisfied canceled (logged out: \(self.loggedOut)")
@@ -158,7 +158,7 @@ import SDWebImage
                 withAnimation() {
                     self.errorMessage = nil
                     self.tempNotificationSwipeOffset = CGSize.zero
-                    friendArray = tempFriendArray
+                    self.friendArray = tempFriendArray
                 }
                 var count = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.integer(forKey: "successCount") ?? 0
                 count += 1
