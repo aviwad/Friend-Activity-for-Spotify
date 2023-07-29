@@ -20,13 +20,12 @@ struct FriendRowList: View {
             VStack {
                 ZStack {
                     if viewModel.networkUp {
-                        if (viewModel.friendArray != nil) {
-                            if viewModel.friendArray!.count == 0 {
+                        if let friendArray = viewModel.friendArray {
+                            if friendArray.count == 0 {
                                 NoFriendView()
-                            }
-                            else {
+                            } else {
                                 ScrollView {
-                                    ForEach(viewModel.friendArray!) { friend in
+                                    ForEach(friendArray) { friend in
                                         VStack {
                                             FriendRow(friend: friend)
                                             Divider()
@@ -47,12 +46,9 @@ struct FriendRowList: View {
                                             }
                                         }
                                     }
-                                    
                                 }
                             }
-                        }
-                        
-                        else {
+                        } else {
                             LoadingView()
                         }
                     }
