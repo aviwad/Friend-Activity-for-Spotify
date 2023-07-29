@@ -6,9 +6,5 @@
 	<array>
 		<string>group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify</string>
 	</array>
-	<key>keychain-access-groups</key>
-	<array>
-		<string>$(AppIdentifierPrefix)sharing</string>
-	</array>
 </dict>
 </plist>

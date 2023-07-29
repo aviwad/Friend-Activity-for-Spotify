@@ -39,8 +39,6 @@
 		8F44180F2A69BDF4006CEDEE /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F0BE22A23EB2100B97DA4 /* person.png */; };
 		8F4418162A6B0835006CEDEE /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4418152A6B0835006CEDEE /* IntentsUI.framework */; };
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
-		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
-		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
 		8F7A39222A68F9C8009E4049 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7A39212A68F9C8009E4049 /* SDWebImageSwiftUI */; };
 		8F7B24772A68659A004B56C9 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 		8F7B247E2A686613004B56C9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7B247D2A686613004B56C9 /* Intents.framework */; };
@@ -61,6 +59,8 @@
 		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
 		8FCA552E2A6866C20038133A /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 		8FD940ED2A7306F900B3D610 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
+		8FEC11CC2A759A390092881F /* Amplitude-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 8FEC11CB2A759A390092881F /* Amplitude-Swift */; };
+		8FEC11CE2A759A4B0092881F /* Amplitude-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 8FEC11CD2A759A4B0092881F /* Amplitude-Swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,7 +157,7 @@
 				8F86FF8F2A74FDE0002F833D /* SwiftUIBackports in Frameworks */,
 				8F308D0329335CBE00F18B83 /* SDWebImageSwiftUI in Frameworks */,
 				8FBFE09528892CD500476ECA /* Shimmer in Frameworks */,
-				8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */,
+				8FEC11CC2A759A390092881F /* Amplitude-Swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,9 +166,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FAC2F972A37B32D00AE1D9F /* SDWebImageSwiftUI in Frameworks */,
-				8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */,
 				8F3F90E52857B3D5003708F1 /* SwiftUI.framework in Frameworks */,
 				8F3F90E32857B3D5003708F1 /* WidgetKit.framework in Frameworks */,
+				8FEC11CE2A759A4B0092881F /* Amplitude-Swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,9 +367,9 @@
 			name = "Friend Activity for Spotify";
 			packageProductDependencies = (
 				8FBFE09428892CD500476ECA /* Shimmer */,
-				8F628DE5288A785C00CBEBD8 /* KeychainAccess */,
 				8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */,
 				8F86FF8E2A74FDE0002F833D /* SwiftUIBackports */,
+				8FEC11CB2A759A390092881F /* Amplitude-Swift */,
 			);
 			productName = "Friend Activity for Spotify";
 			productReference = 8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */;
@@ -389,8 +389,8 @@
 			);
 			name = ioswidgetExtension;
 			packageProductDependencies = (
-				8F628DE7288A793C00CBEBD8 /* KeychainAccess */,
 				8FAC2F962A37B32D00AE1D9F /* SDWebImageSwiftUI */,
+				8FEC11CD2A759A4B0092881F /* Amplitude-Swift */,
 			);
 			productName = ioswidgetExtension;
 			productReference = 8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */;
@@ -456,9 +456,9 @@
 			mainGroup = 8F3F90AA2857AA70003708F1;
 			packageReferences = (
 				8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				8F86FF8D2A74FDE0002F833D /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
+				8FEC11CA2A759A390092881F /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 			);
 			productRefGroup = 8F3F90B42857AA70003708F1 /* Products */;
 			projectDirPath = "";
@@ -955,14 +955,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		8F86FF8D2A74FDE0002F833D /* XCRemoteSwiftPackageReference "SwiftUIBackports" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/shaps80/SwiftUIBackports";
@@ -979,6 +971,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		8FEC11CA2A759A390092881F /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-Swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -986,16 +986,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		8F628DE5288A785C00CBEBD8 /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
-		};
-		8F628DE7288A793C00CBEBD8 /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
 		};
 		8F7A39212A68F9C8009E4049 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1016,6 +1006,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		8FEC11CB2A759A390092881F /* Amplitude-Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FEC11CA2A759A390092881F /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = "Amplitude-Swift";
+		};
+		8FEC11CD2A759A4B0092881F /* Amplitude-Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FEC11CA2A759A390092881F /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = "Amplitude-Swift";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

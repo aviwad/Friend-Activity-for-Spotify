@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import SwiftKeychainWrapper
+
 struct SettingsPage: View {
     @State var showAcknowledgements : Bool  = false
     var body: some View {
@@ -71,7 +71,6 @@ struct SettingsPage: View {
                     Text("Spanish translation by Anel")
                     Text("Other Acknowledgements:")
                         .bold()
-                    Text("KeychainAccess by [@kishikawakatsumi](https://github.com/kishikawakatsumi)")
                     Text("Montserrat font by [@JulietaUla](https://github.com/JulietaUla)")
                     Text("SDWebImageSwiftUI by [@SDWebImage](https://github.com/SDWebImage)")
                     Text("SwiftUI-Shimmer by [@markiv](https://github.com/markiv)")

@@ -7,7 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import KeychainAccess
 import Intents
 import SDWebImage
 

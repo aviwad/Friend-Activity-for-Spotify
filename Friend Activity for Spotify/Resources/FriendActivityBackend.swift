@@ -9,10 +9,10 @@ import Foundation
 import Network
 import SwiftUI
 import WidgetKit
-import KeychainAccess
 import WebKit
 import os
 import SDWebImage
+import Amplitude_Swift
 
 @MainActor final class FriendActivityBackend: ObservableObject{
     private static let logger = Logger(
@@ -22,8 +22,6 @@ import SDWebImage
     static let shared = FriendActivityBackend()
     let actor = MyActor()
     let monitor = NWPathMonitor()
-    let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-        .accessibility(.afterFirstUnlock)
     @Published var tabSelection = 1
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
@@ -137,13 +135,7 @@ import SDWebImage
     
     func GetFriends() async {
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
-            guard let cookie = keychain["spDcCookie"] else {
-                logout()
-                isLoading = false
-                return
-            }
-            UserDefaults(suiteName:
-                            "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(cookie, forKey: "spDcCookie")
+            logout()
             isLoading = false
             return
         }
