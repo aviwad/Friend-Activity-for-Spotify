@@ -32,11 +32,17 @@ import Amplitude_Swift
     #if DEBUG
     @Published var debugError: String? = nil
     @Published var showDebugAlert = false
+    let amplitude: Amplitude
     #endif
     init() {
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         SDImageCache.shared.config.maxDiskAge = -1
         FriendActivityBackend.logger.debug(" friendactivitybackend initialized")
+        amplitude = Amplitude(
+            configuration: Configuration(
+                apiKey: amplitudeApiKey
+            )
+        )
         monitor.start(queue: DispatchQueue.main)
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {
@@ -96,6 +102,7 @@ import Amplitude_Swift
                         FriendActivityBackend.shared.tabSelection = 1
                         FriendActivityBackend.shared.loggedOut = false
                         FriendActivityBackend.shared.isLoading = true
+                        self.amplitude.track(eventType: "Sign in")
                         Task {
                             FriendActivityBackend.logger.debug(" getfriendactivity called from checkifloggedin")
                             await FriendActivityBackend.shared.actor.getFriends()
@@ -107,6 +114,7 @@ import Amplitude_Swift
     }
     
     func logout() {
+        amplitude.track(eventType: "Log out")
         loggedOut = true
         UserDefaults(suiteName:
                         "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(nil, forKey: "spDcCookie")
@@ -152,6 +160,7 @@ import Amplitude_Swift
                     self.tempNotificationSwipeOffset = CGSize.zero
                     self.friendArray = tempFriendArray
                 }
+                amplitude.track(eventType: "View Content")
                 var count = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.integer(forKey: "successCount") ?? 0
                 count += 1
                 UserDefaults(suiteName:
