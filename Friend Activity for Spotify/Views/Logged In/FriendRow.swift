@@ -55,8 +55,6 @@ struct FriendRow: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 50, height: 50, alignment: .center)
-                            .animation(.default, value: friend.user.imageURL)
-                            .transition(.fade)
                             .clipShape(Circle())
                         if (friend.humanTimestamp.nowOrNot){
                             Circle()
@@ -75,9 +73,6 @@ struct FriendRow: View {
                             Spacer()
                             Text(LocalizedStringKey(friend.humanTimestamp.humanTimestamp))
                                 .font(.custom("montserrat", size: 15))
-                                .animation(.default, value: friend.humanTimestamp.humanTimestamp)
-                                .contentTransitionNumericText()
-                                .transition(.opacity)
                         }
                         HStack {
                             VStack(alignment: .leading, spacing: 3) {
@@ -106,8 +101,6 @@ struct FriendRow: View {
                                         .font(.custom("montserrat", size: 15))
                                 }
                             }
-                            .animation(.default, value: friend.track.id)
-                            .transition(.opacity)
                             Spacer()
                             WebImage(url: friend.track.imageURL) //{
                                 .resizable()

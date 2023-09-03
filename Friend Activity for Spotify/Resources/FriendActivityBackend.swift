@@ -20,7 +20,7 @@ import Amplitude_Swift
         category: String(describing: FriendActivityBackend.self)
     )
     static let shared = FriendActivityBackend()
-    let actor = MyActor()
+   // let actor = MyActor()
     let monitor = NWPathMonitor()
     @Published var tabSelection = 1
     @Published var networkUp: Bool = true
@@ -29,10 +29,10 @@ import Amplitude_Swift
     @Published var errorMessage: String? = nil
     @Published var isLoading: Bool = false
     @Published var tempNotificationSwipeOffset = CGSize.zero
+    let amplitude: Amplitude
     #if DEBUG
     @Published var debugError: String? = nil
     @Published var showDebugAlert = false
-    let amplitude: Amplitude
     #endif
     init() {
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
@@ -52,11 +52,10 @@ import Amplitude_Swift
                         if (!self.loggedOut) {
                             withAnimation {
                                 self.networkUp = true
-                                self.isLoading = true
                             }
                             Task {
                                 FriendActivityBackend.logger.debug(" LOGGED getfriendactivitycalled from .satisfied of network up")
-                                await self.actor.getFriends()
+                                await self.GetFriends()
                             } // Aksy das yrwr
                         }
                         else {
@@ -89,6 +88,16 @@ import Amplitude_Swift
     }
 
     
+    func oldData() {
+        let json = try! JSONDecoder().decode(Welcome.self, from: oldFriend.data(using: .utf8)!)
+        var tempFriendArray = json.friends
+        tempFriendArray.reverse()
+        withAnimation() {
+            self.errorMessage = nil
+            self.tempNotificationSwipeOffset = CGSize.zero
+            self.friendArray = tempFriendArray
+        }
+    }
 
     func checkIfLoggedIn() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -101,11 +110,10 @@ import Amplitude_Swift
                                         "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(cookie.value, forKey: "spDcCookie")
                         FriendActivityBackend.shared.tabSelection = 1
                         FriendActivityBackend.shared.loggedOut = false
-                        FriendActivityBackend.shared.isLoading = true
                         self.amplitude.track(eventType: "Sign in")
                         Task {
                             FriendActivityBackend.logger.debug(" getfriendactivity called from checkifloggedin")
-                            await FriendActivityBackend.shared.actor.getFriends()
+                            await FriendActivityBackend.shared.GetFriends()
                         }
                     }
                 }
@@ -142,6 +150,9 @@ import Amplitude_Swift
     }
     
     func GetFriends() async {
+        if isLoading {
+            return
+        }
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             logout()
             isLoading = false
@@ -249,14 +260,14 @@ import Amplitude_Swift
     }
 }
 
-actor MyActor {
-    var running = false
-    func getFriends() async {
-        if !running {
-            running = true
-            await FriendActivityBackend.shared.GetFriends()
-            running = false
-        }
-        return
-    }
-}
+//actor MyActor {
+//    var running = false
+//    func getFriends() async {
+//        if !running {
+//            running = true
+//            await FriendActivityBackend.shared.GetFriends()
+//            running = false
+//        }
+//        return
+//    }
+//}

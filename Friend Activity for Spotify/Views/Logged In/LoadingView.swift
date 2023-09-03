@@ -48,7 +48,7 @@ struct LoadingView: View {
                                 task.cancel()
                             }
                         }
-                        await viewModel.actor.getFriends()
+                        await viewModel.GetFriends()
                     }
                 } label: {
                     Text("Refresh")

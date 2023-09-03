@@ -14,7 +14,7 @@ import SwiftUIBackports
 
 struct FriendRowList: View {
     @EnvironmentObject var viewModel: FriendActivityBackend
-    private var timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
+    private var timer = Timer.publish(every: 30, tolerance: 5, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack {
@@ -37,7 +37,7 @@ struct FriendRowList: View {
                                 .backport.refreshable {
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
                                     Task {
-                                        await viewModel.actor.getFriends()
+                                        await viewModel.GetFriends()
                                         #if RELEASE
                                         let count = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.integer(forKey: "successCount") ?? 0
                                         if (count > 20) {
@@ -65,10 +65,9 @@ struct FriendRowList: View {
             }
             .onReceive(timer) { _ in
                 if (!viewModel.loggedOut) {
-                    viewModel.isLoading = true
                     Task {
                         print("timer works")
-                        await viewModel.actor.getFriends()
+                        await viewModel.GetFriends()
                     }
                 }
                 else {

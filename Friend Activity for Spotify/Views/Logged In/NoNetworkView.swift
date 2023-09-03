@@ -26,7 +26,7 @@ struct NoNetworkView: View {
             }
             Button("Refresh") {
                 Task {
-                    await viewModel.actor.getFriends()
+                    await viewModel.GetFriends()
                 }
             }
         }

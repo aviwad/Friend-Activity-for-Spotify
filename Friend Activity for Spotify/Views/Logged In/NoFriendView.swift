@@ -18,9 +18,8 @@ struct NoFriendView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             Button {
-                viewModel.isLoading = true
                 Task {
-                    await viewModel.actor.getFriends()
+                    await viewModel.GetFriends()
                 }
             } label: {
                 Text("Refresh")
