@@ -78,7 +78,7 @@ struct Friend: Codable, Identifiable {
             self.name = try container.decode(String.self, forKey: .name)
             self.imageURL = try {
                 if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
-                        print("successfully set track \(try? container.decode(String.self, forKey: .name)) to URL \(imageUrl)")
+//                        print("successfully set track \(try? container.decode(String.self, forKey: .name)) to URL \(imageUrl)")
                         return URL(string: imageUrl)
                     }
                     return nil

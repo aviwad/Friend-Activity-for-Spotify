@@ -12,7 +12,7 @@ import WidgetKit
 import WebKit
 import os
 import SDWebImage
-import AmplitudeSwift
+import Amplitude_Swift
 
 @MainActor final class FriendActivityBackend: ObservableObject{
     private static let logger = Logger(

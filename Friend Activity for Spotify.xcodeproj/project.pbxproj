@@ -10,6 +10,7 @@
 		8F053162289E74A000ACDD49 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F314D62289D18BB00D15139 /* Localizable.strings */; };
 		8F0F0BDF2A23BE4F00B97DA4 /* TempNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */; };
 		8F0F0BE32A23EB2100B97DA4 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F0BE22A23EB2100B97DA4 /* person.png */; };
+		8F13AE982D575A780022A375 /* Amplitude-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F13AE972D575A780022A375 /* Amplitude-Swift */; };
 		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
@@ -43,7 +44,6 @@
 		8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */; };
 		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
 		8FBFE09728892D8C00476ECA /* FriendRowPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFE09628892D8C00476ECA /* FriendRowPlaceholder.swift */; };
-		8FDB1FDC2D5754D800331306 /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8FDB1FDB2D5754D800331306 /* AmplitudeSwift */; };
 		8FDB1FDF2D57554D00331306 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8FDB1FDE2D57554D00331306 /* SDWebImage */; };
 		8FDB1FE12D5755A700331306 /* amplitudeApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDB1FE02D57558A00331306 /* amplitudeApiKey.swift */; };
 		8FDB1FE22D5755A700331306 /* amplitudeApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDB1FE02D57558A00331306 /* amplitudeApiKey.swift */; };
@@ -124,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FDB1FDC2D5754D800331306 /* AmplitudeSwift in Frameworks */,
+				8F13AE982D575A780022A375 /* Amplitude-Swift in Frameworks */,
 				8F308D0329335CBE00F18B83 /* SDWebImageSwiftUI in Frameworks */,
 				8FBFE09528892CD500476ECA /* Shimmer in Frameworks */,
 			);
@@ -277,7 +277,7 @@
 			packageProductDependencies = (
 				8FBFE09428892CD500476ECA /* Shimmer */,
 				8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */,
-				8FDB1FDB2D5754D800331306 /* AmplitudeSwift */,
+				8F13AE972D575A780022A375 /* Amplitude-Swift */,
 			);
 			productName = "Friend Activity for Spotify";
 			productReference = 8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */;
@@ -341,8 +341,8 @@
 			packageReferences = (
 				8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				8FDB1FDA2D5754D800331306 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 				8FDB1FDD2D57554D00331306 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				8F13AE962D575A780022A375 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 			);
 			productRefGroup = 8F3F90B42857AA70003708F1 /* Products */;
 			projectDirPath = "";
@@ -726,6 +726,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F13AE962D575A780022A375 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-Swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -742,14 +750,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		8FDB1FDA2D5754D800331306 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/amplitude/Amplitude-Swift";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		8FDB1FDD2D57554D00331306 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -761,6 +761,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8F13AE972D575A780022A375 /* Amplitude-Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F13AE962D575A780022A375 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = "Amplitude-Swift";
+		};
 		8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
@@ -770,11 +775,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
-		};
-		8FDB1FDB2D5754D800331306 /* AmplitudeSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8FDB1FDA2D5754D800331306 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
-			productName = AmplitudeSwift;
 		};
 		8FDB1FDE2D57554D00331306 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
