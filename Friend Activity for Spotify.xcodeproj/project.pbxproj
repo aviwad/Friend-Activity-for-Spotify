@@ -39,8 +39,6 @@
 		8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F52857B403003708F1 /* LargeView.swift */; };
 		8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F90F32857B3F8003708F1 /* LargeViewRow.swift */; };
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
-		8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE5288A785C00CBEBD8 /* KeychainAccess */; };
-		8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 8F628DE7288A793C00CBEBD8 /* KeychainAccess */; };
 		8FB5BADB2891A1E100E5AB76 /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BAD92891A1D200E5AB76 /* MediumView.swift */; };
 		8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5BADC2891A25D00E5AB76 /* MediumViewRow.swift */; };
 		8FBFE09528892CD500476ECA /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8FBFE09428892CD500476ECA /* Shimmer */; };
@@ -123,7 +121,6 @@
 			files = (
 				8F308D0329335CBE00F18B83 /* SDWebImageSwiftUI in Frameworks */,
 				8FBFE09528892CD500476ECA /* Shimmer in Frameworks */,
-				8F628DE6288A785C00CBEBD8 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +128,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F628DE8288A793C00CBEBD8 /* KeychainAccess in Frameworks */,
 				8F3F90E52857B3D5003708F1 /* SwiftUI.framework in Frameworks */,
 				8F3F90E32857B3D5003708F1 /* WidgetKit.framework in Frameworks */,
 			);
@@ -272,7 +268,6 @@
 			name = "Friend Activity for Spotify";
 			packageProductDependencies = (
 				8FBFE09428892CD500476ECA /* Shimmer */,
-				8F628DE5288A785C00CBEBD8 /* KeychainAccess */,
 				8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */,
 			);
 			productName = "Friend Activity for Spotify";
@@ -293,7 +288,6 @@
 			);
 			name = ioswidgetExtension;
 			packageProductDependencies = (
-				8F628DE7288A793C00CBEBD8 /* KeychainAccess */,
 			);
 			productName = ioswidgetExtension;
 			productReference = 8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */;
@@ -336,7 +330,6 @@
 			mainGroup = 8F3F90AA2857AA70003708F1;
 			packageReferences = (
 				8FBFE09328892CD500476ECA /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */,
 				8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
@@ -728,14 +721,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		8F9C0498288AD3DA00076266 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
@@ -759,16 +744,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		8F628DE5288A785C00CBEBD8 /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
-		};
-		8F628DE7288A793C00CBEBD8 /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F628DE4288A785C00CBEBD8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
 		};
 		8FBFE09428892CD500476ECA /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;
