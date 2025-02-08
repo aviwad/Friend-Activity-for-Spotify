@@ -62,7 +62,7 @@ struct Friend: Codable, Identifiable {
             self.name = try container.decode(String.self, forKey: .name)
             self.imageURL = try {
                 if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
-                    return URL(string: "https" + imageUrl.dropFirst(4))
+                    return URL(string: imageUrl)
                 }
                 return nil
             }()

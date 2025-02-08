@@ -88,16 +88,6 @@ import Amplitude_Swift
     }
 
     
-    func oldData() {
-        let json = try! JSONDecoder().decode(Welcome.self, from: oldFriend.data(using: .utf8)!)
-        var tempFriendArray = json.friends
-        tempFriendArray.reverse()
-        withAnimation() {
-            self.errorMessage = nil
-            self.tempNotificationSwipeOffset = CGSize.zero
-            self.friendArray = tempFriendArray
-        }
-    }
 
     func checkIfLoggedIn() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

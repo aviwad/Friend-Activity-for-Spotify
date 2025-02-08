@@ -41,7 +41,6 @@
 		8F4418162A6B0835006CEDEE /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4418152A6B0835006CEDEE /* IntentsUI.framework */; };
 		8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */; };
 		8F7A39222A68F9C8009E4049 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7A39212A68F9C8009E4049 /* SDWebImageSwiftUI */; };
-		8F7A614C2A8DE7B90083374E /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7A614B2A8DE7B90083374E /* testing.swift */; };
 		8F7B24772A68659A004B56C9 /* iosWidgetContfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */; };
 		8F7B247E2A686613004B56C9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7B247D2A686613004B56C9 /* Intents.framework */; };
 		8F7B24812A686613004B56C9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B24802A686613004B56C9 /* IntentHandler.swift */; };
@@ -135,7 +134,6 @@
 		8F3F90F52857B403003708F1 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
 		8F4418152A6B0835006CEDEE /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginSheet.swift; sourceTree = "<group>"; };
-		8F7A614B2A8DE7B90083374E /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
 		8F7B24752A685F5E004B56C9 /* iosWidgetContfiguration.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = iosWidgetContfiguration.intentdefinition; sourceTree = "<group>"; };
 		8F7B247C2A686613004B56C9 /* ioswidgetintent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ioswidgetintent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7B247D2A686613004B56C9 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -269,7 +267,6 @@
 				8F3F90CE2857AB6D003708F1 /* GetTime.swift */,
 				8F3F90D02857AB76003708F1 /* JSONStructs.swift */,
 				8F1D4C792A770C7E00F1EFF7 /* amplitudeApiKey.swift */,
-				8F7A614B2A8DE7B90083374E /* testing.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -430,7 +427,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					8F3F90B22857AA70003708F1 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -529,7 +526,6 @@
 				8F5F8BBE285B4D15004FCDBC /* loginSheet.swift in Sources */,
 				8F3F90D92857AC40003708F1 /* GetSpotifyUrl.swift in Sources */,
 				8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */,
-				8F7A614C2A8DE7B90083374E /* testing.swift in Sources */,
 				8F0F0BDF2A23BE4F00B97DA4 /* TempNotification.swift in Sources */,
 				8F9AB0282A6DA05A00C776BA /* NoFriendView.swift in Sources */,
 				8F9AB0322A6DAFC800C776BA /* GreenButton.swift in Sources */,
@@ -548,6 +544,7 @@
 				8FB5BADE2891A2C800E5AB76 /* MediumViewRow.swift in Sources */,
 				8F3F90FD2857B432003708F1 /* LargeViewRow.swift in Sources */,
 				8F3F90F92857B420003708F1 /* GetTime.swift in Sources */,
+				8FDB1FD92D57329900331306 /* amplitudeApiKey.swift in Sources */,
 				8FB5BADB2891A1E100E5AB76 /* MediumView.swift in Sources */,
 				8F3F90FC2857B42F003708F1 /* LargeView.swift in Sources */,
 				8F3F90FA2857B423003708F1 /* JSONStructs.swift in Sources */,
@@ -558,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FDB1FD82D57329900331306 /* amplitudeApiKey.swift in Sources */,
 				8FCA552E2A6866C20038133A /* iosWidgetContfiguration.intentdefinition in Sources */,
 				8FAD66122A686AE5008265FE /* JSONStructs.swift in Sources */,
 				8FAD66142A6870ED008265FE /* GetTime.swift in Sources */,
@@ -724,7 +722,6 @@
 		8F3F90C22857AA71003708F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Friend Activity for Spotify/Friend Activity for Spotify.entitlements";
@@ -756,7 +753,6 @@
 		8F3F90C32857AA71003708F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Friend Activity for Spotify/Friend Activity for Spotify.entitlements";
