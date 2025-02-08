@@ -44,13 +44,11 @@ struct Provider: TimelineProvider {
                 let friendArray = Array(friendArray2.prefix(4))
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
-                    if (friend.user.imageURL.isEmpty) {
+                    if (friend.user.imageURL == nil) {
                         imageArray.append(UIImage(named: "person.png")!)
                     } else {
-                        //imageArray.append(UIImage(named: "person.png")!)
-                        //imageArray.append(UIImage(systemName: "person", withConfiguration: UIImage.SymbolConfiguration(paletteColors: [.white, .magenta]))!)
-                        //imageArray.append(UIImage(systemName: "person")!.withTintColor(.green))
-                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+
+                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: friend.user.imageURL!) as Data)!)
                     }
                 }
                 return (friendArray,imageArray)
@@ -75,10 +73,10 @@ struct Provider: TimelineProvider {
                 let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
                 var imageArray : [UIImage] = []
                 for friend in friendArray {
-                    if (friend.user.imageURL.isEmpty) {
+                    if (friend.user.imageURL == nil) {
                         imageArray.append(UIImage(systemName: "person.png")!)
                     } else {
-                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
+                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: friend.user.imageURL!) as Data)!)
                     }
                 }
                 return (friendArray,imageArray)

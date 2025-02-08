@@ -48,12 +48,12 @@ struct FriendRow: View {
             label: {
                 HStack {
                     ZStack {
-                        if (friend.user.imageURL.isEmpty) {
+                        if (friend.user.imageURL == nil) {
                             Image(systemName: "person.fill")
                                 .frame(width: 50, height: 50)
                                 .clipShape(Circle())
                         } else{
-                            WebImage(url: URL(string: friend.user.imageURL)) //{
+                            WebImage(url: friend.user.imageURL) //{
                                 .placeholder(Image(systemName: "person").resizable())
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -107,7 +107,7 @@ struct FriendRow: View {
                                 }
                             }
                             Spacer()
-                            WebImage(url: URL(string: friend.track.imageURL)) //{
+                            WebImage(url: friend.track.imageURL) //{
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 30, height: 30, alignment: .trailing)
