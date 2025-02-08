@@ -46,15 +46,16 @@ struct MediumViewRow: View {
                 }
                 //.minimumScaleFactor(0.8)
                 HStack (spacing: 5){
-                    if (friend.track.context.name == friend.track.album.name) {
-                        var symbol = "record.circle"
-                    }
-                    else if (friend.track.context.name == friend.track.artist.name) {
-                        var symbol = "person"
-                    }
-                    var symbol = "music.note"
-                    Text("\(Image(systemName: symbol)) \(friend.track.context.name)")//"\($0.user.description)")
-                        //.minimumScaleFactor(0.8)
+                    let symbol: String = {
+                       if (friend.track.context.name == friend.track.album.name) {
+                           return "record.circle"
+                       }
+                       else if (friend.track.context.name == friend.track.artist.name) {
+                           return "person"
+                       }
+                       return "music.note"
+                    }()
+                    Text("\(Image(systemName: symbol)) \(friend.track.context.name)")
                         .font(.custom("montserrat", size: 14))
                         .lineLimit(1)
                 }
