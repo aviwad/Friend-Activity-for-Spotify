@@ -51,6 +51,9 @@ struct ContentView: View {
                 }
             }
         }
+        .sheet(isPresented: $viewModel.DisplayUpdateAlert) {
+            welcomeToUpdateSheet()
+        }
     }
             
 }

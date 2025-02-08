@@ -11,6 +11,7 @@
 		8F0F0BDF2A23BE4F00B97DA4 /* TempNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */; };
 		8F0F0BE32A23EB2100B97DA4 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F0BE22A23EB2100B97DA4 /* person.png */; };
 		8F13AE982D575A780022A375 /* Amplitude-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F13AE972D575A780022A375 /* Amplitude-Swift */; };
+		8F13AE9A2D576F6C0022A375 /* welcomeToUpdateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13AE992D576F680022A375 /* welcomeToUpdateSheet.swift */; };
 		8F1DB6B42889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6B52889685900CBC078 /* montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B32889685900CBC078 /* montserrat.ttf */; };
 		8F1DB6BA2889C0C400CBC078 /* WebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */; };
@@ -81,6 +82,7 @@
 		8F053163289E769000ACDD49 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F0F0BDE2A23BE4F00B97DA4 /* TempNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempNotification.swift; sourceTree = "<group>"; };
 		8F0F0BE22A23EB2100B97DA4 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
+		8F13AE992D576F680022A375 /* welcomeToUpdateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = welcomeToUpdateSheet.swift; sourceTree = "<group>"; };
 		8F1DB6B32889685900CBC078 /* montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat.ttf; sourceTree = "<group>"; };
 		8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewLogin.swift; sourceTree = "<group>"; };
 		8F1DB6C1288A098200CBC078 /* ioswidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ioswidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				8F3F90B62857AA70003708F1 /* Friend_Activity_for_SpotifyApp.swift */,
 				8F3F90B82857AA70003708F1 /* ContentView.swift */,
 				8F5F8BBD285B4D15004FCDBC /* loginSheet.swift */,
+				8F13AE992D576F680022A375 /* welcomeToUpdateSheet.swift */,
 				8F1DB6B92889C0C400CBC078 /* WebviewLogin.swift */,
 				8F3F90C62857AB22003708F1 /* SettingsPage.swift */,
 				8F3F90C82857AB2F003708F1 /* FriendList.swift */,
@@ -396,6 +399,7 @@
 				8F3F90D32857AB85003708F1 /* GlobalUrlOpener.swift in Sources */,
 				8F3F90CF2857AB6D003708F1 /* GetTime.swift in Sources */,
 				8F3F90DB2857AD21003708F1 /* TextLink.swift in Sources */,
+				8F13AE9A2D576F6C0022A375 /* welcomeToUpdateSheet.swift in Sources */,
 				8F0F0BDF2A23BE4F00B97DA4 /* TempNotification.swift in Sources */,
 				8F3F90D12857AB76003708F1 /* JSONStructs.swift in Sources */,
 				8F3F90C92857AB2F003708F1 /* FriendList.swift in Sources */,

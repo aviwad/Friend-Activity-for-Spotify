@@ -30,6 +30,7 @@ import Amplitude_Swift
     @Published var isLoading: Bool = false
     @Published var tempNotificationSwipeOffset = CGSize.zero
     let amplitude: Amplitude
+    @Published var DisplayUpdateAlert = false
     #if DEBUG
     @Published var debugError: String? = nil
     @Published var showDebugAlert = false
@@ -44,6 +45,10 @@ import Amplitude_Swift
             )
         )
         monitor.start(queue: DispatchQueue.main)
+        if !UserDefaults.standard.bool(forKey: "showWelcomeToUpdateAlert") {
+            DisplayUpdateAlert = true
+            UserDefaults.standard.set(true, forKey: "showWelcomeToUpdateAlert")
+        }
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {
                 switch path.status {
