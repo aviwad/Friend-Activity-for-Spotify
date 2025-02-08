@@ -48,7 +48,7 @@ struct FriendRowList: View {
                                         .multilineTextAlignment(.center)
                                     Button {
                                         Task {
-                                            await viewModel.actor.getFriends()
+                                            await viewModel.GetFriends()
                                         }
                                     } label: {
                                         Text("Refresh")
@@ -68,7 +68,7 @@ struct FriendRowList: View {
                                 }
                                 .refreshable {
                                     print("logged, getfriendactivitynoanimation called from refreshing friendlist")
-                                    await viewModel.actor.getFriends()
+                                    await viewModel.GetFriends()
                                     let count = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.integer(forKey: "successCount") ?? 0
                                     if (count > 20) {
                                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
@@ -112,7 +112,7 @@ struct FriendRowList: View {
                                     print("logged, getfriendactivity called from refreshing the shimmering placeholder")
                                     URLSession.shared.delegateQueue.cancelAllOperations()
                                     URLSession.shared.invalidateAndCancel()
-                                    await viewModel.actor.getFriends()
+                                    await viewModel.GetFriends()
                                 }
                                 VStack {
                                     Button{
@@ -126,7 +126,7 @@ struct FriendRowList: View {
                                                     task.cancel()
                                                 }
                                             }
-                                            await viewModel.actor.getFriends()
+                                            await viewModel.GetFriends()
                                         }
                                     } label: {
                                         Text("Refresh")
@@ -158,7 +158,7 @@ struct FriendRowList: View {
                             }
                             Button("Refresh") {
                                 Task {
-                                    await viewModel.actor.getFriends()
+                                    await viewModel.GetFriends()
                                 }
                             }
                         }
@@ -175,7 +175,7 @@ struct FriendRowList: View {
                 if (!viewModel.loggedOut) {
                     Task {
                         print("timer works")
-                        await viewModel.actor.getFriends()
+                        await viewModel.GetFriends()
                     }
                 }
                 else {

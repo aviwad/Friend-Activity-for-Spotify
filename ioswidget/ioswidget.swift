@@ -7,11 +7,11 @@
 
 import WidgetKit
 import SwiftUI
-//import Kingfisher
-//import SwiftKeychainWrapper
+import SDWebImage
 
 struct Provider: TimelineProvider {
     var friendArray : [Friend]?
+    
     func fetch<T: Decodable>(urlString: String, httpValue: String, httpField: String, getOrPost: GetOrPost) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
@@ -58,8 +58,7 @@ struct Provider: TimelineProvider {
         return ([],[])
     }
     
-    func GetFriends() async -> ([Friend],[UIImage]){
-        //guard let cookie = keychain["spDcCookie"] else {
+	func GetFriends() async -> ([Friend],[UIImage]){
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             // error
             return ([],[])
@@ -99,86 +98,17 @@ struct Provider: TimelineProvider {
 
     }
     
-
-//    func GetFriendActivityWidget() async -> ([Friend],[UIImage], String?) {
-//        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-//            .accessibility(.afterFirstUnlock)
-//        let accessToken = try? keychain.get("accessToken")
-//        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
-//        if (accessToken != nil) {
-//            let friendArrayInitial: Welcome
-//            do {
-//                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.unsafelyUnwrapped)", httpField: "Authorization")
-//                 print("testing123: friendarrayinitial")
-//                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
-//                var imageArray : [UIImage] = []
-//                for friend in friendArray {
-//                    if (friend.user.imageURL.isEmpty) {
-//                        imageArray.append(UIImage(systemName: "person.fill")!)
-//                    } else {
-//                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
-//                    }
-//                }
-//                return (friendArray,imageArray,nil)
-//                 //youHaveNoFriends = false
-//
-//                 //WidgetCenter.shared.reloadAllTimelines()
-//            }
-//            catch {
-//                return await GetFriendActivityWidgetWithNewToken()
-//                //print(error)
-//                //return ([],[],error.localizedDescription)
-//            }
-//        }
-//        return ([],[],nil)
-//    }
-
-//    func GetFriendActivityWidgetWithNewToken() async -> ([Friend],[UIImage],String?) {
-//        let keychain = Keychain(service: "aviwad.Friend-Activity-for-Spotify", accessGroup: "38TP6LZLJ5.sharing")
-//            .accessibility(.afterFirstUnlock)
-//        //let accessToken = try? keychain.get("accessToken")
-//        let spDcCookie = try? keychain.get("spDcCookie")
-//        //let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
-//        if (spDcCookie != nil) {
-//            let friendArrayInitial: Welcome
-//            do {
-//                let accessToken: accessTokenJSON =  try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(spDcCookie.unsafelyUnwrapped)", httpField: "Cookie")
-//                keychain["accessToken"] = accessToken.accessToken
-//                friendArrayInitial = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization")
-//                 print("testing123: friendarrayinitial")
-//                let friendArray = Array(friendArrayInitial.friends.reversed().prefix(4))
-//                var imageArray : [UIImage] = []
-//                for friend in friendArray {
-//                    if (friend.user.imageURL.isEmpty) {
-//                        imageArray.append(UIImage(systemName: "person.fill")!)
-//                    } else {
-//                        imageArray.append(UIImage(data: try! Data.ReferenceType(contentsOf: URL(string: friend.user.imageURL)!) as Data)!)
-//                    }
-//                }
-//                return (friendArray,imageArray,nil)
-//                 //youHaveNoFriends = false
-//
-//                 //WidgetCenter.shared.reloadAllTimelines()
-//            }
-//            catch {
-//                print(error)
-//                return ([],[],error.localizedDescription)
-//            }
-//        }
-//        return ([],[],nil)
-//    }
-    
     func placeholder(in context: Context) -> SimpleEntry {
         return SimpleEntry(date: Date(), friends: ([],[UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!,UIImage(systemName: "person.fill")!]))
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         Task {
             let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp())
             completion(entry)
         }
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Task {
             let entry = await SimpleEntry(date: Date(), friends: self.friendsFromApp())
@@ -187,6 +117,7 @@ struct Provider: TimelineProvider {
             completion(timeline)
         }
     }
+
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -211,8 +142,8 @@ struct iosWidget: Widget {
     let kind: String = "iosWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            iosWidgetEntryView(entry: entry)
+	StaticConfiguration(kind: kind, provider: Provider()) { entry in
+    	iosWidgetEntryView(entry: entry)
         }
         .supportedFamilies([.systemMedium,.systemLarge])
         .configurationDisplayName("Friend Activity")
