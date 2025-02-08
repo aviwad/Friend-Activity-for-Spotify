@@ -188,9 +188,23 @@ import os
             }
         }
         catch let error as DecodingError {
-            print("decoding error for token. cookie was probably fucked")
-            print(error)
-            logout()
+            do {
+                let errorWrap: spDcErrorWrapper = try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(cookie)", httpField: "Cookie", getOrPost: .get)
+
+                if (errorWrap.error.code == 401) {
+                    logout()
+                }
+                else if (errorWrap.error.code == 429) {
+                    errorNotification(newErrorMessage: "Too many requests. Try again later")
+                }
+                else {
+                    errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+                }
+            }
+            catch {
+                print(error)
+                errorNotification(newErrorMessage: "Error: \(error.localizedDescription)")
+            }
             // LOGOUT
         }
         catch let error as URLError {
