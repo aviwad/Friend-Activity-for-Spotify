@@ -12,7 +12,7 @@ import WidgetKit
 import WebKit
 import os
 import SDWebImage
-import Amplitude_Swift
+import AmplitudeSwift
 
 @MainActor final class FriendActivityBackend: ObservableObject{
     private static let logger = Logger(
@@ -26,7 +26,7 @@ import Amplitude_Swift
     @Published var networkUp: Bool = true
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
-    @Published var errorMessage: String? = nil
+    @Published var errorMessage: String = ""
     @Published var isLoading: Bool = false
     @Published var tempNotificationSwipeOffset = CGSize.zero
     let amplitude: Amplitude
@@ -125,7 +125,7 @@ import Amplitude_Swift
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                withAnimation {
-                   self.errorMessage = nil
+                   self.errorMessage = ""
                    self.tempNotificationSwipeOffset = CGSize.zero
                }
            }
@@ -157,7 +157,7 @@ import Amplitude_Swift
                 var tempFriendArray = friendArrayInitial.friends
                 tempFriendArray.reverse()
                 withAnimation() {
-                    self.errorMessage = nil
+                    self.errorMessage = ""
                     self.tempNotificationSwipeOffset = CGSize.zero
                     self.friendArray = tempFriendArray
                 }

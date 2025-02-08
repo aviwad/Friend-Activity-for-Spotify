@@ -7,12 +7,27 @@
 
 import Foundation
 
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
+
 // access token json
 struct accessTokenJSON: Codable {
     let accessToken: String
     let isAnonymous: Bool
 }
 
+// getfriendactivity: error struct
+
+/*struct ErrorContainer: Codable {
+    let error: [Error]
+}
+
+struct Error: Codable {
+    let status: Int
+    let message: String
+}*/
 
 // MARK: - Welcome
 struct Welcome: Codable {
@@ -21,12 +36,15 @@ struct Welcome: Codable {
 
 // MARK: - Friend
 struct Friend: Codable, Identifiable {
-    let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool) 
+    let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool)
     let timestamp: Int
     let user: User
     let track: Track
     let id : String
+    //let id = self.user
+    
 
+    
     struct Track: Codable, Identifiable {
         let id: String
         let uri, name: String
@@ -43,8 +61,6 @@ struct Friend: Codable, Identifiable {
             case album, artist
             case context
         }
-        
-        // solely for testing purposes
         init() {
             self.name = "kpop track"
             self.uri = "spotify:track:5TSN8BueHQSo8LM7m2zsf9"
@@ -62,9 +78,10 @@ struct Friend: Codable, Identifiable {
             self.name = try container.decode(String.self, forKey: .name)
             self.imageURL = try {
                 if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
-                    return URL(string: imageUrl)
-                }
-                return nil
+                        print("successfully set track \(try? container.decode(String.self, forKey: .name)) to URL \(imageUrl)")
+                        return URL(string: imageUrl)
+                    }
+                    return nil
             }()
             self.album = try container.decode(Friend.Album.self, forKey: .album)
             self.artist = try container.decode(Friend.Album.self, forKey: .artist)
@@ -72,6 +89,13 @@ struct Friend: Codable, Identifiable {
             self.url = getSpotifyUrl(initialUrl: self.uri)
             self.id = self.uri
         }
+        
+        
+        /*enum CodingKeys: String, CodingKey {
+            case uri, name
+            case imageURL = "imageUrl"
+            case album, artist, context
+        }*/
     }
     
     struct Album: Codable, Identifiable {
@@ -82,15 +106,16 @@ struct Friend: Codable, Identifiable {
         
         private enum CodingKeys: String, CodingKey {
             case uri, name
+            // case url
         }
         
         // solely for testing purposes
-        init() {
-            self.uri = "spotify:album:7hBhbBkQzO1lkeVAorr9ZU"
-            self.url = URL(string: "https://open.spotify.com/album/7hBhbBkQzO1lkeVAorr9ZU")!
-            self.name = "kpop album"
-            self.id = self.uri
-        }
+       init() {
+           self.uri = "spotify:album:7hBhbBkQzO1lkeVAorr9ZU"
+           self.url = URL(string: "https://open.spotify.com/album/7hBhbBkQzO1lkeVAorr9ZU")!
+           self.name = "kpop album"
+           self.id = self.uri
+       }
         
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -106,10 +131,12 @@ struct Friend: Codable, Identifiable {
         let index: Int
         let url: URL
         let id: String
+        //var url: URL {getSpotifyUrl(initialUrl: uri)}
         
         private enum CodingKeys: String, CodingKey {
             case uri, name
             case index
+            // case url
         }
         
         // solely for testing purposes
@@ -135,6 +162,7 @@ struct Friend: Codable, Identifiable {
         let imageURL: URL?
         let url: URL
         let id: String
+        //var url: URL {getSpotifyUserUrl(initialUrl: uri)}
 
         private enum CodingKeys: String, CodingKey {
             case uri,name
@@ -161,6 +189,7 @@ struct Friend: Codable, Identifiable {
                 }
                 return nil
             }()
+            //self.imageURL = try container.decode(String.self, forKey: .imageURL)
             self.url = getSpotifyUserUrl(initialUrl: self.uri)
             self.id = self.uri
         }
@@ -202,6 +231,7 @@ struct TokenError: Codable {
 struct ErrorWrapper: Codable {
     let error: TokenError
 }
+
 struct spDcErrorWrapper: Codable {
     let error: spDcTokenError
 }

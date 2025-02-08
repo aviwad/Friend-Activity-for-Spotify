@@ -9,60 +9,65 @@ import Foundation
 import SwiftUI
 import SDWebImageSwiftUI
 
+// struct FriendRowMenuStyle: ButtonStyle {
+
+//  func makeBody(configuration: Self.Configuration) -> some View {
+//    configuration.label
+//      .padding()
+//      .foregroundColor(.white)
+//      .background(configuration.isPressed ? Color.green : Color.accentColor)
+//      .cornerRadius(8.0)
+//  }
+//
+//}
+//
+
 
 struct FriendRow: View {
     var friend: Friend
     var body: some View {
             Menu {
-                Link(destination: friend.track.url) {
-                    Label("Play Song", systemImage: "play")
-                }
-                Link(destination: friend.user.url) {
-                    Label("View Profile", systemImage: "person")
-                }
-                Link(destination: friend.track.artist.url) {
-                    Label("View Artist", systemImage: "music.mic.circle")
-                }
-                Link(destination: friend.track.album.url) {
-                    Label("View Album", systemImage: "record.circle")
-                }
-                if (friend.track.context.name != friend.track.artist.name && friend.track.context.name != friend.track.album.name) {
-                    Link(destination: friend.track.context.url) {
-                        Label("View Playlist", systemImage: "music.note")
+                    Link(destination: friend.track.url) {
+                        Label("Play Song", systemImage: "play")
+                    }
+                    Link(destination: friend.user.url) {
+                        Label("View Profile", systemImage: "person")
+                    }
+                    Link(destination: friend.track.artist.url) {
+                        Label("View Artist", systemImage: "music.mic.circle")
+                    }
+                    Link(destination: friend.track.album.url) {
+                        Label("View Album", systemImage: "record.circle")
+                    }
+                    if (friend.track.context.name != friend.track.artist.name && friend.track.context.name != friend.track.album.name) {
+                        Link(destination: friend.track.context.url) {
+                            Label("View Playlist", systemImage: "music.note")
+                        }
                     }
                 }
-            
-                #if DEBUG
-                if let userImage = friend.user.imageURL {
-                    Link(destination: userImage) {
-                        Label("View User Image", systemImage: "person.circle.fill")
-                    }
-                }
-                if let albumArt = friend.track.imageURL {
-                    Link(destination: albumArt) {
-                        Label("View Album Art", systemImage: "play.square")
-                    }
-                }
-                #endif
-            }
             label: {
                 HStack {
                     ZStack {
-                        WebImage(url: friend.user.imageURL) //{
-                            .placeholder {
-                                Image(systemName: "person.fill")
+                        if (friend.user.imageURL == nil) {
+                            Image(systemName: "person.fill")
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                        } else{
+                            WebImage(url: friend.user.imageURL) //{
+                                .placeholder(Image(systemName: "person").resizable())
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .clipShape(Circle())
+                            if (friend.humanTimestamp.nowOrNot){
+                                Circle()
+                                    .frame(width: 11, height: 11)
+                                    .foregroundColor(Color.blue)
+                                    .offset(x: 16, y: -16)
                             }
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 50, height: 50, alignment: .center)
-                            .clipShape(Circle())
-                        if (friend.humanTimestamp.nowOrNot){
-                            Circle()
-                                .frame(width: 11, height: 11)
-                                .foregroundColor(Color.blue)
-                                .offset(x: 16, y: -16)
-                                .zIndex(1)
+                                
                         }
+                        
                     }
                     
                     VStack(alignment: .leading, spacing: 3) {
@@ -106,32 +111,14 @@ struct FriendRow: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 30, height: 30, alignment: .trailing)
-                                .animation(.default)
-                                .transition(.fade)
                         }
                     }
                     Spacer()
                 }
                 .padding(.horizontal)
+                .transition(.opacity)
                 .foregroundColor(Color.white)
                 .contentShape(Rectangle())
         }
-    }
-}
-
-public struct ContentTransitionNumericText: ViewModifier {
-    public func body(content: Content) -> some View {
-        if #available(iOS 16.0, watchOS 9.0, tvOS 16.0, macCatalyst 16.0, macOS 13.0, *) {
-            content
-                .contentTransition(.numericText())
-        } else {
-            content
-        }
-    }
-}
-
-public extension View {
-    func contentTransitionNumericText() -> some View {
-        modifier(ContentTransitionNumericText())
     }
 }

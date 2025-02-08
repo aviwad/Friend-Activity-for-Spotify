@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//import SwiftKeychainWrapper
 struct SettingsPage: View {
     @State var showAcknowledgements : Bool  = false
     var body: some View {
@@ -33,7 +33,7 @@ struct SettingsPage: View {
                         guard let writeReviewURL = URL(string: url)
                             else { fatalError("Expected a valid URL") }
                         UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
-                    }){
+                    }) {
                         VStack(spacing: 4) {
                             Label("Rate App", systemImage: "star")
                                 .font(.custom("montserrat",size: 20))
@@ -41,22 +41,56 @@ struct SettingsPage: View {
                             Text("(Opens App Store)")
                                 .font(.custom("montserrat", size: 15))
                         }
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 300)
+                        .background(Color.accentColor)
+                        .cornerRadius(10)
                     }
-                    .buttonStyle(GreenButton())
                     Button(action: {
                         showAcknowledgements = true
                     }) {
                         Label("Acknowledgements", systemImage: "person.3.fill")
+                            .font(.custom("montserrat",size: 20))
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300)
+                            .background(Color.accentColor)
+                            .cornerRadius(10)
+                            //.background(in: RoundedRectangle)
                     }
-                    .buttonStyle(GreenButton())
                     Button(action: {
                         print("LOGGED OUT CUZ OF BUTTON")
                         print(" LOGGED OUT AFTER ALL")
                         FriendActivityBackend.shared.logout()
+//                        FriendActivityBackend.shared.keychain["spDcCookie"] = nil
+//                        FriendActivityBackend.shared.keychain["accessToken"] = nil
+//                        FriendActivityBackend.shared.loggedOut = true
                     }) {
                         Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
+                            .font(.custom("montserrat",size: 20))
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300)
+                            .background(Color.accentColor)
+                            .cornerRadius(10)
+                            //.background(in: RoundedRectangle)
                     }
-                    .buttonStyle(GreenButton())
+//                    Button(action: {
+//                        print("logged, opening debug log")
+//                        Task {
+//                            await FriendActivityBackend.shared.mailto()
+//                        }
+//                    }) {
+//                        Label("I found a bug", systemImage: "ladybug")
+//                            .font(.custom("montserrat",size: 15))
+//                            .foregroundColor(.white)
+//                            .padding(10)
+//                            .frame(width: 150)
+//                            .background(.red)
+//                            .cornerRadius(10)
+//                            //.background(in: RoundedRectangle)
+//                    }
                 }
             }
             .navigationBarTitle("Settings")
