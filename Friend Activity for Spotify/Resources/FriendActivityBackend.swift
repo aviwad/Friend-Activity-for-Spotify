@@ -36,6 +36,8 @@ import Amplitude_Swift
     @Published var showDebugAlert = false
     #endif
     init() {
+//        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
+//        print("Your cookie is \(UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie"))")
         SDImageCache.defaultDiskCacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.appendingPathComponent("SDImageCache").path
         SDImageCache.shared.config.maxDiskAge = -1
         FriendActivityBackend.logger.debug(" friendactivitybackend initialized")
