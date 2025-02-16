@@ -226,6 +226,7 @@ extension WidgetConfiguration {
             return self.supportedFamilies([
                 .systemSmall,
                 .systemMedium,
+                .systemLarge,
                 .accessoryRectangular,
                 
             ])
@@ -233,6 +234,7 @@ extension WidgetConfiguration {
             return self.supportedFamilies([
                 .systemSmall,
                 .systemMedium,
+                .systemLarge,
                 .systemSmall
             ])
         }
