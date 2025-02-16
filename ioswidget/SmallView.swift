@@ -23,6 +23,7 @@ struct SmallView: View {
                                 .frame(width: 25, height: 25)
                                 .clipShape(Circle())
                             Text(firstFriend.user.name)
+                                .foregroundColor(Color("WhiteColor"))
                                 .lineLimit(1)
 //                                .frame(width: 80, height: 30)
                                 .font(.custom("montserrat",size: 13))
@@ -44,7 +45,7 @@ struct SmallView: View {
                         .cornerRadius(5)
                             .frame(width: 70, height: 70)
                         Text(firstFriend.track.name)
-                            .foregroundStyle(.white)
+                            .foregroundColor(Color("WhiteColor"))
                             .lineLimit(1)
                         Text(firstFriend.track.artist.name)
                             .font(.custom("montserrat", size: 11))
@@ -76,8 +77,4 @@ struct SmallView: View {
             
     }
 //        .widgetBackground(backgroundView: Color("WidgetBackground"))
-}
-
-#Preview {
-//    SmallView()
 }
