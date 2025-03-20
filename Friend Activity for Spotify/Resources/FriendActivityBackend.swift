@@ -28,6 +28,7 @@ import SwiftOTP
     @Published var friendArray: [Friend]? = nil
     @Published var loggedOut: Bool = false
     @Published var errorMessage: String = ""
+    @Published var internetFetchWarning: String = ""
     @Published var isLoading: Bool = false
     @Published var tempNotificationSwipeOffset = CGSize.zero
     let amplitude: Amplitude
@@ -53,9 +54,39 @@ import SwiftOTP
             )
         )
         monitor.start(queue: DispatchQueue.main)
-        if !UserDefaults.standard.bool(forKey: "showWelcomeToUpdateAlert") {
+        // Display only if it was set to true. It is only set to true for users that have opened 1.7
+        // Hide from new users
+        if UserDefaults.standard.bool(forKey: "showWelcomeToUpdateAlert") {
             DisplayUpdateAlert = true
-            UserDefaults.standard.set(true, forKey: "showWelcomeToUpdateAlert")
+            UserDefaults.standard.set(false, forKey: "showWelcomeToUpdateAlert")
+        }
+        // Set user agents for Spotify
+        print("We have set up the fake spotify user agent")
+        fakeSpotifyUserAgentconfig.httpAdditionalHeaders = ["User-Agent": "Spotify/121000760 Win32/0 (PC laptop)"]
+        fakeSpotifyUserAgentSession = URLSession(configuration: fakeSpotifyUserAgentconfig)
+        Task {
+            print(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)
+            if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let url = URL(string: "https://spotifyfriend.com/urgentMessage.json")  {
+                let request = URLRequest(url: url)
+                let urlResponseAndData = try await URLSession(configuration: .ephemeral).data(for: request)
+                do {
+                    let messageJson = try JSONDecoder().decode(AviMessage.self, from: urlResponseAndData.0)
+                    let currentVersion = Double(version)
+                    guard let currentVersion else {
+                        print("nil")
+                        return
+                    }
+                    if messageJson.upcomingVersion > currentVersion {
+                        print("\(messageJson.upcomingVersion) is higher than \(currentVersion)")
+                        print("internetFetch warning set to \(messageJson.message)")
+                        internetFetchWarning = messageJson.message
+                     } else {
+                         print("EQUAL")
+                     }
+                } catch {
+                    print(error)
+                }
+            }
         }
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {

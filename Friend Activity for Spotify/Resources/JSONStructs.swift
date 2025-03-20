@@ -260,3 +260,8 @@ enum GetOrPost {
 struct SpotifyServerTime: Decodable {
     let serverTime: Int
 }
+
+struct AviMessage: Decodable {
+    let upcomingVersion: Double
+    let message: String
+}

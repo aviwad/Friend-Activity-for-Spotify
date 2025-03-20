@@ -19,7 +19,7 @@ struct welcomeToUpdateSheet: View{
 //                        Spacer()
 //                    }
                 HStack {
-                    Text("Version 1.7")
+                    Text("Version 1.8")
                         .bold()
                     Spacer()
                     Button(action: {dismiss()}, label: {
@@ -30,40 +30,31 @@ struct welcomeToUpdateSheet: View{
                 .font(.custom("montserrat", size: 25))
                 .padding(.top, 30)
                 
-                Text("I've fixed the 2 year old bug that kept logging you out :)")
+                Text("I've fixed the 2 week old \"Data Could Not Be Read\" bug.")
                     .bold()
                     .font(.custom("montserrat", size: 20))
                 
                 Divider()
-                
-                Text("You can now pin a **favorite friend to the lockscreen**...")
+                Text("Spotify changed their login system to break third party apps, including mine :(")
+                    .font(.custom("montserrat", size: 18))
+                    .padding(.top, 10)
+                Text("Truth be told, it's a cat and mouse chase between me and Spotify...")
                     .font(.custom("montserrat", size: 18))
                     .padding(.top, 10)
                 
                 HStack {
                     Spacer()
-                    Image(.lockscreenWidget)
+                    Image(.tomJerry)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 220)
                         .cornerRadius(15)
                     Spacer()
                 }
-                
-                
-                Text("... and onto a new **small widget!**")
-                    .font(.custom("montserrat", size: 18))
-                    .padding(.top, 10)
-                HStack {
-                    Spacer()
-                    Image(.smallWidget)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 180)
-                        .cornerRadius(15)
-                    Spacer()
-                }
-                
+                Text("**If Nothing's Loading: Please Log Out And Log Back In**")
+                    .padding(.top, 20)
+                    .font(.custom("montserrat", size: 23))
+            
                 Text("Thanks for using my app!")
                     .padding(.top, 20)
                     .font(.custom("montserrat", size: 23))

@@ -19,14 +19,24 @@ struct ContentView: View {
     }
     var body: some View {
         ZStack {
-            if (!viewModel.errorMessage.isEmpty) {
-                TempNotification(notificationText: $viewModel.errorMessage)
-                    .frame(maxHeight: .infinity, alignment: .top)
-                    .zIndex(1)
+            VStack {
+                if (!viewModel.errorMessage.isEmpty) {
+                    TempNotification(notificationText: $viewModel.errorMessage)
+                        .frame(maxHeight: .infinity, alignment: .top)
+                }
+                if (!viewModel.internetFetchWarning.isEmpty) {
+                    TempNotification(notificationText: $viewModel.internetFetchWarning)
+                        .frame(maxHeight: .infinity, alignment: .top)
+                        
+                }
             }
+            .zIndex(1)
             TabView (selection: $viewModel.tabSelection){
                 NavigationView{
                     FriendRowList()
+                        .task {
+                            await viewModel.GetFriends()
+                        }
                         .navigationBarTitle("Friend Activity")
                 }
                     .navigationViewStyle(StackNavigationViewStyle())
