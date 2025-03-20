@@ -15,6 +15,7 @@ import Foundation
 // access token json
 struct accessTokenJSON: Codable {
     let accessToken: String
+    let accessTokenExpirationTimestampMs: TimeInterval
     let isAnonymous: Bool
 }
 
@@ -224,6 +225,16 @@ struct Friend: Codable, Identifiable {
     
 }
 
+struct LFErrorWrapper: Codable {
+    struct Error: Codable {
+        let code: Int
+        let message: String
+    }
+
+    let error: Error
+}
+
+
 struct TokenError: Codable {
     let status: Int
     let message: String
@@ -242,4 +253,10 @@ struct spDcTokenError: Codable {
 
 enum GetOrPost {
     case get,post
+}
+
+
+// Spotify TOTP Login Fix
+struct SpotifyServerTime: Decodable {
+    let serverTime: Int
 }

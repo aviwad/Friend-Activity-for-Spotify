@@ -8,11 +8,12 @@
 import WidgetKit
 import SwiftUI
 import SDWebImage
+import SwiftOTP
 
 struct Provider: TimelineProvider {
     var friendArray : [Friend]?
     
-    func fetch<T: Decodable>(urlString: String, httpValue: String, httpField: String, getOrPost: GetOrPost) async throws -> T {
+    func fetch<T: Decodable>(urlString: String, httpValue: String, httpField: String, getOrPost: GetOrPost, fakeSpotifyUserAgentSession: URLSession) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
@@ -23,7 +24,7 @@ struct Provider: TimelineProvider {
             request.httpMethod = "POST"
         }
         request.setValue(httpValue, forHTTPHeaderField: httpField)
-         let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, _) = try await fakeSpotifyUserAgentSession.data(for: request)
         //FriendActivityBackend.logger.debug(" LOGGED \(data.debugDescription)")
         let json = try JSONDecoder().decode(T.self, from: data)
         return json
@@ -77,8 +78,11 @@ struct Provider: TimelineProvider {
         
         let lastUpdated = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.integer(forKey: "lastSavedTime")
         print(lastUpdated.distance(to: Int(CACurrentMediaTime())))
+        print("TEST")
         if (lastUpdated.distance(to: Int(CACurrentMediaTime())) > 600) {
+//        if true {
             // query online
+            print("Running Get Friends online")
             return await GetFriends(DownloadAlbumArt,pickFavorite)
         }
         let encodedData  = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.object(forKey: "friendArray") as? Data
@@ -103,17 +107,71 @@ struct Provider: TimelineProvider {
         return ([],[],nil)
     }
     
+    
+    // Thanks to Mx-lris
+    enum TOTPGenerator {
+         static func generate(serverTimeSeconds: Int) -> String? {
+             let secretCipher = [12, 56, 76, 33, 88, 44, 88, 33, 78, 78, 11, 66, 22, 22, 55, 69, 54]
+             var processed = [UInt8]()
+             for (i, byte) in secretCipher.enumerated() {
+                 processed.append(UInt8(byte ^ (i % 33 + 9)))
+             }
+             let processedStr = processed.map { String($0) }.joined()
+             guard let utf8Bytes = processedStr.data(using: .utf8) else {
+                 return nil
+             }
+             let secretBase32 = "GU2TANZRGQ2TQNJTGQ4DONBZHE2TSMRSGQ4DMMZQGMZDSMZUG4"//utf8Bytes.base32EncodedString
+             guard let secretData = base32DecodeToData(secretBase32) else {
+                 return nil
+             }
+             print("URL IS \(secretData.bytes)")
+             print("URL IS \(secretBase32)")
+             guard let totp = TOTP(secret: secretData, digits: 6, timeInterval: 30, algorithm: .sha1) else {
+                 return nil
+             }
+             return totp.generate(secondsPast1970: serverTimeSeconds)
+         }
+     }
     func GetFriends(_ DownloadAlbumArt: Bool = false, _ pickFavorite: Bool = false) async -> ([Friend],[UIImage],UIImage?){
+        let fakeSpotifyUserAgentconfig = URLSessionConfiguration.default
+        let fakeSpotifyUserAgentSession: URLSession
+        fakeSpotifyUserAgentconfig.httpAdditionalHeaders = ["User-Agent": "Spotify/121000760 Win32/0 (PC laptop)"]
+        fakeSpotifyUserAgentSession = URLSession(configuration: fakeSpotifyUserAgentconfig)
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             // error
             return ([],[],nil)
         }
         do {
-            let accessTokenJson: accessTokenJSON = try await fetch(urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player", httpValue: "sp_dc=\(cookie)", httpField: "Cookie", getOrPost: .get)
-            let accessToken:String = accessTokenJson.accessToken
+            var accessToken: accessTokenJSON?
+            while accessToken?.accessToken.range(of: "[-_]", options: .regularExpression) == nil {
+                print("starting while, accesstoken is \(accessToken?.accessToken)")
+                let serverTimeRequest = URLRequest(url: .init(string: "https://open.spotify.com/server-time")!)
+                let serverTimeData = try await fakeSpotifyUserAgentSession.data(for: serverTimeRequest).0
+                let serverTime = try JSONDecoder().decode(SpotifyServerTime.self, from: serverTimeData).serverTime
+                
+                if let totp = TOTPGenerator.generate(serverTimeSeconds: serverTime),
+                   let url = URL(string: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player&totpVer=5&ts=\(Int(Date().timeIntervalSince1970))&totp=\(totp)") {
+                    
+                    var request = URLRequest(url: url)
+                    request.setValue("sp_dc=\(cookie)", forHTTPHeaderField: "Cookie")
+                    let accessTokenData = try await fakeSpotifyUserAgentSession.data(for: request)
+                    print(String(decoding: accessTokenData.0, as: UTF8.self))
+                    
+                    do {
+                        let fakeAccessToken = try JSONDecoder().decode(accessTokenJSON.self, from: accessTokenData.0)
+                        accessToken = fakeAccessToken
+                        print("ACCESS TOKEN IS SAVED")
+                    } catch {
+                        return ([],[],nil)
+                    }
+                }
+            }
             do {
+                guard let accessToken else {
+                    return ([],[],nil)
+                }
                 print("access token ")
-                let friendArrayInitial: Welcome = try await fetch(urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken)", httpField: "Authorization", getOrPost: .get)
+                let friendArrayInitial: Welcome = try await fetch(urlString: "https://spclient.wg.spotify.com/presence-view/v1/buddylist", httpValue: "Bearer \(accessToken.accessToken)", httpField: "Authorization", getOrPost: .get, fakeSpotifyUserAgentSession: fakeSpotifyUserAgentSession)
                 if pickFavorite {
                     return favoriteFriendFromApp(friends: friendArrayInitial.friends, DownloadAlbumArt: DownloadAlbumArt)
                 }

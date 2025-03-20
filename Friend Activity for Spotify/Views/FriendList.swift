@@ -110,22 +110,22 @@ struct FriendRowList: View {
                                 .listStyle(.plain)
                                 .refreshable {
                                     print("logged, getfriendactivity called from refreshing the shimmering placeholder")
-                                    URLSession.shared.delegateQueue.cancelAllOperations()
-                                    URLSession.shared.invalidateAndCancel()
+//                                    viewModel.fakeSpotifyUserAgentSession.delegateQueue.cancelAllOperations()
+//                                    viewModel.fakeSpotifyUserAgentSession.invalidateAndCancel()
                                     await viewModel.GetFriends()
                                 }
                                 VStack {
                                     Button{
                                         Task {
                                             print("logged, getfriendactivity called from shimmering placeholder")
-                                            URLSession.shared.delegateQueue.cancelAllOperations()
-                                            URLSession.shared.invalidateAndCancel()
-                                            URLSession.shared.getAllTasks { tasks in
-//                                                .filter { $0.state == .running }
-                                                for task in tasks where task.state == .running {
-                                                    task.cancel()
-                                                }
-                                            }
+//                                            viewModel.fakeSpotifyUserAgentSession.delegateQueue.cancelAllOperations()
+//                                            viewModel.fakeSpotifyUserAgentSession.invalidateAndCancel()
+//                                            viewModel.fakeSpotifyUserAgentSession.getAllTasks { tasks in
+////                                                .filter { $0.state == .running }
+//                                                for task in tasks where task.state == .running {
+//                                                    task.cancel()
+//                                                }
+//                                            }
                                             await viewModel.GetFriends()
                                         }
                                     } label: {

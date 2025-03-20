@@ -51,6 +51,8 @@
 		8FDB1FDF2D57554D00331306 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8FDB1FDE2D57554D00331306 /* SDWebImage */; };
 		8FDB1FE12D5755A700331306 /* amplitudeApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDB1FE02D57558A00331306 /* amplitudeApiKey.swift */; };
 		8FDB1FE22D5755A700331306 /* amplitudeApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDB1FE02D57558A00331306 /* amplitudeApiKey.swift */; };
+		8FEF70F52D8AE78B0069AC01 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 8FEF70F42D8AE78B0069AC01 /* SwiftOTP */; };
+		8FFED0802D8A30FA00EA1510 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 8FFED07F2D8A30FA00EA1510 /* SwiftOTP */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FFED0802D8A30FA00EA1510 /* SwiftOTP in Frameworks */,
 				8F13AE982D575A780022A375 /* Amplitude-Swift in Frameworks */,
 				8F308D0329335CBE00F18B83 /* SDWebImageSwiftUI in Frameworks */,
 				8FBFE09528892CD500476ECA /* Shimmer in Frameworks */,
@@ -142,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FEF70F52D8AE78B0069AC01 /* SwiftOTP in Frameworks */,
 				8FDB1FDF2D57554D00331306 /* SDWebImage in Frameworks */,
 				8F3F90E52857B3D5003708F1 /* SwiftUI.framework in Frameworks */,
 				8F3F90E32857B3D5003708F1 /* WidgetKit.framework in Frameworks */,
@@ -290,6 +294,7 @@
 				8FBFE09428892CD500476ECA /* Shimmer */,
 				8F308D0229335CBE00F18B83 /* SDWebImageSwiftUI */,
 				8F13AE972D575A780022A375 /* Amplitude-Swift */,
+				8FFED07F2D8A30FA00EA1510 /* SwiftOTP */,
 			);
 			productName = "Friend Activity for Spotify";
 			productReference = 8F3F90B32857AA70003708F1 /* Friend Activity for Spotify.app */;
@@ -310,6 +315,7 @@
 			name = ioswidgetExtension;
 			packageProductDependencies = (
 				8FDB1FDE2D57554D00331306 /* SDWebImage */,
+				8FEF70F42D8AE78B0069AC01 /* SwiftOTP */,
 			);
 			productName = ioswidgetExtension;
 			productReference = 8F3F90E02857B3D5003708F1 /* ioswidgetExtension.appex */;
@@ -355,6 +361,7 @@
 				8F308D0129335CBE00F18B83 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				8FDB1FDD2D57554D00331306 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				8F13AE962D575A780022A375 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
+				8FFED07E2D8A30FA00EA1510 /* XCRemoteSwiftPackageReference "SwiftOTP" */,
 			);
 			productRefGroup = 8F3F90B42857AA70003708F1 /* Products */;
 			projectDirPath = "";
@@ -774,6 +781,14 @@
 				minimumVersion = 5.20.0;
 			};
 		};
+		8FFED07E2D8A30FA00EA1510 /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lachlanbell/SwiftOTP";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -796,6 +811,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8FDB1FDD2D57554D00331306 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		8FEF70F42D8AE78B0069AC01 /* SwiftOTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FFED07E2D8A30FA00EA1510 /* XCRemoteSwiftPackageReference "SwiftOTP" */;
+			productName = SwiftOTP;
+		};
+		8FFED07F2D8A30FA00EA1510 /* SwiftOTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FFED07E2D8A30FA00EA1510 /* XCRemoteSwiftPackageReference "SwiftOTP" */;
+			productName = SwiftOTP;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
