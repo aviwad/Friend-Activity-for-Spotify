@@ -159,6 +159,7 @@ import SwiftOTP
     func logout() {
         amplitude.track(eventType: "Log out")
         loggedOut = true
+        accessToken = nil
         UserDefaults(suiteName:
                         "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")!.set(nil, forKey: "spDcCookie")
         errorNotification(newErrorMessage: "Logged out.")
