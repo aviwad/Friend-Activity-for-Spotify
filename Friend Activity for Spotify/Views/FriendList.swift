@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import WidgetKit
 import Network
-import Shimmer
 import StoreKit
 
 struct FriendRowList: View {
@@ -106,7 +105,7 @@ struct FriendRowList: View {
                                     FriendRowPlaceholder()
                                         .redacted(reason: .placeholder)
                                 }
-                                .shimmering(active: viewModel.friendArray == nil)
+//                                .shimmering(active: viewModel.friendArray == nil)
                                 .listStyle(.plain)
                                 .refreshable {
                                     print("logged, getfriendactivity called from refreshing the shimmering placeholder")
