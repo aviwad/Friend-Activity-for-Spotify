@@ -49,6 +49,11 @@ struct ContentView: View {
                         Label("Settings", systemImage: "gearshape.2")
                     }
                     .tag(2)
+                LyricFeverPage()
+                    .tabItem{
+                        Label("Lyric Fever", systemImage: "music.note.list")
+                    }
+                    .tag(3)
             }
             .onChange(of: viewModel.tabSelection) { newValue in
                 let impactMed = UIImpactFeedbackGenerator(style: .light)

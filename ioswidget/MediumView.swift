@@ -42,9 +42,14 @@ struct MediumView: View {
                     Image(systemName: "person.fill.xmark")
                         .font(.system(size: 40))
                         .foregroundColor(Color("WhiteColor"))
-                    Text("No friends available")
-                        .font(.bold(.system(size: 20))())
-                        .foregroundColor(Color("WhiteColor"))
+                    VStack {
+                        Text("No friends available")
+                            .font(.bold(.system(size: 15))())
+                            .foregroundColor(Color("WhiteColor"))
+                        Text("(i've updated! click to re-login maybe?)")
+                            .font(.bold(.system(size: 15))())
+                            .foregroundColor(Color("WhiteColor"))
+                    }
                 }
                     .frame(maxHeight: .infinity)
             }

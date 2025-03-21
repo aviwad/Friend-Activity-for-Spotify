@@ -59,13 +59,12 @@ struct FriendRow: View {
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .clipShape(Circle())
-                            if (friend.humanTimestamp.nowOrNot){
-                                Circle()
-                                    .frame(width: 11, height: 11)
-                                    .foregroundColor(Color.blue)
-                                    .offset(x: 16, y: -16)
-                            }
-                                
+                        }
+                        if (friend.humanTimestamp.nowOrNot){
+                            Circle()
+                                .frame(width: 11, height: 11)
+                                .foregroundColor(Color.blue)
+                                .offset(x: 16, y: -16)
                         }
                         
                     }
