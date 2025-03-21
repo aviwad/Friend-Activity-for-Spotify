@@ -34,6 +34,10 @@ struct welcomeToUpdateSheet: View{
                     .bold()
                     .font(.custom("montserrat", size: 20))
                 
+                Text("If nothing's loading: please log out and log back in again")
+//                    .padding(.top, 20)
+                    .font(.custom("montserrat", size: 20))
+                
                 Divider()
                 Text("Spotify changed their login system to break third party apps, including mine :(")
                     .font(.custom("montserrat", size: 18))
@@ -51,9 +55,6 @@ struct welcomeToUpdateSheet: View{
                         .cornerRadius(15)
                     Spacer()
                 }
-                Text("**If Nothing's Loading: Please Log Out And Log Back In**")
-                    .padding(.top, 20)
-                    .font(.custom("montserrat", size: 23))
             
                 Text("Thanks for using my app!")
                     .padding(.top, 20)
@@ -64,6 +65,10 @@ struct welcomeToUpdateSheet: View{
                     Text("- avi")
                         .font(.custom("montserrat", size: 23))
                 }
+                Text("PS: Give the Lyric Fever page a look 👀")
+                    .padding(.top, 20)
+                    .font(.custom("montserrat", size: 18))
+                
 //                .padding(.horizontal)
 //                    .frame(alignment: .trailing)
                 
