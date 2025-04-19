@@ -135,7 +135,7 @@ struct Provider: TimelineProvider {
     func GetFriends(_ DownloadAlbumArt: Bool = false, _ pickFavorite: Bool = false) async -> ([Friend],[UIImage],UIImage?){
         let fakeSpotifyUserAgentconfig = URLSessionConfiguration.default
         let fakeSpotifyUserAgentSession: URLSession
-        fakeSpotifyUserAgentconfig.httpAdditionalHeaders = ["User-Agent": "Spotify/121000760 Win32/0 (PC laptop)"]
+        fakeSpotifyUserAgentconfig.httpAdditionalHeaders = ["User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"]
         fakeSpotifyUserAgentSession = URLSession(configuration: fakeSpotifyUserAgentconfig)
         guard let cookie = UserDefaults(suiteName: "group.38TP6LZLJ5.aviwad.Friend-Activity-for-Spotify")?.string(forKey: "spDcCookie") else {
             // error
@@ -143,14 +143,17 @@ struct Provider: TimelineProvider {
         }
         do {
             var accessToken: accessTokenJSON?
-            while accessToken?.accessToken.range(of: "[-_]", options: .regularExpression) == nil {
+            var repeatCount = 0
+            repeat {
+                if repeatCount == 3 {
+                    throw AccessTokenError.toomanytries
+                }
                 print("starting while, accesstoken is \(accessToken?.accessToken)")
                 let serverTimeRequest = URLRequest(url: .init(string: "https://open.spotify.com/server-time")!)
                 let serverTimeData = try await fakeSpotifyUserAgentSession.data(for: serverTimeRequest).0
                 let serverTime = try JSONDecoder().decode(SpotifyServerTime.self, from: serverTimeData).serverTime
                 
-                if let totp = TOTPGenerator.generate(serverTimeSeconds: serverTime),
-                   let url = URL(string: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player&totpVer=5&ts=\(Int(Date().timeIntervalSince1970))&totp=\(totp)") {
+                if let totp = TOTPGenerator.generate(serverTimeSeconds: serverTime), let url = URL(string: "https://open.spotify.com/get_access_token?reason=transport&productType=web-player&totp=\(totp)&totpServer=\(Int(Date().timeIntervalSince1970))&totpVer=5&sTime=\(serverTime)&cTime=\(serverTime)") {
                     
                     var request = URLRequest(url: url)
                     request.setValue("sp_dc=\(cookie)", forHTTPHeaderField: "Cookie")
@@ -165,7 +168,8 @@ struct Provider: TimelineProvider {
                         return ([],[],nil)
                     }
                 }
-            }
+                repeatCount += 1
+            } while accessToken?.accessToken.range(of: "[-_]", options: .regularExpression) == nil
             do {
                 guard let accessToken else {
                     return ([],[],nil)
@@ -297,4 +301,8 @@ extension WidgetConfiguration {
             ])
         }
     }
+}
+
+enum AccessTokenError: Error {
+    case toomanytries
 }

@@ -62,7 +62,7 @@ import SwiftOTP
         }
         // Set user agents for Spotify
         print("We have set up the fake spotify user agent")
-        fakeSpotifyUserAgentconfig.httpAdditionalHeaders = ["User-Agent": "Spotify/121000760 Win32/0 (PC laptop)"]
+        fakeSpotifyUserAgentconfig.httpAdditionalHeaders = ["User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"]
         fakeSpotifyUserAgentSession = URLSession(configuration: fakeSpotifyUserAgentconfig)
         Task {
             print(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)
@@ -209,29 +209,29 @@ import SwiftOTP
              return totp.generate(secondsPast1970: serverTimeSeconds)
          }
      }
-    
+
     func generateAccessToken(cookie: String) async throws {
         guard !cookie.isEmpty else { return }
         
+        var repeatCount = 0
         if accessToken == nil || (accessToken!.accessTokenExpirationTimestampMs <= Date().timeIntervalSince1970 * 1000) {
-            while accessToken?.accessToken.range(of: "[-_]", options: .regularExpression) == nil {
+            repeat {
+                if repeatCount == 3 {
+                    throw AccessTokenError.toomanytries
+                }
                 let serverTimeRequest = URLRequest(url: .init(string: "https://open.spotify.com/server-time")!)
                 let serverTimeData = try await fakeSpotifyUserAgentSession.data(for: serverTimeRequest).0
                 let serverTime = try JSONDecoder().decode(SpotifyServerTime.self, from: serverTimeData).serverTime
-                
-                if let totp = TOTPGenerator.generate(serverTimeSeconds: serverTime),
-                   let url = URL(string: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player&totpVer=5&ts=\(Int(Date().timeIntervalSince1970))&totp=\(totp)") {
-                    
-                    print("URL IS \(url.absoluteString)")
+                if let totp = TOTPGenerator.generate(serverTimeSeconds: serverTime), let url = URL(string: "https://open.spotify.com/get_access_token?reason=transport&productType=web-player&totp=\(totp)&totpServer=\(Int(Date().timeIntervalSince1970))&totpVer=5&sTime=\(serverTime)&cTime=\(serverTime)") {
                     var request = URLRequest(url: url)
                     request.setValue("sp_dc=\(cookie)", forHTTPHeaderField: "Cookie")
                     let accessTokenData = try await fakeSpotifyUserAgentSession.data(for: request)
                     print(String(decoding: accessTokenData.0, as: UTF8.self))
-                    
                     do {
-                        let fakeAccessToken = try JSONDecoder().decode(accessTokenJSON.self, from: accessTokenData.0)
-                        accessToken = fakeAccessToken
+                        accessToken = try JSONDecoder().decode(accessTokenJSON.self, from: accessTokenData.0)
+                        
                         print("ACCESS TOKEN IS SAVED")
+                        print("cookie is \(cookie)")
                     } catch {
                         do {
                             let errorWrap = try JSONDecoder().decode(LFErrorWrapper.self, from: accessTokenData.0)
@@ -244,8 +244,45 @@ import SwiftOTP
                         }
                         print("json error decoding the access token, therefore bad cookie therefore un-onboard")
                     }
+                    
                 }
-            }
+                try await Task.sleep(500_000_000)
+//                fetchHomeResult = await fetchHomeTest()
+                repeatCount += 1
+                // Make sure (access token contains "-" or "_") and we could access the our user page (working token)
+            } while accessToken?.accessToken.range(of: "[-_]", options: .regularExpression) == nil
+//            while accessToken?.accessToken.range(of: "[-_]", options: .regularExpression) == nil {
+//                let serverTimeRequest = URLRequest(url: .init(string: "https://open.spotify.com/server-time")!)
+//                let serverTimeData = try await fakeSpotifyUserAgentSession.data(for: serverTimeRequest).0
+//                let serverTime = try JSONDecoder().decode(SpotifyServerTime.self, from: serverTimeData).serverTime
+//                
+//                if let totp = TOTPGenerator.generate(serverTimeSeconds: serverTime),
+//                   let url = URL(string: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player&totpVer=5&ts=\(Int(Date().timeIntervalSince1970))&totp=\(totp)") {
+//                    
+//                    print("URL IS \(url.absoluteString)")
+//                    var request = URLRequest(url: url)
+//                    request.setValue("sp_dc=\(cookie)", forHTTPHeaderField: "Cookie")
+//                    let accessTokenData = try await fakeSpotifyUserAgentSession.data(for: request)
+//                    print(String(decoding: accessTokenData.0, as: UTF8.self))
+//                    
+//                    do {
+//                        let fakeAccessToken = try JSONDecoder().decode(accessTokenJSON.self, from: accessTokenData.0)
+//                        accessToken = fakeAccessToken
+//                        print("ACCESS TOKEN IS SAVED")
+//                    } catch {
+//                        do {
+//                            let errorWrap = try JSONDecoder().decode(LFErrorWrapper.self, from: accessTokenData.0)
+//                            if errorWrap.error.code == 401 {
+//                                logout()
+//                                return
+//                            }
+//                        } catch {
+//                            // silently fail
+//                        }
+//                        print("json error decoding the access token, therefore bad cookie therefore un-onboard")
+//                    }
+//                }
+//            }
         }
     }
     
@@ -481,3 +518,7 @@ import SwiftOTP
 //        return
 //    }
 //}
+
+enum AccessTokenError: Error {
+    case toomanytries
+}
